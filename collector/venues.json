@@ -304,6 +304,92 @@
    "schedule_url": "",
    "site_url": "",
    "status": "pending"
+  },
+  {
+   "adapter": "tcf",
+   "area": "つくば",
+   "id": "tsukuba-novahall",
+   "name": "つくば ノバホール",
+   "note": "公共ホール（小ホール二期）。つくば文化振興財団の会場別イベント一覧（HTML表、data-filter=novahall）。月刊PDF催物案内もあるが施設全体の暦のため HTML 一覧を採用。備考欄を料金とし、詳細ページで開演・開場時刻と出演を補完。学校・教室の発表会と非公演の大会はタイトルで除外。大ホール・小ホールの区別は一覧の場所欄にあるが公演データには分けていない",
+   "pref": "茨城県",
+   "schedule_url": "https://www.tcf.or.jp/exhibition/novahall/",
+   "site_url": "https://www.tcf.or.jp/",
+   "status": "active",
+   "tcf_filter": "novahall",
+   "type": "hall"
+  },
+  {
+   "adapter": "tcf",
+   "area": "つくば",
+   "id": "tsukuba-capio",
+   "name": "つくばカピオ",
+   "note": "公共ホール（小ホール二期）。TCF の会場別イベント一覧（data-filter=capio）をノバホールと共通アダプタで取得。アリーナのスポーツ催事・フェスタ類と催物一覧の見出し行はタイトルで除外。ホール公演が中心",
+   "pref": "茨城県",
+   "schedule_url": "https://www.tcf.or.jp/exhibition/capio/",
+   "site_url": "https://www.tcf.or.jp/",
+   "status": "active",
+   "tcf_filter": "capio",
+   "type": "hall"
+  },
+  {
+   "adapter": "mito_civic",
+   "area": "水戸",
+   "id": "mito-civic-hall",
+   "name": "水戸市民会館",
+   "note": "公共ホール（小ホール二期）。公式サイト /event/ の月タブDLカレンダー。当月タブは施設全体の暦のため、会場が公演ホール（グロービスホール/ユードムホール/小ホール）のみの催しに絞り、一般開放・上映・コンクール・保育園行事等をタイトルで除外。日付範囲・複数日は日別に展開。特設詳細ページはタイトル照合できた場合のみリンクし料金・時刻を補完",
+   "pref": "茨城県",
+   "schedule_url": "https://www.mito-hall.jp/event/",
+   "site_url": "https://www.mito-hall.jp/",
+   "status": "active",
+   "type": "hall"
+  },
+  {
+   "adapter": "hirosawa",
+   "area": "水戸",
+   "id": "mito-hirosawa",
+   "name": "ザ・ヒロサワ・シティ会館",
+   "note": "公共ホール（小ホール二期、旧・茨城県立県民文化センター）。公式サイト /event/ の「これからのイベント」から公演カテゴリ（コンサート/ミュージカル/茨城県芸術祭）のみ。詳細ページに開催日・時間（開演/開場）・料金・出演者が明記されており品質が高い。件数は主催・共催公演中心で少なめ",
+   "pref": "茨城県",
+   "schedule_url": "https://www.ibarakiken-bunkacenter.com/event/",
+   "site_url": "https://www.ibarakiken-bunkacenter.com/",
+   "status": "active",
+   "type": "hall"
+  },
+  {
+   "adapter": "",
+   "area": "日立",
+   "id": "hitachi-civic",
+   "name": "日立シビックセンター・日立市民会館・多賀市民会館",
+   "note": "保留（小ホール二期で調査・訂正）: civic.jp には HTML のイベント一覧（event.php、詳細ページ付き）がある。ただし日立シビックセンター科学館・天球劇場やギャラリーの催事と混在し、音楽ホールの公演だけを抜くにはページングされた一覧＋詳細の会場判定が必要で本批では見送り。年間スケジュール等の PDF チラシも併用されている",
+   "pref": "茨城県",
+   "schedule_url": "https://www.civic.jp/event.php?f=1",
+   "site_url": "https://www.civic.jp/",
+   "status": "pending",
+   "type": "hall"
+  },
+  {
+   "adapter": "",
+   "area": "北区",
+   "id": "tokyo-hokutopia",
+   "name": "北とぴあ",
+   "note": "保留（小ホール二期で調査）: 公式の公演情報ページは財団の自主事業のみで、映画上映・プラネタリウム・講座類が中心。貸館のコンサートは一覧に載らないため本サイトの対象としては適合度が低い",
+   "pref": "東京都",
+   "schedule_url": "",
+   "site_url": "https://www.hokutopia.jp/",
+   "status": "pending",
+   "type": "hall"
+  },
+  {
+   "adapter": "",
+   "area": "練馬区",
+   "id": "nerima-bunkacenter",
+   "name": "練馬文化センター",
+   "note": "保留（小ホール二期で調査）: 練馬区文化振興協会のイベントスケジュールはJS描画で、静的HTMLに公演エントリが含まれない。データAPIが判明したら再挑戦",
+   "pref": "東京都",
+   "schedule_url": "",
+   "site_url": "https://www.neribun.or.jp/",
+   "status": "pending",
+   "type": "hall"
   }
  ]
 }

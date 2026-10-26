@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-26 19:22 JST",
+ "updated_at": "2026-10-26 20:45 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -135,8 +135,43 @@
    "status": "pending",
    "count": 0,
    "error": "2026-10-26 調査: 公式サイトが Web 検索・下北沢ポータル（shimonite）から特定できず、TIGET 等の公演情報のみ確認できた。公式サイトのみを収集元とする方針のため保留（チケットプラットフォームは収集しない）。公式サイトが判明したら再調査する。"
+  },
+  "tsukuba-novahall": {
+   "status": "ok",
+   "count": 27,
+   "error": ""
+  },
+  "tsukuba-capio": {
+   "status": "ok",
+   "count": 21,
+   "error": ""
+  },
+  "mito-civic-hall": {
+   "status": "ok",
+   "count": 43,
+   "error": ""
+  },
+  "mito-hirosawa": {
+   "status": "ok",
+   "count": 7,
+   "error": ""
+  },
+  "hitachi-civic": {
+   "status": "pending",
+   "count": 0,
+   "error": "保留（小ホール二期で調査・訂正）: civic.jp には HTML のイベント一覧（event.php、詳細ページ付き）がある。ただし日立シビックセンター科学館・天球劇場やギャラリーの催事と混在し、音楽ホールの公演だけを抜くにはページングされた一覧＋詳細の会場判定が必要で本批では見送り。年間スケジュール等の PDF チラシも併用されている"
+  },
+  "tokyo-hokutopia": {
+   "status": "pending",
+   "count": 0,
+   "error": "保留（小ホール二期で調査）: 公式の公演情報ページは財団の自主事業のみで、映画上映・プラネタリウム・講座類が中心。貸館のコンサートは一覧に載らないため本サイトの対象としては適合度が低い"
+  },
+  "nerima-bunkacenter": {
+   "status": "pending",
+   "count": 0,
+   "error": "保留（小ホール二期で調査）: 練馬区文化振興協会のイベントスケジュールはJS描画で、静的HTMLに公演エントリが含まれない。データAPIが判明したら再挑戦"
   }
  },
- "total_events": 1092,
+ "total_events": 1190,
  "alerts": []
 }

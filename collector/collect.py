@@ -48,6 +48,13 @@ data/events.json に正規化して保存する。
   - citta:       川崎 CLUB CITTA'（/schedule?year=YYYY&month=Mon。
     料金と不足時刻は詳細ページの「座種/料金」節などから補完する）
   - bbstreet:    横浜 B.B.STREET（月別アーカイブ /YYYY/MM/?cat=5 のカード）
+  - tcf:         つくば ノバホール / つくばカピオ（つくば文化振興財団の
+    会場別イベント一覧 /exhibition/<会場>/ の表。tcf_filter で振り分け。
+    詳細ページで時刻・出演を補完する）
+  - mito_civic:  水戸市民会館（/event/ の月タブ DL カレンダー。公演ホール
+    の催しだけに絞り、非公演の催しはタイトルで除外する）
+  - hirosawa:    ザ・ヒロサワ・シティ会館（/event/ の「これからのイベント」
+    から公演カテゴリのみ。詳細ページに開催日・時間・料金・出演者あり）
   - loft_project: LOFT PROJECT 系（全パス 403 メンテナンス表示のため未実装・保留）
 """
 
@@ -1685,6 +1692,362 @@ def adapter_bbstreet(venue, fetcher):
     return events, errors
 
 
+# ---------------------------------------------------------------- halls
+# 公共ホール（小ホール二期）。方針: 公演ホールでの公開公演だけを載せる。
+# 学校・教室の発表会、施設の一般開放・見学会、映画上映、講座・セミナー
+# 類はタイトルパターンで除外する（判断の根拠は PLAN.md 参照）。
+
+_HALL_EXCLUDE_TITLE = re.compile(
+    r"発表会|一般開放|施設見学会|見学会|上映|コンクール|セミナー|"
+    r"講演会|講座|相談会|体験会|式典|催物一覧|科学フェスティバル|"
+    r"安全・安心フェスタ|スクール対抗戦|３×３|3X3|保育園|幼稚園")
+
+
+def _enrich_tcf(events_by_url, fetcher):
+    """TCF 詳細ページの「日時」節から開演・開場時刻、「出演」節から
+    出演者を補完する。多日程・昼夕2部制の場合は先頭の時刻を採用する。"""
+    fetched = filled_t = filled_a = 0
+    for url, evs in events_by_url.items():
+        ok, det = fetcher.fetch(url)
+        fetched += 1
+        if not ok:
+            continue
+        txt = clean(det)
+        # 詳細ページには2つの書式がある: 「日時 … 14：00開演（12：30開場）」
+        # と「開催日時 … / 開場 17:30 / 開演 18:00」。日時見出しから
+        # 400字の範囲で両書式を探す
+        i = txt.find("日時")
+        seg = txt[i:i + 400] if i >= 0 else txt[:1200]
+        sm = (re.search(r"(\d{1,2})[:：](\d{2})\s*開演", seg)
+              or re.search(r"開演\s*(\d{1,2})[:：](\d{2})", seg))
+        om = (re.search(r"(\d{1,2})[:：](\d{2})\s*開場", seg)
+              or re.search(r"開場\s*(\d{1,2})[:：](\d{2})", seg))
+        start_t = f"{sm.group(1)}:{sm.group(2)}" if sm else ""
+        open_t = f"{om.group(1)}:{om.group(2)}" if om else ""
+        artists = ""
+        am = re.search(r"出演\s*(.*?)\s*(?:料金|発売日|チケット)", txt)
+        if am:
+            artists = am.group(1).strip(" /")[:140]
+        st = detect_status(seg)
+        for ev in evs:
+            if start_t and not ev["start"]:
+                ev["start"] = start_t
+                filled_t += 1
+            if open_t and not ev["open"]:
+                ev["open"] = open_t
+            if artists and not ev["artists"]:
+                ev["artists"] = artists
+                filled_a += 1
+            if st and not ev["status"]:
+                ev["status"] = st
+    if fetched:
+        print(f"    [enrich] tcf detail: fetched={fetched} "
+              f"start+={filled_t} artists+={filled_a}")
+
+
+def adapter_tcf(venue, fetcher):
+    """つくば文化振興財団（TCF）の会場別イベント一覧を読む。
+
+    /exhibition/novahall/ ・ /exhibition/capio/ の表
+    （tr data-filter="<会場キー>": 公演名リンク / 日程 / 場所 / 備考）。
+    月刊 PDF「催物案内」は施設全体の暦（アリーナのスポーツ催事や
+    学校行事も含む）だが、この HTML 一覧は財団が公演情報として
+    整理したもの。それでも学校の発表会等が混ざるため
+    _HALL_EXCLUDE_TITLE で落とす。備考欄を料金として採用し、
+    詳細ページで時刻・出演を補完する。
+    """
+    ok, page = fetcher.fetch(venue["schedule_url"])
+    if not ok:
+        return [], [page]
+    filt = venue.get("tcf_filter", "")
+    events, by_url = [], {}
+    pat = r'<tr data-filter="%s">(.*?)</tr>' % re.escape(filt)
+    for row in re.findall(pat, page, re.S):
+        m = re.search(r'<a href="([^"]+)">(.*?)</a>', row, re.S)
+        tds = re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)
+        if not m or len(tds) < 3:
+            continue
+        title = clean(m.group(2))
+        if not title or _HALL_EXCLUDE_TITLE.search(title):
+            continue
+        if "大会" in title and not re.search(
+                r"コンサート|演奏会|音楽会|ライブ|LIVE|ミュージカル|リサイタル",
+                title):
+            continue
+        price = clean(tds[2])
+        if not re.search(r"円|無料|有料", price):
+            price = ""
+        if len(price) > 120:
+            price = price[:120].rstrip() + "…"
+        url = urllib.parse.urljoin("https://www.tcf.or.jp/", m.group(1))
+        date_txt = clean(tds[0])
+        for y, mo, d in re.findall(r"(\d{4})年(\d{1,2})月(\d{1,2})日", date_txt):
+            ev = make_event(
+                venue, f"{int(y):04d}-{int(mo):02d}-{int(d):02d}", title,
+                price=price, url=url, source=venue["schedule_url"],
+                status_src=title)
+            if ev:
+                events.append(ev)
+                by_url.setdefault(url, []).append(ev)
+    if by_url:
+        _enrich_tcf(by_url, fetcher)
+    return events, []
+
+
+_MITO_HALL_SPACES = {"グロービスホール", "ユードムホール", "小ホール"}
+
+
+def _mito_space_ok(space_text):
+    """会場欄が公演ホール（グロービス/ユードム/小ホール）だけで
+    構成される催しだけを通す。会議室・展示室等が混ざる催しは落とす。"""
+    parts = [p.strip() for p in re.split(r"[、・,\s]+", space_text) if p.strip()]
+    if not parts:
+        return False
+    for p in parts:
+        p = re.sub(r"（(大|中)ホール）$", "", p)
+        if p not in _MITO_HALL_SPACES:
+            return False
+    return True
+
+
+def _mito_dates(date_text, tab_y, tab_m):
+    """水戸市民会館カレンダーの開催日テキストから日付リストを作る。
+
+    対応形式: "10月2日(金)" / "10月10日(土)-12日(月・祝)" /
+    "10月30日(金)～11月1日(日)" / "12月26日(土)・27日(日)"。
+    年はタブの年月から付与する（トークンの月 < タブの月 なら翌年）。
+    """
+    toks = []
+    for m in re.finditer(r"(\d{1,2})月(\d{1,2})日|(\d{1,2})日", date_text):
+        if m.group(1):
+            toks.append((m.start(), int(m.group(1)), int(m.group(2))))
+        else:
+            toks.append((m.start(), None, int(m.group(3))))
+    if not toks:
+        return []
+    dates = []
+    cur_month = None
+    for _, mo, d in toks:
+        if mo is None:
+            mo = cur_month
+            if mo is None:
+                continue
+            if dates and d < dates[-1].day:
+                mo += 1
+                if mo == 13:
+                    mo = 1
+        cur_month = mo
+        y = tab_y + (1 if mo < tab_m else 0)
+        try:
+            dates.append(datetime(y, mo, d).date())
+        except ValueError:
+            continue
+    if len(dates) >= 2:
+        between = date_text[toks[0][0]:toks[-1][0]]
+        if re.search(r"[～~\-−]", between):
+            out, cur = [], dates[0]
+            while cur <= dates[-1] and len(out) <= 10:
+                out.append(cur)
+                cur += timedelta(days=1)
+            return out
+    return dates
+
+
+def adapter_mito_civic(venue, fetcher):
+    """水戸市民会館の月タブ DL カレンダーを読む。
+
+    当月タブは施設全体の暦（講座・健康相談・展示会まで含む）だが、
+    会場が公演ホールのみの催しに絞り、タイトルでも非公演を除外する。
+    翌月以降のタブは主催公演中心でほぼそのまま使える。
+    特設詳細ページ（event/event_YYYYMMDDNN.html）がトップや一覧から
+    リンクされている場合は、日付で候補を引き、タイトル一致を確認
+    できたものだけ公演 URL として採用し、料金・時刻を補完する。
+    """
+    ok, raw = fetcher.fetch(venue["schedule_url"])
+    if not ok:
+        return [], [raw]
+    # 特設ページ候補（日付→URL）。リンクはトップページ側にある
+    # （/event/ には無い）。昨年の同名ページ等も候補に入るが、
+    # 採用はタイトル照合を通過したものだけ
+    detail_by_date = {}
+    ok_top, top = fetcher.fetch(venue["site_url"])
+    for src_html in (raw, top if ok_top else ""):
+        for href, y, mo, d in re.findall(
+                r'href="[^"]*?(event/event_(\d{4})(\d{2})(\d{2})\d{2}\.html)"',
+                src_html):
+            key = f"{int(y):04d}-{int(mo):02d}-{int(d):02d}"
+            # href はトップページ基準の "event/event_*.html" 形式。
+            # ベースはサイトルートにする（/event/ を基点にすると
+            # event/event/ と二重になる）
+            url = urllib.parse.urljoin("https://www.mito-hall.jp/", href)
+            detail_by_date.setdefault(key, [])
+            if url not in detail_by_date[key]:
+                detail_by_date[key].append(url)
+    page = re.sub(r"<!--.*?-->", "", raw, flags=re.S)  # 古い内容がコメントに残る
+    tabs = {}
+    for m in re.finditer(
+            r'for="month(\d+)">\s*(\d{4})年<BR[^>]*><SPAN[^>]*>(\d{1,2})', page):
+        tabs[int(m.group(1))] = (int(m.group(2)), int(m.group(3)))
+    events = []
+    tab_marks = list(re.finditer(
+        r'class="tab_content" id="month(\d+)_item"', page))
+    for i, tcm in enumerate(tab_marks):
+        idx = int(tcm.group(1))
+        if idx not in tabs:
+            continue
+        tab_y, tab_m = tabs[idx]
+        seg_end = (tab_marks[i + 1].start() if i + 1 < len(tab_marks)
+                   else len(page))
+        block = page[tcm.start():seg_end]
+        for dl in re.findall(r"<DL>(.*?)</DL>", block, re.S):
+            fields = {}
+            for dt_, dd_ in re.findall(
+                    r"<DT[^>]*>(.*?)</DT>\s*<DD[^>]*>(.*?)</DD>", dl, re.S):
+                fields[clean(dt_)] = dd_
+            title_m = re.search(r'class="title[^"]*"[^>]*>(.*?)</LI>', dl, re.S)
+            title = clean(title_m.group(1)) if title_m else ""
+            if not title:
+                tm = re.search(r"催事名.*?<span>(.*?)</span>", clean(dl))
+                title = tm.group(1) if tm else ""
+            if not title or _HALL_EXCLUDE_TITLE.search(title):
+                continue
+            space = clean(fields.get("会場", ""))
+            if not _mito_space_ok(space):
+                continue
+            price = clean(fields.get("チケット等", ""))
+            if price and not re.search(r"円|無料", price):
+                price = ""
+            if len(price) > 120:
+                price = price[:120].rstrip() + "…"
+            for dt_ in _mito_dates(clean(fields.get("開催日", "")), tab_y, tab_m):
+                ev = make_event(
+                    venue, dt_.strftime("%Y-%m-%d"), title, price=price,
+                    url=venue["site_url"], source=venue["schedule_url"],
+                    status_src=title)
+                if ev:
+                    events.append(ev)
+    # 特設ページで URL・料金・時刻を補完
+    by_date = {}
+    for ev in events:
+        by_date.setdefault(ev["date"], []).append(ev)
+    matched = 0
+    for date_str, evs in by_date.items():
+        for cand in detail_by_date.get(date_str, []):
+            okd, det = fetcher.fetch(cand)
+            if not okd:
+                continue
+            txt = clean(det)
+            # 特設ページはチラシ画像主体で、公演名は冒頭の HTML コメント
+            # （<!--日付_公演名_特設ページ-->）にしか無いことが多いため、
+            # 照合はコメントを含む生 HTML に対して行う
+            flat = re.sub(r"\s+", "", det)
+            pm = re.search(r"料金[：:]\s*([^/。]{0,80}?円)", txt)
+            sm = re.search(r"開演\s*(\d{1,2}:\d{2})", txt)
+            om = re.search(r"開場\s*(\d{1,2}:\d{2})", txt)
+            for ev in evs:
+                key = re.sub(r"\s+", "", ev["title"])[:10]
+                if key and key in flat:
+                    ev["url"] = cand
+                    matched += 1
+                    if pm and not ev["price"]:
+                        ev["price"] = pm.group(1).strip()
+                    if sm and not ev["start"]:
+                        ev["start"] = sm.group(1)
+                    if om and not ev["open"]:
+                        ev["open"] = om.group(1)
+    if matched:
+        print(f"    [enrich] mito detail pages matched={matched}")
+    return events, []
+
+
+_HIROSAWA_KEEP = {"コンサート", "ミュージカル", "茨城県芸術祭"}
+
+
+def adapter_hirosawa(venue, fetcher):
+    """ザ・ヒロサワ・シティ会館の「これからのイベント」を読む。
+
+    /event/ の schedule_pickup 節（展示室・ギャラリーの節より前）から
+    公演カテゴリ（コンサート/ミュージカル/茨城県芸術祭）の記事だけを
+    取り、詳細ページの開催日・時間・料金・出演者で確定させる。
+    一覧の赤字 span（発売日などの販売注記）はタイトルから除く。
+    """
+    ok, page = fetcher.fetch(venue["schedule_url"])
+    if not ok:
+        return [], [page]
+    start = page.find('id="schedule_pickup"')
+    if start < 0:
+        return [], ["schedule_pickup section not found"]
+    end = page.find("一般展示室", start)
+    seg = page[start:end if end > start else len(page)]
+    events = []
+    for item in re.findall(r"<ARTICLE>(.*?)</ARTICLE>", seg, re.S):
+        cm = re.search(r'class="category">(.*?)</LI>', item, re.S)
+        if not cm:
+            continue
+        cat = clean(cm.group(1)).replace("－", "ー")
+        if cat not in _HIROSAWA_KEEP:
+            continue
+        hm = re.search(r"<H4>(.*?)</H4>", item, re.S)
+        if not hm:
+            continue
+        h4 = re.sub(r'<span[^>]*style="[^"]*color[^"]*"[^>]*>.*?</span>',
+                    "", hm.group(1), flags=re.S)
+        title = clean(h4)
+        lm = re.search(r'href="(\d{8}\.html)"', item)
+        if not title:
+            continue
+        detail_url = (urllib.parse.urljoin(venue["schedule_url"], lm.group(1))
+                      if lm else "")
+        date_str = open_t = start_t = price = artists = ""
+        if detail_url:
+            okd, det = fetcher.fetch(detail_url)
+            if okd:
+                txt = clean(det)
+                dm = re.search(r"開催日\s*(\d{4})年(\d{1,2})月(\d{1,2})日", txt)
+                if dm:
+                    date_str = (f"{int(dm.group(1)):04d}-{int(dm.group(2)):02d}"
+                                f"-{int(dm.group(3)):02d}")
+                tm = re.search(r"時間\s*(.*?)\s*会場", txt)
+                tseg = tm.group(1) if tm else txt
+                sm = re.search(r"開演\s*(\d{1,2}:\d{2})", tseg)
+                om = re.search(r"開場\s*(\d{1,2}:\d{2})", tseg)
+                if sm:
+                    start_t = sm.group(1)
+                if om:
+                    open_t = om.group(1)
+                pm = re.search(
+                    r"料金\s*(.*?)\s*(?:チケット発売日|チケットのお求め|お問合せ|"
+                    r"席種|発売日|プレイガイド|出演)",
+                    txt)
+                if pm and re.search(r"円|￥|¥|無料", pm.group(1)):
+                    price = pm.group(1).strip(" /")[:160]
+                am = re.search(
+                    r"出演者?\s*(.*?)\s*(?:チケット発売日|チケットのお求め|お問合せ)",
+                    txt)
+                if am:
+                    artists = am.group(1).strip(" /")[:140]
+        if not date_str:
+            dm2 = re.search(r'class="date">\s*(\d{4})/(\d{1,2})/(\d{1,2})',
+                            item)
+            if dm2:
+                date_str = (f"{int(dm2.group(1)):04d}-{int(dm2.group(2)):02d}"
+                            f"-{int(dm2.group(3)):02d}")
+            elif lm:
+                fn = lm.group(1)
+                date_str = f"{fn[:4]}-{fn[4:6]}-{fn[6:8]}"
+        if not date_str:
+            continue
+        ev = make_event(
+            venue, date_str, title, artists=artists, open_t=open_t,
+            start_t=start_t, price=price,
+            url=detail_url or venue["site_url"],
+            source=venue["schedule_url"],
+            status_src=f"{title} {price}")
+        if ev:
+            events.append(ev)
+    return events, []
+
+
 ADAPTERS = {
     "www_shibuya": adapter_www_shibuya,
     "quattro": adapter_quattro,
@@ -1704,6 +2067,9 @@ ADAPTERS = {
     "fad": adapter_fad,
     "citta": adapter_citta,
     "bbstreet": adapter_bbstreet,
+    "tcf": adapter_tcf,
+    "mito_civic": adapter_mito_civic,
+    "hirosawa": adapter_hirosawa,
     # "loft_project": 未実装（全パス 403 メンテナンス表示のため保留）
 }
 
