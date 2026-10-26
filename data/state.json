@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-26 16:28 JST",
+ "updated_at": "2026-10-26 17:29 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -23,7 +23,7 @@
   },
   "tsukuba-parkdiner": {
    "status": "ok",
-   "count": 13,
+   "count": 26,
    "error": ""
   },
   "shinjuku-loft": {
@@ -73,7 +73,7 @@
   },
   "chiba-look": {
    "status": "ok",
-   "count": 22,
+   "count": 39,
    "error": ""
   },
   "shimokitazawa-club251": {
@@ -137,5 +137,5 @@
    "error": "2026-10-26 調査: 公式サイトが Web 検索・下北沢ポータル（shimonite）から特定できず、TIGET 等の公演情報のみ確認できた。公式サイトのみを収集元とする方針のため保留（チケットプラットフォームは収集しない）。公式サイトが判明したら再調査する。"
   }
  },
- "total_events": 1062
+ "total_events": 1092
 }

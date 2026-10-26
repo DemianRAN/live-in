@@ -19,15 +19,20 @@ data/events.json に正規化して保存する。
     現在月・翌月で生成するため自然に正しい年になる。
 
 対応アダプタ:
-  - www_shibuya: 渋谷 WWW / WWW X（月別 YYYYMM.php、placeLabel で振り分け）
+  - www_shibuya: 渋谷 WWW / WWW X（月別 YYYYMM.php、placeLabel で振り分け。
+    一覧に無い料金・時刻は公式詳細ページの dl から補完する）
   - quattro:     渋谷 CLUB QUATTRO（?ym=YYYYMM、data-event-date に日付）
   - liquidroom:  恵比寿 LIQUIDROOM（/schedule/YYYY/MM、詳細URL末尾に日付）
-  - parkdiner:   つくば PARKDINER（WPイベントアーカイブ、当月分のみ）
-  - heavensrock: HEAVEN'S ROCK 各店（/schedule/YYYYMM、詳細URL末尾に日付）
+  - parkdiner:   つくば PARKDINER（WPイベントアーカイブ。当月分は通常ページ、
+    翌月分はテーマ標準の AJAX (get_events_ajax) で取得。不足フィールドは
+    詳細ページから補完する）
+  - heavensrock: HEAVEN'S ROCK 各店（/schedule/YYYYMM、詳細URL末尾に日付。
+    料金は詳細ページの "Open/Start/Adv/Door" 情報行から補完する）
   - baysis:      横浜 BAYSIS（yokohamabaysis.com/schedule.php?mt=YYYY.MM）
   - palooza:     柏 PALOOZA（pc/Schedule/YYYYMM.html、アコーディオン形式）
   - mito_lighthouse: 水戸 LIGHT HOUSE（sche{YY}{月}.html の月別ページ）
-  - chiba_look:  千葉 LOOK（schedule/index.html、当月分のみ・表形式）
+  - chiba_look:  千葉 LOOK（schedule/index.html が当月分、翌月分は
+    先取り情報ページ schedule/new.html を同一パーサで読む・表形式）
   - club251:     下北沢 CLUB251（?mo=M&yr=YYYY、Events Manager 形式）
   - toos_calabash: 下北沢 THREE / BASEMENTBAR（toos.co.jp 共通 "calabash"
     イベントシステム。月カレンダー→詳細ページで取得、place_label で振り分け）
@@ -37,7 +42,8 @@ data/events.json に正規化して保存する。
   - mosaic:      下北沢 MOSAiC（schedule.html、当月分のみ・表形式）
   - chikamatsu:  下北沢 近松（/schedule/YYYY/MM/ 一覧 + 詳細ページ）
   - fad:         F.A.D YOKOHAMA（WP投稿一覧、タイトル冒頭の日付が公演日）
-  - citta:       川崎 CLUB CITTA'（/schedule?year=YYYY&month=Mon）
+  - citta:       川崎 CLUB CITTA'（/schedule?year=YYYY&month=Mon。
+    料金と不足時刻は詳細ページの「座種/料金」節などから補完する）
   - bbstreet:    横浜 B.B.STREET（月別アーカイブ /YYYY/MM/?cat=5 のカード）
   - loft_project: LOFT PROJECT 系（全パス 403 メンテナンス表示のため未実装・保留）
 """
@@ -182,8 +188,80 @@ class Fetcher:
             result = (False, f"{type(e).__name__}: {e}")
         return result
 
+    def fetch_post(self, url, data, timeout=25):
+        """フォーム POST 版（PARKDINER のテーマ標準 AJAX 用）。
+
+        成功時 (True, text)、失敗時 (False, reason)。GET と同じく
+        IncompleteRead のときだけ1回リトライし、結果はキャッシュする。
+        """
+        key = ("POST", url, tuple(sorted(data.items())))
+        if key in self.cache:
+            return self.cache[key]
+        result = self._fetch_post_once(url, data, timeout)
+        if not result[0] and "IncompleteRead" in result[1]:
+            result = self._fetch_post_once(url, data, timeout)
+        self.cache[key] = result
+        return result
+
+    def _fetch_post_once(self, url, data, timeout):
+        body = urllib.parse.urlencode(data).encode("utf-8")
+        headers = dict(HEADERS)
+        headers["Content-Type"] = ("application/x-www-form-urlencoded; "
+                                   "charset=UTF-8")
+        headers["X-Requested-With"] = "XMLHttpRequest"
+        req = urllib.request.Request(url, data=body, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                raw = resp.read()
+                ctype = resp.headers.get("Content-Type", "") or ""
+            result = (True, self._decode(raw, ctype))
+        except Exception as e:  # noqa: BLE001 - 失敗は記録して続行する
+            result = (False, f"{type(e).__name__}: {e}")
+        return result
+
 
 # ---------------------------------------------------------------- adapters
+
+def _enrich_www(events, fetcher):
+    """WWW 系の詳細ページで料金・時刻を補完する（一覧に無い公演のみ）。
+
+    詳細ページは <dl><dt>OPEN/START</dt><dd>…</dd></dl> と
+    <dl><dt>ADV./DOOR</dt><dd>…</dd></dl> の構造化表記。
+    料金は ※ で始まる注記を落とし、金額（または無料表記）を含む
+    場合だけ採用する。
+    """
+    filled_p = filled_t = fetched = 0
+    for ev in events:
+        if ev["price"] and ev["open"] and ev["start"]:
+            continue
+        url = ev["url"]
+        if ".php" not in url:
+            continue
+        ok, det = fetcher.fetch(url)
+        fetched += 1
+        if not ok:
+            continue
+        pairs = {}
+        for dt, dd in re.findall(r"<dt>(.*?)</dt>\s*<dd[^>]*>(.*?)</dd>",
+                                 det, re.S):
+            pairs.setdefault(clean(dt), dd)
+        if not ev["open"] or not ev["start"]:
+            tm = re.search(r"(\d{1,2}:\d{2})\s*/\s*(\d{1,2}:\d{2})",
+                           clean(pairs.get("OPEN/START", "")))
+            if tm:
+                ev["open"], ev["start"] = tm.group(1), tm.group(2)
+                filled_t += 1
+        if not ev["price"] and "ADV./DOOR" in pairs:
+            ptxt = clean(pairs["ADV./DOOR"]).split("※")[0].strip(" /")
+            if re.search(r"[¥￥]\s*[\d,]+", ptxt) or "無料" in ptxt:
+                if len(ptxt) > 160:
+                    ptxt = ptxt[:160].rstrip() + "…"
+                ev["price"] = ptxt
+                filled_p += 1
+    if fetched:
+        print(f"    [enrich] www detail: fetched={fetched} "
+              f"price+={filled_p} times+={filled_t}")
+
 
 def adapter_www_shibuya(venue, fetcher):
     """渋谷 WWW / WWW X。月別ページ schedule/YYYYMM.php。
@@ -229,6 +307,7 @@ def adapter_www_shibuya(venue, fetcher):
                 url=link.group(1) if link else "", source=url)
             if ev:
                 events.append(ev)
+    _enrich_www(events, fetcher)
     return events, errors
 
 
@@ -322,22 +401,19 @@ def adapter_liquidroom(venue, fetcher):
     return events, errors
 
 
-def adapter_parkdiner(venue, fetcher):
-    """つくば PARKDINER。WP のイベントアーカイブ（当月分のみ表示）。
+def _parkdiner_parse_page(res, venue, source_url):
+    """PARKDINER の月別 HTML（通常ページ / AJAX 応答共通）を解析する。
 
     月はページ見出しの month_label、年は各公演の year スパンが正。
     excerpt 内の "open/start HH:MM/HH:MM" と "adv/door ..." を抽出する
     （excerpt はサイト側で省略され、料金が途中で切れる場合がある）。
+    month_label が無い場合は (None, []) を返す。
     """
-    events, errors = [], []
-    url = venue["schedule_url"]
-    ok, res = fetcher.fetch(url)
-    if not ok:
-        return [], [f"{url}: {res}"]
     head = re.search(r'month_label">(\d{1,2})</span>', res)
     if not head:
-        return [], [f"{url}: month_label not found"]
+        return None, []
     month = int(head.group(1))
+    events = []
     for _match, seg in split_segments(res, r"<article\b"):
         if 'class="item' not in seg[:120]:
             continue
@@ -363,10 +439,149 @@ def adapter_parkdiner(venue, fetcher):
         ev = make_event(
             venue, f"{year.group(1)}-{month:02d}-{int(day.group(1)):02d}",
             title=clean(title.group(1)), open_t=open_t, start_t=start_t,
-            price=price, url=link.group(1) if link else "", source=url)
+            price=price, url=link.group(1) if link else "",
+            source=source_url)
         if ev:
             events.append(ev)
+    return month, events
+
+
+def adapter_parkdiner(venue, fetcher):
+    """つくば PARKDINER。WP のイベントアーカイブ（TCD DIVA テーマ）。
+
+    当月分は通常の /schedule/ ページ。翌月分はテーマ標準の AJAX
+    エンドポイント（admin-ajax.php, action=get_events_ajax。サイト自身の
+    event.js が使う方式で、nonce は /schedule/ ページに埋め込まれた
+    event_ajax オブジェクトから取る）で月別 HTML を取得する。
+    不足フィールドは詳細ページから補完する。
+    """
+    events, errors = [], []
+    url = venue["schedule_url"]
+    ok, res = fetcher.fetch(url)
+    if not ok:
+        return [], [f"{url}: {res}"]
+    month, evs = _parkdiner_parse_page(res, venue, url)
+    if month is None:
+        return [], [f"{url}: month_label not found"]
+    events += evs
+    # 翌月分: サイト自身の月送り AJAX
+    ny, nm = two_months(now_jst())[1]
+    nonce = re.search(r'"nonce":"([0-9a-f]+)"', res)
+    ajax = re.search(r'"url":"(https:[^"]*admin-ajax\.php)"', res)
+    if nonce and ajax:
+        ajax_url = ajax.group(1).replace("\\/", "/")
+        ok2, res2 = fetcher.fetch_post(ajax_url, {
+            "action": "get_events_ajax",
+            "security": nonce.group(1),
+            "event_month": f"{ny}-{nm:02d}",
+            "filter_event_tag": "0",
+        })
+        if ok2:
+            m2, evs2 = _parkdiner_parse_page(res2, venue, url)
+            if m2 == nm:
+                events += evs2
+            else:
+                errors.append(
+                    f"parkdiner ajax {ny}-{nm:02d}: month_label={m2}")
+        else:
+            errors.append(f"parkdiner ajax {ny}-{nm:02d}: {res2}")
+    else:
+        errors.append("parkdiner: event_ajax params not found "
+                      "(next month skipped)")
+    # 詳細ページで不足フィールドを補完
+    filled_p = filled_t = fetched = 0
+    for ev in events:
+        if ev["price"] and ev["open"] and ev["start"]:
+            continue
+        if "/schedule/" not in ev["url"]:
+            continue
+        ok3, det = fetcher.fetch(ev["url"])
+        fetched += 1
+        if not ok3:
+            continue
+        txt = clean(det)
+        if not ev["open"] or not ev["start"]:
+            tm = re.search(
+                r"open/start\s*(\d{1,2}:\d{2})\s*/\s*(\d{1,2}:\d{2})",
+                txt, re.I)
+            if tm:
+                ev["open"], ev["start"] = tm.group(1), tm.group(2)
+                filled_t += 1
+        if not ev["price"]:
+            pm = re.search(r"adv/door\s*[¥￥]([\d,]+)", txt, re.I)
+            if pm:
+                ev["price"] = f"￥{pm.group(1)}"
+                filled_p += 1
+    if fetched:
+        print(f"    [enrich] parkdiner detail: fetched={fetched} "
+              f"price+={filled_p} times+={filled_t}")
     return events, errors
+
+
+def _parse_hr_detail(txt):
+    """HEAVEN'S ROCK 詳細ページの情報行を解析する。
+
+    情報行は "Open H:MM Start H:MM Adv <…> ※ドリンク代別… Door <…>
+    ※ドリンク代別… Ticket …" の形式。Adv / Door の各区間から
+    ドリンク代注記を除き、金額を含む区間だけを料金として組み立てる
+    （SOLD OUT や「未定」だけの区間は料金にしない）。
+    戻り値: (open, start, price)。
+    """
+    open_t = start_t = price = ""
+    m = re.search(
+        r"Open\s*(?:（1部）|\(1部\))?\s*(\d{1,2}:\d{2})\s+"
+        r"Start\s*(?:（1部）|\(1部\))?\s*(\d{1,2}:\d{2})", txt)
+    if m:
+        open_t, start_t = m.group(1), m.group(2)
+    ai = txt.find("Adv", m.end() if m else 0)
+    if ai < 0:
+        return open_t, start_t, price
+    seg_all = txt[ai + 3:ai + 420]
+    ti = seg_all.find("Ticket")
+    if ti >= 0:
+        seg_all = seg_all[:ti]
+    di = seg_all.find("Door")
+    adv_seg = seg_all[:di] if di >= 0 else seg_all
+    door_seg = seg_all[di + 4:] if di >= 0 else ""
+
+    def seg_price(seg):
+        seg = re.sub(r"※ドリンク代(別|別途)?\s*[¥￥]?[\d,]*", "", seg)
+        seg = seg.replace("※", " / ").replace("￥", "¥")
+        seg = re.sub(r"([\d,]+)円", r"¥\1", seg)
+        return re.sub(r"\s+", " ", seg).strip(" /")
+
+    parts = []
+    a = seg_price(adv_seg)
+    if re.search(r"¥[\d,]+", a):
+        parts.append("Adv " + a[:90])
+    if door_seg:
+        d = seg_price(door_seg)
+        if re.search(r"¥[\d,]+", d):
+            parts.append("Door " + d[:90])
+    price = " / ".join(parts)
+    return open_t, start_t, price
+
+
+def _enrich_heavensrock(events, fetcher):
+    """HR の詳細ページで料金・時刻を補完する（不足のある公演のみ）。"""
+    filled_p = filled_t = fetched = 0
+    for ev in events:
+        if ev["price"] and ev["open"] and ev["start"]:
+            continue
+        ok, det = fetcher.fetch(ev["url"])
+        fetched += 1
+        if not ok:
+            continue
+        o, s, p = _parse_hr_detail(clean(det))
+        if (not ev["open"] or not ev["start"]) and o and s:
+            ev["open"], ev["start"] = o, s
+            filled_t += 1
+        if not ev["price"] and p:
+            ev["price"] = p
+            filled_p += 1
+    if fetched:
+        print(f"    [enrich] heavensrock detail: fetched={fetched} "
+              f"price+={filled_p} times+={filled_t}")
 
 
 def adapter_heavensrock(venue, fetcher):
@@ -423,6 +638,7 @@ def adapter_heavensrock(venue, fetcher):
                 url=detail_url, source=url)
             if ev and ev["title"]:
                 events.append(ev)
+    _enrich_heavensrock(events, fetcher)
     return events, errors
 
 
@@ -637,18 +853,16 @@ def adapter_mito_lighthouse(venue, fetcher):
     return events, errors
 
 
-def adapter_chiba_look(venue, fetcher):
-    """千葉 LOOK。schedule/index.html（当月分のみ・表形式）。
+def _chiba_look_parse(res, venue, page_url):
+    """千葉 LOOK の表形式ページ（index.html / new.html 共通）を解析する。
 
     行構成: 月見出し行 "YYYY.MM" / 日見出し行 "- Month D - (曜)" /
     内容行（[タイトル] + 出演 + ＊案内。前売券\\XXXX と OPEN/START を含む場合あり）/
     CHARGE 行（料金または未定）。
+    new.html の先頭の月見出しは案内文と同じ行に混ざるため、行末の
+    "YYYY.MM" でも月見出しとして検出する。
     """
-    events, errors = [], []
-    url = venue["schedule_url"]
-    ok, res = fetcher.fetch(url)
-    if not ok:
-        return [], [f"{url}: {res}"]
+    events = []
     rows = re.findall(r"<tr.*?</tr>", res, re.S | re.I)
     year = month = day = None
     pending = None  # (date_str, title, artists, open, start, price)
@@ -658,7 +872,8 @@ def adapter_chiba_look(venue, fetcher):
         if pending and pending[1]:
             dstr, title, artists, o, s, p = pending
             ev = make_event(venue, dstr, title=title, artists=artists,
-                            open_t=o, start_t=s, price=p, url=url, source=url)
+                            open_t=o, start_t=s, price=p, url=page_url,
+                            source=page_url)
             if ev:
                 events.append(ev)
         pending = None
@@ -666,6 +881,8 @@ def adapter_chiba_look(venue, fetcher):
     for row in rows:
         txt = clean(row)
         mm = re.fullmatch(r"(\d{4})\.(\d{2})", txt)
+        if not mm and "[" not in txt and "CHARGE" not in txt:
+            mm = re.search(r"(\d{4})\.(\d{2})\s*$", txt)
         if mm:
             flush()
             year, month, day = int(mm.group(1)), int(mm.group(2)), None
@@ -684,12 +901,15 @@ def adapter_chiba_look(venue, fetcher):
                 dstr, title, artists, o, s, _p = pending
                 pending = (dstr, title, artists, o, s, val)
             continue
-        if year and day and len(txt) > 8 and "[" in txt:
+        if year and day and len(txt) > 8 and "[" in txt and "OPEN" in txt:
+            # OPEN を含まない行はフッター等のナビ行として除外する。
+            # タイトル括弧が行頭にない行（「学生限定イベント / [FASTLIVE] …」
+            # のような前置き付き）にも対応するため括弧は途中から探す。
             flush()
             content = txt
             tm = re.search(r"OPEN\s*(\d{1,2}:\d{2})", content)
             sm = re.search(r"START\s*(\d{1,2}:\d{2})", content)
-            qm = re.match(r"\s*\[(.+?)\]\s*(.*)$", content, re.S)
+            qm = re.search(r"\[(.+?)\]\s*(.*)", content, re.S)
             title = qm.group(1).strip() if qm else ""
             rest = qm.group(2) if qm else content
             artists = rest.split("＊")[0].strip(" /")
@@ -701,6 +921,30 @@ def adapter_chiba_look(venue, fetcher):
                        tm.group(1) if tm else "", sm.group(1) if sm else "",
                        price)
     flush()
+    return events
+
+
+def adapter_chiba_look(venue, fetcher):
+    """千葉 LOOK。当月分は schedule/index.html、翌月分は先取り情報ページ
+    schedule/new.html（index からリンクされている公式ページで、
+    index と同一の表形式で翌月以降数ヶ月分が載る）から取る。
+    他会場に揃えて当月・翌月の2ヶ月分だけを採用する。
+    """
+    events, errors = [], []
+    url = venue["schedule_url"]
+    ok, res = fetcher.fetch(url)
+    if not ok:
+        return [], [f"{url}: {res}"]
+    events += _chiba_look_parse(res, venue, url)
+    ny, nm = two_months(now_jst())[1]
+    new_url = urllib.parse.urljoin(url, "new.html")
+    ok2, res2 = fetcher.fetch(new_url)
+    if ok2:
+        for ev in _chiba_look_parse(res2, venue, new_url):
+            if (int(ev["date"][:4]), int(ev["date"][5:7])) == (ny, nm):
+                events.append(ev)
+    else:
+        errors.append(f"{new_url}: {res2}")
     if not events:
         errors.append(f"{url}: no events parsed")
     return events, errors
@@ -1137,13 +1381,70 @@ _CITTA_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
+def _parse_citta_detail(txt):
+    """CLUB CITTA' 詳細ページから OPEN/START と料金節を取る。
+
+    時刻はページ冒頭の見出しブロックにある最初の OPEN/START。
+    料金は「座種/料金」節（一般発売日などの次節まで）から ※ 注記を
+    除いて組み立て、金額表記を含む場合だけ採用する（金額の無い
+    自由形式の案内文は料金にしない）。
+    戻り値: (open, start, price)。
+    """
+    om = re.search(r"OPEN\s*(\d{1,2}:\d{2})", txt)
+    sm = re.search(r"START\s*(\d{1,2}:\d{2})", txt)
+    price = ""
+    i = txt.find("座種/料金")
+    if i >= 0:
+        seg = txt[i + len("座種/料金"):]
+        for marker in ("一般発売日", "チケット販売", "お問い合わせ", "関連公演"):
+            j = seg.find(marker)
+            if j >= 0:
+                seg = seg[:j]
+        parts = [p.strip() for p in seg.split(" / ")]
+        parts = [p for p in parts if p and not p.startswith("※")]
+        seg2 = " / ".join(parts)
+        if re.search(r"[\d,]+円|[¥￥][\d,]+", seg2):
+            price = seg2[:140].rstrip()
+            if len(seg2) > 140:
+                price += "…"
+    return (om.group(1) if om else "", sm.group(1) if sm else "", price)
+
+
+def _enrich_citta(events, fetcher):
+    """CITTA' の詳細ページで料金・時刻を補完する（不足のある公演のみ）。"""
+    filled_p = filled_t = fetched = 0
+    for ev in events:
+        if ev["price"] and ev["open"] and ev["start"]:
+            continue
+        ok, det = fetcher.fetch(ev["url"])
+        fetched += 1
+        if not ok:
+            continue
+        o, s, p = _parse_citta_detail(clean(det))
+        got_t = False
+        if not ev["open"] and o:
+            ev["open"] = o
+            got_t = True
+        if not ev["start"] and s:
+            ev["start"] = s
+            got_t = True
+        if got_t:
+            filled_t += 1
+        if not ev["price"] and p:
+            ev["price"] = p
+            filled_p += 1
+    if fetched:
+        print(f"    [enrich] citta detail: fetched={fetched} "
+              f"price+={filled_p} times+={filled_t}")
+
+
 def adapter_citta(venue, fetcher):
     """川崎 CLUB CITTA'。/schedule?year=YYYY&month=Mon の月別ページ。
 
     <div class="item"> ごとに1公演。日は item_detail の <p>、
     h3 がタイトル、txt_wrap の <p> 冒頭に OPEN/START、続いて出演。
-    当月分はサイト仕様で本日以降のみ表示される。料金は一覧に無く
-    詳細ページのみのため空欄（HEAVEN'S ROCK と同様の扱い）。
+    当月分はサイト仕様で本日以降のみ表示される。料金は一覧に無いため
+    詳細ページから補完する（_enrich_citta）。
     """
     events, errors = [], []
     base = venue["schedule_url"].rstrip("/")
@@ -1180,6 +1481,7 @@ def adapter_citta(venue, fetcher):
                 url=match.group(1), source=url)
             if ev and ev["title"]:
                 events.append(ev)
+    _enrich_citta(events, fetcher)
     return events, errors
 
 
