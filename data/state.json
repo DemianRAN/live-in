@@ -1,0 +1,41 @@
+{
+ "updated_at": "2026-10-26 14:35 JST",
+ "venues": {
+  "shibuya-www": {
+   "status": "ok",
+   "count": 55,
+   "error": ""
+  },
+  "shibuya-www-x": {
+   "status": "ok",
+   "count": 56,
+   "error": ""
+  },
+  "shibuya-quattro": {
+   "status": "ok",
+   "count": 58,
+   "error": ""
+  },
+  "ebisu-liquidroom": {
+   "status": "ok",
+   "count": 59,
+   "error": ""
+  },
+  "tsukuba-parkdiner": {
+   "status": "ok",
+   "count": 13,
+   "error": ""
+  },
+  "shinjuku-loft": {
+   "status": "pending",
+   "count": 0,
+   "error": "2026-10-26 実測: 通常UA・ブラウザ風ヘッダ共に 403 Forbidden。LOFT PROJECT 系は同一スケジュールシステムで複数会場をカバーできる見込みだが、取得方法が確立するまで保留。データは作らない。"
+  },
+  "shimokitazawa-shelter": {
+   "status": "pending",
+   "count": 0,
+   "error": "2026-10-26 実測: 新宿LOFT と同様 403 Forbidden。保留（同上）。"
+  }
+ },
+ "total_events": 241
+}
