@@ -2,8 +2,9 @@ name: Collect live events
 
 on:
   schedule:
-    # 07:00 JST（UTC 22:00）
+    # 07:00 JST（UTC 22:00）と 19:00 JST（UTC 10:00）の1日2回
     - cron: "0 22 * * *"
+    - cron: "0 10 * * *"
   workflow_dispatch:
 
 permissions:
@@ -28,3 +29,25 @@ jobs:
           git add data web
           git diff --cached --quiet || git commit -m "auto: update events"
           git push
+      # アラート（取得失敗・0件・件数激減）があってもデータは先に
+      # コミット済み。このステップでジョブを失敗させ、GitHub の
+      # 失敗通知でオーナーに知らせる（要約はステップ出力に出る）。
+      - name: Fail if collection alerts exist
+        if: always()
+        run: |
+          python3 - << 'PY'
+          import json, sys
+          try:
+              alerts = json.load(open("data/state.json")).get("alerts", [])
+          except Exception as e:
+              print(f"state.json unreadable: {e}")
+              sys.exit(0)
+          if not alerts:
+              print("alerts: none")
+              sys.exit(0)
+          print(f"=== COLLECTION ALERTS: {len(alerts)} ===")
+          for a in alerts:
+              print(f"[{a.get('kind')}] {a.get('venue_name')} ({a.get('venue')}): "
+                    f"prev={a.get('prev')} new={a.get('new')} - {a.get('message')}")
+          sys.exit(1)
+          PY
