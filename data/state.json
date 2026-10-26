@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-26 20:45 JST",
+ "updated_at": "2026-10-26 23:33 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -118,7 +118,7 @@
   },
   "yokohama-fad": {
    "status": "ok",
-   "count": 36,
+   "count": 35,
    "error": ""
   },
   "kawasaki-citta": {
@@ -172,6 +172,6 @@
    "error": "保留（小ホール二期で調査）: 練馬区文化振興協会のイベントスケジュールはJS描画で、静的HTMLに公演エントリが含まれない。データAPIが判明したら再挑戦"
   }
  },
- "total_events": 1190,
+ "total_events": 1189,
  "alerts": []
 }

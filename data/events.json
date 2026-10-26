@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-26 20:45 JST",
+ "generated_at": "2026-10-26 23:33 JST",
  "events": [
   {
    "venue_id": "shimokitazawa-chikamatsu",
@@ -8339,23 +8339,6 @@
    "genres": [
     "ロック/バンド"
    ]
-  },
-  {
-   "venue_id": "yokohama-fad",
-   "venue": "F.A.D YOKOHAMA",
-   "pref": "神奈川県",
-   "area": "横浜・中華街",
-   "date": "2026-10-26",
-   "weekday": "月",
-   "open": "18:30",
-   "start": "19:00",
-   "title": "「人音風土×共鳴」 F.A.D三十周年公演 Muddy Jackets / SAIHATE / 心臓エレキ / ゼッカ",
-   "artists": "",
-   "price": "ADV ¥2400 / DOOR ¥2900",
-   "url": "http://www.fad-music.com/fad/?p=65628",
-   "source": "http://www.fad-music.com/fad/",
-   "status": "",
-   "genres": []
   },
   {
    "venue_id": "shimokitazawa-basementbar",
