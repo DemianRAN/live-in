@@ -42,3 +42,25 @@
 - [x] PARKDINER 解析验证：/schedule/ 页（当月分）可解析日期/open-start/料金（excerpt 截断时料金不完整）
 - [ ] LOFT 家族：浏览器请求头重试仍 403，已登记 pending（venues.json），不造数据
 - [ ] 二期：找正确日程页路径 LIGHT HOUSE、千葉LOOK；重试 BAYSIS、柏PALOOZA；小厅 HTML 日程表
+
+## 扩充结果 (2026-10-26 下午，本地实跑验证，未推送)
+总量 241 → **494 条**（+253），今日起 134 → **269 条**。既存 5 家件数完全不变（无回归）。
+新增 8 家，全部逐家抽查 2 条与官网原文核对一致：
+
+- [x] HEAVEN'S ROCK 4 家（同一适配器 heavensrock）：熊谷 VJ-1 22 / さいたま新都心 VJ-3 30 /
+  宇都宮 VJ-2 25 / 宇都宮 VJ-4 25。月页 /<slug>/schedule/YYYYMM。
+  注意：月页会以 **HTTP 404 返回正确内容**（WP 主题的毛病），适配器用 accept_404 取得后
+  再验证月标题一致才采用。列表页不带票价（详情页才有），price 为空属源站限制。
+- [x] 横浜 BAYSIS 63：真官网是 **yokohamabaysis.com**（schedule.php?mt=YYYY.MM）。
+  baysis.jp 从本网络访问是域名停放页（iframe 停放服务），勿用；旧调查的「551KB」亦源于此误判。
+- [x] 柏 PALOOZA 32：官网 kashiwa-palooza.com（https 会断连，用 http），
+  pc/Schedule/YYYYMM.html 手风琴结构，标签式+自由式两种格式都已处理。
+- [x] 水戸 LIGHT HOUSE 34：首页是 splash（enter → pctop.htm → top_sche.html），
+  月页为 sche{YY}{月码}.html（月码按年有表记差异，如 11 月 = nor；适配器按候选码试取并验证年月）。
+- [x] 千葉 LOOK 22：schedule/index.html 表格页（月标题行/日标题行/[标题]内容行/CHARGE 行），仅当月分。
+- [ ] LOFT 家族仍 blocked：本轮把能试的都试了——UA、浏览器头、cookie 会话+Referer、
+  HTTP/1.1 / HTTP/2、非 www 主机、/feed/、/wp-json/、robots.txt、sitemap.xml——
+  全部返回同一张 1,973 字节的「システムメンテナンスのお知らせ」403 页。
+  即站点对本网络一律返回维护页。维持 pending；若以后从日本国内网络/浏览器能打开，再议适配器。
+- 已知限制：LOOK 只有 OPEN 无 START 的公演较多（源站写法）；BAYSIS 出演者里的换行会变成「/」；
+  HR/PALOOZA 个别自由格式公演的字段完整度随源站写法浮动。

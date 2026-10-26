@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-26 14:46 JST",
+ "updated_at": "2026-10-26 15:06 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -29,13 +29,53 @@
   "shinjuku-loft": {
    "status": "pending",
    "count": 0,
-   "error": "2026-10-26 実測: 通常UA・ブラウザ風ヘッダ共に 403 Forbidden。LOFT PROJECT 系は同一スケジュールシステムで複数会場をカバーできる見込みだが、取得方法が確立するまで保留。データは作らない。"
+   "error": "2026-10-26 拡充時再検証: UA/ブラウザ風ヘッダ/cookieセッション+Referer/HTTP1.1・HTTP2/非www/feed・wp-json の全てで同一の「システムメンテナンスのお知らせ」403ページ（1,973 bytes）が返る。robots.txt・sitemap.xml も同様。サイト側が当ネットワーク向けに一律停止表示を返している状態のため保留継続。データは作らない。"
   },
   "shimokitazawa-shelter": {
    "status": "pending",
    "count": 0,
-   "error": "2026-10-26 実測: 新宿LOFT と同様 403 Forbidden。保留（同上）。"
+   "error": "2026-10-26 拡充時再検証: 新宿LOFT と同様、全パスで同一のメンテナンス403。保留継続（同上）。"
+  },
+  "kumagaya-heavensrock": {
+   "status": "ok",
+   "count": 22,
+   "error": ""
+  },
+  "saitama-heavensrock": {
+   "status": "ok",
+   "count": 30,
+   "error": ""
+  },
+  "utsunomiya-heavensrock": {
+   "status": "ok",
+   "count": 25,
+   "error": ""
+  },
+  "utsunomiya2-heavensrock": {
+   "status": "ok",
+   "count": 25,
+   "error": ""
+  },
+  "yokohama-baysis": {
+   "status": "ok",
+   "count": 63,
+   "error": ""
+  },
+  "kashiwa-palooza": {
+   "status": "ok",
+   "count": 32,
+   "error": ""
+  },
+  "mito-lighthouse": {
+   "status": "ok",
+   "count": 34,
+   "error": ""
+  },
+  "chiba-look": {
+   "status": "ok",
+   "count": 22,
+   "error": ""
   }
  },
- "total_events": 241
+ "total_events": 494
 }

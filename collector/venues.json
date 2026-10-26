@@ -1,1 +1,171 @@
-{"venues":[{"adapter":"www_shibuya","area":"渋谷","id":"shibuya-www","name":"渋谷 WWW","note":"月別ページ schedule/YYYYMM.php を当月・翌月分取得。placeLabel で WWW X と振り分け。","place_label":"WWW","pref":"東京都","schedule_url":"https://www-shibuya.jp/schedule/","site_url":"https://www-shibuya.jp/","status":"active"},{"adapter":"www_shibuya","area":"渋谷","id":"shibuya-www-x","name":"渋谷 WWW X","note":"WWW と同一サイト・同一アダプタ。placeLabel='WWW X' の公演のみ。","place_label":"WWW X","pref":"東京都","schedule_url":"https://www-shibuya.jp/schedule/","site_url":"https://www-shibuya.jp/","status":"active"},{"adapter":"quattro","area":"渋谷","id":"shibuya-quattro","name":"渋谷 CLUB QUATTRO","note":"?ym=YYYYMM で月別。当月・翌月分を取得。li の data-event-date に西暦日付あり。","pref":"東京都","schedule_url":"https://www.club-quattro.com/shibuya/schedule/","site_url":"https://www.club-quattro.com/shibuya/","status":"active"},{"adapter":"liquidroom","area":"恵比寿","id":"ebisu-liquidroom","name":"恵比寿 LIQUIDROOM","note":"/schedule/YYYY/MM の月別ページを当月・翌月分取得。詳細URL末尾に _YYYYMMDD。","pref":"東京都","schedule_url":"https://www.liquidroom.net/schedule","site_url":"https://www.liquidroom.net/","status":"active"},{"adapter":"parkdiner","area":"つくば","id":"tsukuba-parkdiner","name":"つくば PARKDINER","note":"WordPress (TCD) のイベントアーカイブ。当月分のみ表示（月送りはJS/AJAXのため翌月分は月が替わってから取得）。excerpt から open/start と adv/door を抽出（サイト側で省略される場合あり）。","pref":"茨城県","schedule_url":"https://parkdiner.jp/schedule/","site_url":"https://parkdiner.jp/","status":"active"},{"adapter":"loft_project","area":"新宿","id":"shinjuku-loft","name":"新宿 LOFT","note":"2026-10-26 実測: 通常UA・ブラウザ風ヘッダ共に 403 Forbidden。LOFT PROJECT 系は同一スケジュールシステムで複数会場をカバーできる見込みだが、取得方法が確立するまで保留。データは作らない。","pref":"東京都","schedule_url":"https://www.loft-prj.co.jp/schedule/loft/","site_url":"https://www.loft-prj.co.jp/","status":"pending"},{"adapter":"loft_project","area":"下北沢","id":"shimokitazawa-shelter","name":"下北沢 SHELTER","note":"2026-10-26 実測: 新宿LOFT と同様 403 Forbidden。保留（同上）。","pref":"東京都","schedule_url":"https://www.loft-prj.co.jp/schedule/shelter/","site_url":"https://www.loft-prj.co.jp/","status":"pending"}]}
+{
+ "venues": [
+  {
+   "adapter": "www_shibuya",
+   "area": "渋谷",
+   "id": "shibuya-www",
+   "name": "渋谷 WWW",
+   "note": "月別ページ schedule/YYYYMM.php を当月・翌月分取得。placeLabel で WWW X と振り分け。",
+   "place_label": "WWW",
+   "pref": "東京都",
+   "schedule_url": "https://www-shibuya.jp/schedule/",
+   "site_url": "https://www-shibuya.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "www_shibuya",
+   "area": "渋谷",
+   "id": "shibuya-www-x",
+   "name": "渋谷 WWW X",
+   "note": "WWW と同一サイト・同一アダプタ。placeLabel='WWW X' の公演のみ。",
+   "place_label": "WWW X",
+   "pref": "東京都",
+   "schedule_url": "https://www-shibuya.jp/schedule/",
+   "site_url": "https://www-shibuya.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "quattro",
+   "area": "渋谷",
+   "id": "shibuya-quattro",
+   "name": "渋谷 CLUB QUATTRO",
+   "note": "?ym=YYYYMM で月別。当月・翌月分を取得。li の data-event-date に西暦日付あり。",
+   "pref": "東京都",
+   "schedule_url": "https://www.club-quattro.com/shibuya/schedule/",
+   "site_url": "https://www.club-quattro.com/shibuya/",
+   "status": "active"
+  },
+  {
+   "adapter": "liquidroom",
+   "area": "恵比寿",
+   "id": "ebisu-liquidroom",
+   "name": "恵比寿 LIQUIDROOM",
+   "note": "/schedule/YYYY/MM の月別ページを当月・翌月分取得。詳細URL末尾に _YYYYMMDD。",
+   "pref": "東京都",
+   "schedule_url": "https://www.liquidroom.net/schedule",
+   "site_url": "https://www.liquidroom.net/",
+   "status": "active"
+  },
+  {
+   "adapter": "parkdiner",
+   "area": "つくば",
+   "id": "tsukuba-parkdiner",
+   "name": "つくば PARKDINER",
+   "note": "WordPress (TCD) のイベントアーカイブ。当月分のみ表示（月送りはJS/AJAXのため翌月分は月が替わってから取得）。excerpt から open/start と adv/door を抽出（サイト側で省略される場合あり）。",
+   "pref": "茨城県",
+   "schedule_url": "https://parkdiner.jp/schedule/",
+   "site_url": "https://parkdiner.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "loft_project",
+   "area": "新宿",
+   "id": "shinjuku-loft",
+   "name": "新宿 LOFT",
+   "note": "2026-10-26 拡充時再検証: UA/ブラウザ風ヘッダ/cookieセッション+Referer/HTTP1.1・HTTP2/非www/feed・wp-json の全てで同一の「システムメンテナンスのお知らせ」403ページ（1,973 bytes）が返る。robots.txt・sitemap.xml も同様。サイト側が当ネットワーク向けに一律停止表示を返している状態のため保留継続。データは作らない。",
+   "pref": "東京都",
+   "schedule_url": "https://www.loft-prj.co.jp/schedule/loft/",
+   "site_url": "https://www.loft-prj.co.jp/",
+   "status": "pending"
+  },
+  {
+   "adapter": "loft_project",
+   "area": "下北沢",
+   "id": "shimokitazawa-shelter",
+   "name": "下北沢 SHELTER",
+   "note": "2026-10-26 拡充時再検証: 新宿LOFT と同様、全パスで同一のメンテナンス403。保留継続（同上）。",
+   "pref": "東京都",
+   "schedule_url": "https://www.loft-prj.co.jp/schedule/shelter/",
+   "site_url": "https://www.loft-prj.co.jp/",
+   "status": "pending"
+  },
+  {
+   "adapter": "heavensrock",
+   "area": "熊谷",
+   "id": "kumagaya-heavensrock",
+   "name": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "note": "heavensrock.com 共通システム。/kumagaya/schedule/YYYYMM の月別ページ（当月・翌月）。詳細URL末尾に日付明示。 ※月別ページは正しい内容を HTTP 404 で返す癖あり（アダプタは本文の月見出しを検証して採用）。",
+   "pref": "埼玉県",
+   "schedule_url": "https://www.heavensrock.com/kumagaya/schedule/",
+   "site_url": "https://www.heavensrock.com/kumagaya/",
+   "status": "active"
+  },
+  {
+   "adapter": "heavensrock",
+   "area": "さいたま新都心",
+   "id": "saitama-heavensrock",
+   "name": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "note": "熊谷と同一アダプタ。/shintoshin/schedule/YYYYMM。 ※月別ページは正しい内容を HTTP 404 で返す癖あり（アダプタは本文の月見出しを検証して採用）。",
+   "pref": "埼玉県",
+   "schedule_url": "https://www.heavensrock.com/shintoshin/schedule/",
+   "site_url": "https://www.heavensrock.com/shintoshin/",
+   "status": "active"
+  },
+  {
+   "adapter": "heavensrock",
+   "area": "宇都宮",
+   "id": "utsunomiya-heavensrock",
+   "name": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "note": "熊谷と同一アダプタ。/utsunomiya/schedule/YYYYMM。 ※月別ページは正しい内容を HTTP 404 で返す癖あり（アダプタは本文の月見出しを検証して採用）。",
+   "pref": "栃木県",
+   "schedule_url": "https://www.heavensrock.com/utsunomiya/schedule/",
+   "site_url": "https://www.heavensrock.com/utsunomiya/",
+   "status": "active"
+  },
+  {
+   "adapter": "heavensrock",
+   "area": "宇都宮",
+   "id": "utsunomiya2-heavensrock",
+   "name": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "note": "熊谷と同一アダプタ。/utsunomiya2/schedule/YYYYMM。 ※月別ページは正しい内容を HTTP 404 で返す癖あり（アダプタは本文の月見出しを検証して採用）。",
+   "pref": "栃木県",
+   "schedule_url": "https://www.heavensrock.com/utsunomiya2/schedule/",
+   "site_url": "https://www.heavensrock.com/utsunomiya2/",
+   "status": "active"
+  },
+  {
+   "adapter": "baysis",
+   "area": "横浜・関内",
+   "id": "yokohama-baysis",
+   "name": "横浜 BAYSIS",
+   "note": "公式サイトは yokohamabaysis.com（baysis.jp はドメインパーキング表示のため不使用）。schedule.php?mt=YYYY.MM の月別ページ。http 接続。",
+   "pref": "神奈川県",
+   "schedule_url": "http://www.yokohamabaysis.com/schedule.php",
+   "site_url": "http://www.yokohamabaysis.com/",
+   "status": "active"
+  },
+  {
+   "adapter": "palooza",
+   "area": "柏",
+   "id": "kashiwa-palooza",
+   "name": "柏 PALOOZA",
+   "note": "公式は kashiwa-palooza.com（https は接続を切られるため http）。pc/Schedule/YYYYMM.html の月別ページ。",
+   "pref": "千葉県",
+   "schedule_url": "http://www.kashiwa-palooza.com/pc/Schedule/",
+   "site_url": "http://www.kashiwa-palooza.com/pc/index2.html",
+   "status": "active"
+  },
+  {
+   "adapter": "mito_lighthouse",
+   "area": "水戸",
+   "id": "mito-lighthouse",
+   "name": "水戸 LIGHT HOUSE",
+   "note": "月別ページは sche{YY}{月コード}.html（月コードは年により表記ゆれ: 11月=nor 等）。トップ (pctop.htm) → top_sche.html 経由で発見。Shift_JIS。",
+   "pref": "茨城県",
+   "schedule_url": "https://mitolighthouse.com/top_sche.html",
+   "site_url": "https://mitolighthouse.com/",
+   "status": "active"
+  },
+  {
+   "adapter": "chiba_look",
+   "area": "千葉",
+   "id": "chiba-look",
+   "name": "千葉 LOOK",
+   "note": "schedule/index.html の表形式ページ。当月分のみ掲載（翌月分は月替わりで反映）。",
+   "pref": "千葉県",
+   "schedule_url": "https://www.chibalook.com/schedule/index.html",
+   "site_url": "https://www.chibalook.com/",
+   "status": "active"
+  }
+ ]
+}
