@@ -4,7 +4,7 @@
 
 - リポジトリ: DemianRAN/live-in
 - 公開先（予定）: https://demianran.github.io/live-in/
-- 更新: GitHub Actions で毎日 07:00 / 19:00 JST（1日2回）に収集・再生成・コミット
+- 更新: GitHub Actions で毎日 07:00 / 19:00 JST（1日2回）に収集 → data/ をコミット → サイト生成 → Pages へデプロイ
 
 ## ソース方針
 
@@ -60,11 +60,11 @@ collector/
   venues.json   会場レジストリ（id・名前・都県・公式URL・スケジュールURL・アダプタ・状態）
   collect.py    収集（標準ライブラリのみ）→ data/events.json, data/state.json
   build.py      生成 → web/index.html（データ内包の単体HTML）, web/events.json
-data/           収集結果（events.json / state.json）
-web/            GitHub Pages に公開する生成物
+data/           収集結果（events.json / state.json）。リポジトリにコミットされる
+web/            生成物（.gitignore 済み。Actions が Pages の artifact として公開する）
 .github/workflows/
-  collect.yml   毎日 07:00 / 19:00 JST に collect + build + commit（+ アラート検査）
-  pages.yml     web/ の変更で Pages へデプロイ
+  collect.yml   毎日 07:00 / 19:00 JST に collect → data/ をコミット → build → Pages デプロイ（+ アラート検査）
+  pages.yml     collector/ や data/ の手動変更を push したときに build → Pages デプロイ
 ```
 
 ## ローカル実行
@@ -72,7 +72,7 @@ web/            GitHub Pages に公開する生成物
 ```bash
 python3 collector/collect.py   # 収集
 python3 collector/build.py     # サイト生成
-# web/index.html をブラウザで開く
+# web/index.html をブラウザで開く（「今日」は閲覧時の JST で判定される）
 ```
 
 Python 3 の標準ライブラリのみで動作する（pip install 不要）。
@@ -87,7 +87,15 @@ Python 3 の標準ライブラリのみで動作する（pip install 不要）�
 
 件数比較は **like-for-like**：前回の `events.json` から「今回の実行日以降の公演」だけを数え直し、今回分も同じ窓で数えて比べる。これにより、月替わりで前月分が一斉に失効しても（翌月分は前回ファイルにも含まれるため）誤報にならない。前回の `events.json` が読めない場合のみ state.json の生件数で代用する（その場合は message に明記される）。既知の限界：当月分しか載らない会場（MOSAiC 等、`venues.json` で `month_roll: true` の会場）は、月末が近づくと窓側の前回件数が小さくなり減少判定が自動的に外れるため、月替わり直後の減少は検出できない。部分的な警告（翌月ページ未公開など、件数が残っているもの）は単独ではアラートにしない（実害が出れば `count_drop` が拾う）。
 
-GitHub Actions では、データのコミット＆プッシュが済んだ**後**にアラート検査ステップが走り、アラートがある場合はジョブを失敗させる（GitHub の失敗通知でオーナーに届く）。データ自体は失敗時も先に保存される。
+各アラートには `streak`（同じ会場のアラートが何回連続しているか）が付く。GitHub Actions では、データのコミットとデプロイが済んだ**後**に `alerts` ジョブが走り、`streak` が `alert_fail_streak`（既定 2、`collect.py` の `ALERT_FAIL_STREAK`）以上のアラートがある場合だけワークフローを失敗させる（GitHub の失敗通知でオーナーに届く）。1回だけの一過性の取得失敗では通知しない。
+
+### 前回公演の引き継ぎ（stale）
+
+`fetch_failed` / `zero_events` / `count_drop` のアラートが出た会場は、収集側の不調でその会場の公演がサイトから消えないよう、前回の `events.json` から今日以降の公演を引き継ぐ（`count_drop` では今回取れた公演と同じものは引き継がない）。引き継いだ公演には `stale: true` と `stale_since`（引き継ぎ開始日）が付き、サイト上では「前回取得分・未更新」バッジが出る。引き継ぎは `stale_since` から最大 3 日（`CARRY_MAX_DAYS`）で打ち切る。引き継ぎ件数は各アラートの `carried` と state.json の `carried_events` に記録される。
+
+### 時刻の正規化
+
+`open` / `start` は `HH:MM`（0埋め、深夜表記は 29:59 まで）に正規化する。`TBA` など時刻でない値は時刻欄に入れず、`time_note`（例: `START TBA`）に回してサイトに表示する。
 
 ## 会場の追加方法
 
@@ -127,7 +135,7 @@ GitHub Actions では、データのコミット＆プッシュが済んだ**後
 ## カレンダー書き出し (.ics)
 
 - 各公演カードの「カレンダーに追加」ボタンで、その公演1件の .ics をダウンロードできる（ブラウザ側で生成）。一覧上部のボタンでは、現在フィルタ中の公演をまとめて書き出せる。
-- 時刻は JST のローカル時刻（フローティング）で出力。開始は START（無ければ OPEN）、終了は開始＋2時間（公式に終了時刻の掲載がないため）。時刻が無い公演は終日イベントとして出力する。
+- 時刻は JST の公演時刻を UTC に換算して出力する（`...Z` 形式。閲覧端末のタイムゾーンに関係なく正しい時刻になる）。開始は START（無ければ OPEN）、終了は開始＋2時間（公式に終了時刻の掲載がないため）。時刻が無い公演は終日イベントとして出力する。75 オクテットを超える行は RFC 5545 に従って折り返す。
 - SUMMARY=公演タイトル、LOCATION=会場名（都県・エリア）、DESCRIPTION=出演・料金・公式URL、UID は会場ID＋日付＋タイトル等のハッシュで安定させる。中止公演には STATUS:CANCELLED を付ける。
 
 ## 備考

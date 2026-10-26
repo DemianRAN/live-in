@@ -1,9 +1,12 @@
 name: Deploy site to GitHub Pages
 
+# コード変更（収集ロジック・テンプレート）や手動のデータ修正を、
+# 収集を待たずに反映する。定時の収集→デプロイは collect.yml が行う
+# （GITHUB_TOKEN のプッシュではこのワークフローは起動しない）。
 on:
   push:
     branches: [main]
-    paths: ["web/**"]
+    paths: ["collector/**", "data/**"]
   workflow_dispatch:
 
 permissions:
@@ -23,6 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build site
+        run: python3 collector/build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
