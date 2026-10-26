@@ -55,10 +55,16 @@ data/events.json に正規化して保存する。
     の催しだけに絞り、非公演の催しはタイトルで除外する）
   - hirosawa:    ザ・ヒロサワ・シティ会館（/event/ の「これからのイベント」
     から公演カテゴリのみ。詳細ページに開催日・時間・料金・出演者あり）
+  - marble:      新宿 Marble（WP + Modern Events Calendar。一覧グリッドは
+    直近12件しか出ないため、公式サイトマップから最近の公演投稿を列挙し、
+    詳細ページ本文の日付行・[出演]・OPEN/START・ADV/DOOR を読む）
+  - warp:        吉祥寺 WARP（月別アーカイブ schedules_cat/YYYY-MM の
+    schedules-box。一覧で完結し、詳細ページは無い）
   - loft_project: LOFT PROJECT 系（全パス 403 メンテナンス表示のため未実装・保留）
 """
 
 import argparse
+import gzip
 import html as html_mod
 import json
 import re
@@ -274,7 +280,38 @@ class Fetcher:
         result = self._fetch_once(url, timeout, accept_404)
         if not result[0] and "IncompleteRead" in result[1]:
             result = self._fetch_once(url, timeout, accept_404)
+        if not result[0] and "IncompleteRead" in result[1]:
+            result = self._fetch_gzip(url, timeout, accept_404)
         self.cache[url] = result
+        return result
+
+    def _fetch_gzip(self, url, timeout, accept_404):
+        """IncompleteRead が続く場合の最終リトライ（gzip で受けて展開）。
+
+        parkdiner.jp のように、無圧縮だと経路の途中で一定サイズ
+        （実測 32,768 bytes）で切断されるのに、gzip 圧縮だと完走する
+        ケースがあるため。成功済みの取得には影響しない（失敗時のみ）。
+        """
+        headers = dict(HEADERS)
+        headers["Accept-Encoding"] = "gzip"
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            try:
+                resp_ctx = urllib.request.urlopen(req, timeout=timeout)
+            except urllib.error.HTTPError as e:
+                if not (accept_404 and e.code == 404):
+                    raise
+                raw = e.read()
+                return (True, self._decode(raw, ""))
+            with resp_ctx as resp:
+                raw = resp.read()
+                ctype = resp.headers.get("Content-Type", "") or ""
+                cenc = resp.headers.get("Content-Encoding", "") or ""
+            if "gzip" in cenc.lower() or raw[:2] == b"\x1f\x8b":
+                raw = gzip.decompress(raw)
+            result = (True, self._decode(raw, ctype))
+        except Exception as e:  # noqa: BLE001
+            result = (False, f"{type(e).__name__}: {e}")
         return result
 
     def _fetch_once(self, url, timeout, accept_404):
@@ -2048,6 +2085,247 @@ def adapter_hirosawa(venue, fetcher):
     return events, []
 
 
+def adapter_marble(venue, fetcher):
+    """新宿 Marble。WordPress + Modern Events Calendar (MEC)。
+
+    /schedule/ のカルーセルも /calender/ のグリッドも直近12件しか
+    静的HTMLに出ず、それより先は Load More (AJAX) 前提で一覧からは
+    全件を辿れない。そこで公式サイトマップ (wp-sitemap-posts-mec-events)
+    から公演投稿を列挙し（直近160件 + lastmod が100日以内のもの、
+    上限200件）、各詳細ページを読む。詳細ページ本文には
+    「YYYY/M/D(曜)新宿Marble」の日付行・タイトル・[出演]・
+    OPEN/START・ADV/DOOR が明記されているため、日付はページ自身の
+    表記から確定する。日付行も MEC の Date ラベル（単日形式）も無い
+    投稿は公演ではないお知らせ（ビル設備工事＝休業案内など、日付が
+    期間表記になる）として対象外にする。対象は当月・翌月分のみ。
+    """
+    events, errors = [], []
+    base = venue["site_url"].rstrip("/")
+    ok, idx = fetcher.fetch(f"{base}/wp-sitemap.xml")
+    if not ok:
+        return [], [f"sitemap index: {idx}"]
+    subs = re.findall(
+        r"<loc>([^<]*wp-sitemap-posts-mec-events-\d+\.xml)</loc>", idx)
+    if not subs:
+        return [], ["sitemap index: no mec-events sub-sitemap found"]
+    pairs = []  # (url, lastmod) サイトマップ順 = 投稿順（古い→新しい）
+    for su in subs:
+        ok2, res2 = fetcher.fetch(su)
+        if not ok2:
+            errors.append(f"{su}: {res2}")
+            continue
+        pairs += re.findall(
+            r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", res2)
+    if not pairs:
+        return [], errors + ["sitemap: no event urls found"]
+    today = now_jst()
+    cutoff = (today - timedelta(days=100)).strftime("%Y-%m-%d")
+    recent_urls = [u for u, _lm in pairs[-160:]]
+    keep = set(recent_urls)
+    keep |= {u for u, lm in pairs if lm[:10] >= cutoff}
+    if len(keep) > 200:
+        rest = sorted((p for p in pairs
+                       if p[0] in keep and p[0] not in set(recent_urls)),
+                      key=lambda p: p[1], reverse=True)
+        keep = set(recent_urls) | {u for u, _lm in
+                                    rest[:200 - len(recent_urls)]}
+    urls = [u for u, _lm in pairs if u in keep]
+    months = set(two_months(today))
+    seen_sig = {}  # (date, open, start, artists) -> 採用済みURL（重複投稿対策）
+    for u in urls:
+        ok3, det = fetcher.fetch(u)
+        if not ok3:
+            errors.append(f"{u}: {det}")
+            continue
+        txt = clean(det)
+        dm = re.search(
+            r"(20\d\d)/(\d{1,2})/(\d{1,2})\([月火水木金土日](?:・祝)?\)", txt)
+        if dm:
+            y, mo, dd = int(dm.group(1)), int(dm.group(2)), int(dm.group(3))
+            win = txt[dm.start():dm.start() + 2500]
+        else:
+            mm = re.search(r"Date\s+(\d{1,2})月\s+(\d{1,2})\s+(20\d\d)", txt)
+            if not mm:
+                continue  # 日付を確定できない投稿は公演扱いしない
+            mo, dd, y = int(mm.group(1)), int(mm.group(2)), int(mm.group(3))
+            win = txt[:2500]
+        if (y, mo) not in months:
+            continue
+        ttl = re.search(r"<title>(.*?)</title>", det, re.S)
+        title = clean(ttl.group(1)) if ttl else ""
+        title = re.sub(r"\s*[–—-]\s*新宿Marble\s*$", "", title).strip()
+        if not title:
+            continue
+        # 公演ではない投稿は載せない: ホールレンタルのみの枠と、
+        # 内容未発表の「告知解禁」だけの予告投稿
+        if title == "ホールレンタル" or "告知解禁" in title:
+            continue
+        # 他会場で開催される公演は載せない（Marble 主催でも同様）。
+        # 判定1: タイトル中の「※会場：X」が Marble 以外を指す場合
+        vm = re.search(r"※会場：([^/]{0,40})", title)
+        if vm and "Marble" not in vm.group(1):
+            continue
+        # 判定2: 日付行の直後（タイトル開始まで）が会場名で、
+        # Marble を含まない場合（例「2026/10/5(月)Zepp Shinjuku」）。
+        # 2会場サーキット等で Marble を含むものは残す。
+        if dm:
+            seg_after = win[dm.end() - dm.start():]
+            tpos = seg_after.find(title[:8]) if len(title) >= 8 else -1
+            vseg = seg_after[:tpos] if tpos >= 0 else seg_after[:80]
+            vseg_core = re.sub(r"昼公演|夜公演", "", vseg).strip(" /").strip()
+            if vseg_core and "Marble" not in vseg:
+                continue
+        artists = ""
+        am = re.search(r"\[出演\](.+)", win)
+        if am:
+            aseg = am.group(1)
+            cut = len(aseg)
+            for stop in (r"OPEN\s*\d{1,2}:\d{2}", r"OPEN\s*TBA",
+                         r"\d+\s+days\s+\d+\s+hours",
+                         r"\sADV\s", r"\sTicket\b", r"\sDate\s"):
+                sm = re.search(stop, aseg)
+                if sm:
+                    cut = min(cut, sm.start())
+            artists = aseg[:cut].strip(" /").strip()
+        open_t = start_t = ""
+        # 2会場開催は Marble 側の時刻を優先する
+        tm = re.search(
+            r"Marble\s*OPEN\s*(\d{1,2}:\d{2})\s*[/／–-]\s*START\s*"
+            r"(\d{1,2}:\d{2})", win, flags=re.I)
+        if not tm:
+            tm = re.search(
+                r"OPEN\s*(\d{1,2}:\d{2})\s*[/／–-]\s*START\s*(\d{1,2}:\d{2})",
+                win)
+        if tm:
+            open_t, start_t = tm.group(1), tm.group(2)
+        else:
+            # MEC の Time 欄（開始は START と一致するのがサイトの表記）
+            mt = re.search(r"Time\s+(\d{1,2}):(\d{2})\s*(AM|PM)\s*-", txt)
+            if mt:
+                hh = int(mt.group(1)) % 12 + (12 if mt.group(3) == "PM"
+                                              else 0)
+                start_t = f"{hh}:{mt.group(2)}"
+        # 料金は表記が公演ごとに違う（ADV/DOOR・前売り/当日・券種別など）
+        # ため、最初の金額のある区間を、注記（※）・チケット案内・URL の
+        # 手前までそのまま採用する（WWW の補完と同じ考え方）
+        price = ""
+        pm = re.search(r"¥|入場無料", win[20:])
+        if pm:
+            ppos = 20 + pm.start()
+            bstart = win.rfind(" / ", 0, ppos)
+            bstart = bstart + 3 if bstart >= 0 else ppos
+            seg = win[bstart:ppos + 240]
+            for stop in ("※", "▼", "http", "Ticket", "The event is finished",
+                         " / / ", "00 days"):
+                si = seg.find(stop)
+                if si >= 0:
+                    seg = seg[:si]
+            # 「TICKET」だけの区間は料金ではなく見出しなので落とす
+            seg = " / ".join(p for p in seg.split(" / ")
+                             if p.strip() != "TICKET")
+            seg = seg.strip(" /").strip()
+            if "¥" in seg or "無料" in seg:
+                price = seg
+        ev = make_event(
+            venue, f"{y}-{mo:02d}-{dd:02d}", title=title, artists=artists,
+            open_t=open_t, start_t=start_t, price=price, url=u,
+            source=venue["schedule_url"],
+            status_src=f"{title} {win}")
+        if not ev:
+            continue
+        # 同一公演の重複投稿（タイトル表記だけ変えた再投稿が両方残る）が
+        # あるため、日付・時刻・出演が完全一致するものは新しい投稿
+        # （サイトマップ順で後ろ）を採用する
+        if artists and open_t:
+            sig = (ev["date"], open_t, start_t, artists)
+            if sig in seen_sig:
+                events = [e for e in events if e["url"] != seen_sig[sig]]
+            seen_sig[sig] = u
+        events.append(ev)
+    return events, errors
+
+
+def adapter_warp(venue, fetcher):
+    """吉祥寺 WARP。月別アーカイブ schedules_cat/YYYY-MM（当月・翌月）。
+
+    各公演は <article class="schedules-box">（id="box-DD-<postID>"）で、
+    h4 がタイトル、.w-flyer の冒頭（detail-texts より前）が出演者、
+    本文に OPEN/START と ADV/DOOR があり一覧で完結する（詳細ページは
+    無いため URL は月アーカイブ＋ボックスのアンカー）。タイトルが
+    「ホールレンタル」のみの枠は貸し出し表示で公演ではないため除外。
+    https はサーバ側で接続を切られるため http で取得する
+    （PALOOZA と同型）。月はページの <title>（YYYY.MM）で検証する。
+    """
+    events, errors = [], []
+    base = venue["site_url"].rstrip("/")
+    for (y, m) in two_months(now_jst()):
+        url = f"{base}/schedules_cat/{y}-{m:02d}"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        ttl = re.search(r"<title>(.*?)</title>", res, re.S)
+        if not ttl or f"{y}.{m:02d}" not in clean(ttl.group(1)):
+            errors.append(f"{url}: month title mismatch")
+            continue
+        n_box = 0
+        for seg in re.split(r'(?=<article id="box-)', res):
+            bm = re.match(
+                r'<article id="box-(\d+)-(\d+)" class="schedules-box">', seg)
+            if not bm:
+                continue
+            day, pid = int(bm.group(1)), bm.group(2)
+            h4 = re.search(r"<h4>(.*?)</h4>", seg, re.S)
+            title = clean(h4.group(1)) if h4 else ""
+            if not title or "ホールレンタル" in title:
+                continue
+            wf = re.search(
+                r'<div class="w-flyer">(.*?)(?:<div class="detail-texts">|'
+                r'<section class="notes-wrapper">)', seg, re.S)
+            artists = clean(wf.group(1)) if wf else ""
+            txt = clean(seg)
+            open_t = start_t = ""
+            tm = re.search(
+                r"OPEN\s*/\s*START\s*(\d{1,2}:\d{2})\s*/\s*(\d{1,2}:\d{2})",
+                txt)
+            if not tm:
+                tm = re.search(
+                    r"OPEN\s*(\d{1,2}:\d{2})\s*/\s*START\s*(\d{1,2}:\d{2})",
+                    txt)
+            if tm:
+                open_t, start_t = tm.group(1), tm.group(2)
+            price = ""
+            pm = re.search(
+                r"ADV\s*/\s*DOOR\s*¥([\d,]+)\s*/\s*¥([\d,]+)(\s*\(\+1D\))?",
+                txt)
+            if pm:
+                price = (f"ADV ¥{pm.group(1)} / DOOR ¥{pm.group(2)}"
+                         f"{pm.group(3) or ''}")
+            else:
+                # 前売・当日が同一料金の表記（金額が1つだけ）もある
+                pm1 = re.search(
+                    r"ADV\s*/\s*DOOR\s*¥+([\d,]+)(\s*\(\+1D\))?", txt)
+                if pm1:
+                    price = (f"ADV / DOOR ¥{pm1.group(1)}"
+                             f"{pm1.group(2) or ''}")
+            if not price:
+                pa = re.search(r"一般前売\s*¥?([\d,]+)円", txt)
+                pd_ = re.search(r"一般当日\s*¥?([\d,]+)円", txt)
+                if pa and pd_:
+                    price = f"ADV ¥{pa.group(1)} / DOOR ¥{pd_.group(1)}"
+            ev = make_event(
+                venue, f"{y}-{m:02d}-{day:02d}", title=title,
+                artists=artists, open_t=open_t, start_t=start_t,
+                price=price, url=f"{url}#box-{day:02d}-{pid}",
+                source=url, status_src=seg)
+            if ev:
+                events.append(ev)
+                n_box += 1
+        if n_box == 0:
+            errors.append(f"{url}: no entries parsed")
+    return events, errors
+
+
 ADAPTERS = {
     "www_shibuya": adapter_www_shibuya,
     "quattro": adapter_quattro,
@@ -2070,6 +2348,8 @@ ADAPTERS = {
     "tcf": adapter_tcf,
     "mito_civic": adapter_mito_civic,
     "hirosawa": adapter_hirosawa,
+    "marble": adapter_marble,
+    "warp": adapter_warp,
     # "loft_project": 未実装（全パス 403 メンテナンス表示のため保留）
 }
 

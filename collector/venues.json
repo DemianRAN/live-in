@@ -295,6 +295,28 @@
    "status": "active"
   },
   {
+   "adapter": "marble",
+   "area": "新宿",
+   "id": "shinjuku-marble",
+   "name": "新宿 Marble",
+   "note": "WP + Modern Events Calendar (MEC)。/schedule/ のカルーセルと /calender/ のグリッドは直近12件しか静的に出ず、先は Load More (AJAX) 前提のため、公式サイトマップ（wp-sitemap の mec-events）から直近160件＋lastmod 100日以内の公演投稿を列挙し、各詳細ページ本文の日付行（YYYY/M/D(曜)）・[出演]・OPEN/START・ADV/DOOR を読む。日付を確定できない投稿（ビル設備工事などの休業お知らせ）は対象外。タイトルや日付行で他会場開催と明記された公演（Zepp Shinjuku・北千住PECKAM 等、Marble 主催でも）、ホールレンタルのみの枠、告知解禁だけの予告投稿も載せない。同一公演の重複投稿は新しい方を採用。",
+   "pref": "東京都",
+   "schedule_url": "https://shinjuku-marble.com/schedule/",
+   "site_url": "https://shinjuku-marble.com/",
+   "status": "active"
+  },
+  {
+   "adapter": "warp",
+   "area": "吉祥寺",
+   "id": "kichijoji-warp",
+   "name": "吉祥寺 WARP",
+   "note": "公式サイトは warp.rinky.info（運営 RinkyDink Studio 吉祥寺WARP店。会場自身の店舗情報でも同ドメインが公式サイトとして登録されている）。https は接続を切られるため http で取得。月別アーカイブ schedules_cat/YYYY-MM の schedules-box（h4=タイトル、w-flyer 冒頭=出演、本文の OPEN/START・ADV/DOOR）で一覧完結。詳細ページは無いため URL は月アーカイブ＋ボックスアンカー。「ホールレンタル」のみの枠は公演ではないので除外。",
+   "pref": "東京都",
+   "schedule_url": "http://warp.rinky.info/schedules/",
+   "site_url": "http://warp.rinky.info/",
+   "status": "active"
+  },
+  {
    "adapter": "reg",
    "area": "下北沢",
    "id": "shimokitazawa-reg",

@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-26 23:33 JST",
+ "updated_at": "2026-10-26 23:52 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -123,12 +123,22 @@
   },
   "kawasaki-citta": {
    "status": "ok",
-   "count": 36,
+   "count": 35,
    "error": ""
   },
   "yokohama-bbstreet": {
    "status": "ok",
    "count": 37,
+   "error": ""
+  },
+  "shinjuku-marble": {
+   "status": "ok",
+   "count": 46,
+   "error": ""
+  },
+  "kichijoji-warp": {
+   "status": "ok",
+   "count": 46,
    "error": ""
   },
   "shimokitazawa-reg": {
@@ -172,6 +182,6 @@
    "error": "保留（小ホール二期で調査）: 練馬区文化振興協会のイベントスケジュールはJS描画で、静的HTMLに公演エントリが含まれない。データAPIが判明したら再挑戦"
   }
  },
- "total_events": 1189,
+ "total_events": 1280,
  "alerts": []
 }

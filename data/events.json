@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-26 23:33 JST",
+ "generated_at": "2026-10-26 23:52 JST",
  "events": [
   {
    "venue_id": "shimokitazawa-chikamatsu",
@@ -378,6 +378,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-02",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "1st mini album「となりあわせ」 release / 「Ainy tiny tour｣",
+   "artists": "おとなりアイニー / 吸空サイダー / goomiey / ヨルマチダイス",
+   "price": "ADV ¥2800 / DOOR ¥3300 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-02-24486",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "ebisu-liquidroom",
    "venue": "恵比寿 LIQUIDROOM",
    "pref": "東京都",
@@ -443,6 +460,23 @@
    "url": "https://www-shibuya.jp/schedule/019956.php",
    "source": "https://www-shibuya.jp/schedule/202610.php",
    "status": "sold_out",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-02",
+   "weekday": "金",
+   "open": "18:45",
+   "start": "19:15",
+   "title": "The pingpongs pre.New single 「あかり」release party『turn on my lamp』",
+   "artists": "The pingpongs / ドカドカ / Fine,Great / JUANAFAN CLUB",
+   "price": "前売り ¥2400(D別) / 当日 ¥2900(D別) / U-22割 ¥1900(D別)",
+   "url": "https://shinjuku-marble.com/calender/the-pingpongs-pre-new-single-%e3%80%8c%e3%81%82%e3%81%8b%e3%82%8a%e3%80%8drelease-party%e3%80%8eturn-on-my-lamp%e3%80%8f/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
    "genres": []
   },
   {
@@ -533,6 +567,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-03",
+   "weekday": "土",
+   "open": "11:00",
+   "start": "11:30",
+   "title": "GLITTER BUS / 1st EP「Days In My Dream」release party / 『Days In My Dream』",
+   "artists": "GLITTER BUS / Watoji / Negative Campaign / The Whoops",
+   "price": "ADV ¥2500 / DOOR ¥3000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-03-24338",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-daisybar",
    "venue": "下北沢 DaisyBar",
    "pref": "東京都",
@@ -580,6 +631,23 @@
    "price": "前売 ¥3900 / 当日 ¥4400",
    "url": "http://s-laguna.jp/schedule/2026/10/",
    "source": "http://s-laguna.jp/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-03",
+   "weekday": "土",
+   "open": "11:00",
+   "start": "12:00",
+   "title": "SHINJUKU LOFT 50th ANNIVERSARYSHINJUKU LOFT 50th CIRCUIT 2026",
+   "artists": "",
+   "price": "",
+   "url": "https://shinjuku-marble.com/calender/shinjuku-loft-50th-anniversaryshinjuku-loft-50th-circuit-2026/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -846,6 +914,23 @@
    "price": "前売り¥3,000- / 当日 ¥3,500- (各1ドリンク別)",
    "url": "https://chikamatsu-nite.com/schedule/2026/10/03-id3621.php",
    "source": "https://chikamatsu-nite.com/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-03",
+   "weekday": "土",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "asayake no ato presents / \"譜面に書けないストーリー\"",
+   "artists": "asayake no ato [ONEMAN]",
+   "price": "ADV ¥3,000 / DOOR ¥4,000",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-03-24097",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -1236,6 +1321,23 @@
    ]
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-04",
+   "weekday": "日",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "赤いくらげ「満腹ワンマンツアー2026」",
+   "artists": "赤いくらげ",
+   "price": "前売り 一般 ¥3500(D別)/ U-25 ¥2000(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e8%b5%a4%e3%81%84%e3%81%8f%e3%82%89%e3%81%92%e3%80%8c%e6%ba%80%e8%85%b9%e3%83%af%e3%83%b3%e3%83%9e%e3%83%b3%e3%83%84%e3%82%a2%e3%83%bc2026%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "saitama-heavensrock",
    "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
    "pref": "埼玉県",
@@ -1472,6 +1574,25 @@
    "source": "https://chikamatsu-nite.com/schedule/2026/10/",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-05",
+   "weekday": "月",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "TREE TRANK 1st demo mini album \"Adonis\" Release Party",
+   "artists": "TREE TRANK / SHAMROCK / Daddy's Punk",
+   "price": "ADV / DOOR ¥2,000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-05-24553",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "ebisu-liquidroom",
@@ -1877,6 +1998,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-06",
+   "weekday": "火",
+   "open": "",
+   "start": "",
+   "title": "吉祥寺WARP presents / 「MORE BEER」",
+   "artists": "HUDSON / Loudia / PALEISLAND",
+   "price": "ADV ¥2300 / DOOR ¥2800 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-06-24522",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-quattro",
    "venue": "渋谷 CLUB QUATTRO",
    "pref": "東京都",
@@ -2132,6 +2270,23 @@
    "price": "前売 ¥- / 当日 ¥-",
    "url": "https://club251.com/schedule/?mo=10&yr=2026",
    "source": "https://club251.com/schedule/?mo=10&yr=2026",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-07",
+   "weekday": "水",
+   "open": "",
+   "start": "",
+   "title": "吉祥寺WARP presents / 「SEEDS」",
+   "artists": "",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-07-24472",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -2519,6 +2674,23 @@
    ]
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-09",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "吉祥寺WARP × あおれん pre. / 「Un-AGI 4」",
+   "artists": "白石はるか / the seasons 17 hours / missing yoko / utsusemi",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-09-24421",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "ebisu-liquidroom",
    "venue": "恵比寿 LIQUIDROOM",
    "pref": "東京都",
@@ -2780,6 +2952,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-10",
+   "weekday": "土",
+   "open": "12:00",
+   "start": "12:30",
+   "title": "BLUEGOATS “DAWN” AFTER PARTY",
+   "artists": "BLUEGOATS",
+   "price": "前売り ¥1000(D別) / 当日 ¥1500(D別)",
+   "url": "https://shinjuku-marble.com/calender/bluegoats-dawn-after-party/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "utsunomiya-heavensrock",
    "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
    "pref": "栃木県",
@@ -3037,6 +3226,25 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-10",
+   "weekday": "土",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "「rocknomukougawa」",
+   "artists": "ORANGE POOLSIDE / either / SAIHATE / 雨上がりのあおいちゃん",
+   "price": "前売り 一般 ¥2900(D別) / 学割 ¥2400(D別) / 当日券 プラス¥500",
+   "url": "https://shinjuku-marble.com/calender/%e3%80%8crocknomukougawa%e3%80%8d-13/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -3089,6 +3297,26 @@
    "status": "",
    "genres": [
     "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-10",
+   "weekday": "土",
+   "open": "",
+   "start": "",
+   "title": "「SUMMER OF LOVE2026」",
+   "artists": "【STAGE ACT】 / アカマツハルカ / ブリキオーケストラ / CHIDO’tender / Chieco And Her Drivers / elsie sue / イケマー&ホイホイボーイズ / 怪盗銀次郎(怪盗ザ・デッドボール) / カワタリョウスケ / コーンカワハラ(ポップコーンズ) / lawind / LV.Flatten / Maryne777 / OLDTIMER / おしえない / セヌマヨシヒロ(THE GOD LIKE CHORD) / シャク&リハビリーズ / 好きにならずにいられない / The mammy rows / The Youngman Psycho Blues / 東京ゴッドファーザーズ / Water Maze / Yellow Studs / and more...!! / / 【LOUNGE DJ】 / 青島将司 / カナリアトミー(下町音泉) / K.KAZUMA / Ko-Hey / Chun Chun / DJ嫁の金 / ひねも(ひねもす大臣&THR) / まーくん / MATSUKOU / mint / ミヤオユウキ / 涅槃(X-farm , MOONSHINE) / REN(nuggets troopers) / 夕陽ヶ丘ノブ / YuiPien / and more...!!",
+   "price": "ADV ¥4,000 / DOOR ¥4,500 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-10-24619",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": [
+    "クラシック",
+    "DJ/クラブ"
    ]
   },
   {
@@ -3160,6 +3388,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-11",
+   "weekday": "日",
+   "open": "12:00",
+   "start": "12:15",
+   "title": "ねこねこさきちゃん2nd ALBUM「おや死ゅみ」リリースツアー【画面の向こう側でおや死ゅみつあー】",
+   "artists": "ねこねこさきちゃん / センチメンタル思春期 / 寝込みかんぱにゅら / ガラクタラジオ",
+   "price": "前売り ¥2400(D別) / 当日 ¥2900(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%81%ad%e3%81%93%e3%81%ad%e3%81%93%e3%81%95%e3%81%8d%e3%81%a1%e3%82%83%e3%82%932nd-album%e3%80%8c%e3%81%8a%e3%82%84%e6%ad%bb%e3%82%85%e3%81%bf%e3%80%8d%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%83%84/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-daisybar",
    "venue": "下北沢 DaisyBar",
    "pref": "東京都",
@@ -3194,6 +3439,23 @@
    "genres": [
     "ロック/バンド"
    ]
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-11",
+   "weekday": "日",
+   "open": "12:00",
+   "start": "12:30",
+   "title": "sassya-リリース記念単独公演 / 「爆音現実」",
+   "artists": "sassya-",
+   "price": "ADV ¥3000 / DOOR ¥3500 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-11-24480",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "kumagaya-heavensrock",
@@ -3264,6 +3526,23 @@
    "price": "Adv ¥1,000",
    "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-11/",
    "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-11",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "吉祥寺WARP presents / 「DIVE!!」",
+   "artists": "SCGT / synchre / the posis / scorch away / Out of the Vox",
+   "price": "ADV / DOOR ¥2,800 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-11-24597",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -3531,6 +3810,25 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-12",
+   "weekday": "月",
+   "open": "10:30",
+   "start": "11:00",
+   "title": "「吉祥寺大移動2026」",
+   "artists": "一寸先闇バンド / 大内康平 (Loojy) / オワリズム弁慶 / kakuremono / KAGERO / ゲスバンド / ケントカキツバタ (Orca-Luca) / 神々のゴライコーズ / Sick the Tale / 知る権利 / switch board / 健やかなる子ら / たんげまこと / 手塚智晴 (tetttti,URARACA) / DRUGONDRAGON / ナキソラ / nullmachi / NIVI / necozeneco / the knowlus / hardnuts / BYEE the ROUND / 玻璃校了 / Fall of Tears / borderline case / まんぷくっ / Lana / La vida inesperada / luvliminall / LUNKHEAD / liquid people / Luouf / ロンドンタナカ (KAMATA) / わたしたちは真悟",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-12-24336",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
    "venue_id": "shibuya-quattro",
    "venue": "渋谷 CLUB QUATTRO",
    "pref": "東京都",
@@ -3595,6 +3893,23 @@
    "price": "前売 ¥4300 / 当日 ¥4800",
    "url": "http://s-laguna.jp/schedule/2026/10/",
    "source": "http://s-laguna.jp/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-12",
+   "weekday": "月",
+   "open": "12:30",
+   "start": "13:00",
+   "title": "歌田真紀マンスリーワンマンライブ「ゆりちゃんのナイフ」",
+   "artists": "歌田真紀",
+   "price": "前売り¥3000(D別)/当日¥3500(D別) / U22 ¥2000(D別) / U19 FREE (D別)",
+   "url": "https://shinjuku-marble.com/calender/7219/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -3826,6 +4141,25 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-12",
+   "weekday": "月",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "人畜乱弾3ヶ月連続企画「やりすぎ臭伝説」",
+   "artists": "人畜乱弾 / さめさめバンド",
+   "price": "",
+   "url": "https://shinjuku-marble.com/calender/%e4%ba%ba%e7%95%9c%e4%b9%b1%e5%bc%be3%e3%83%b6%e6%9c%88%e9%80%a3%e7%b6%9a%e4%bc%81%e7%94%bb%e3%80%8c%e3%82%84%e3%82%8a%e3%81%99%e3%81%8e%e8%87%ad%e4%bc%9d%e8%aa%ac%e3%80%8d-3/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "sold_out",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
    "venue_id": "shimokitazawa-chikamatsu",
    "venue": "下北沢 近松",
    "pref": "東京都",
@@ -3979,6 +4313,25 @@
    "source": "https://toos.co.jp/3/",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-13",
+   "weekday": "火",
+   "open": "18:00",
+   "start": "19:00",
+   "title": "フジロック大道芸 / アフターパーティー",
+   "artists": "芸人まこと / 加納真実 / しゅうちょう / EPPAI / マサトモジャ / ボールド山田 / アストロノーツ / なにみてるの / Entertainer Hi2",
+   "price": "ADV ¥3500 / DOOR ¥4000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-13-24482",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "mito-lighthouse",
@@ -4376,6 +4729,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-14",
+   "weekday": "水",
+   "open": "",
+   "start": "",
+   "title": "吉祥寺WARP presents / 「SEEDS」",
+   "artists": "",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-14-24473",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-quattro",
    "venue": "渋谷 CLUB QUATTRO",
    "pref": "東京都",
@@ -4406,6 +4776,23 @@
    "price": "Adv ¥4,500 / Door ¥5,000",
    "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-15/",
    "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-15",
+   "weekday": "木",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "吉祥寺WARP pre「applause」",
+   "artists": "youthless / voyager / COME FROM TINY / amber for (Re)Utopia",
+   "price": "ADV ¥2500 / DOOR ¥3,000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-15-24490",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -4877,6 +5264,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-16",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "アンジーモーテル pre. 『誠改』",
+   "artists": "アンジーモーテル / あすなろ白昼夢 / 爛漫天国 / DNA GAINZ",
+   "price": "前売り¥2800(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%82%a2%e3%83%b3%e3%82%b8%e3%83%bc%e3%83%a2%e3%83%bc%e3%83%86%e3%83%ab-pre-%e3%80%8e%e8%aa%a0%e6%94%b9%e3%80%8f/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-quattro",
    "venue": "渋谷 CLUB QUATTRO",
    "pref": "東京都",
@@ -5009,6 +5413,23 @@
    "price": "",
    "url": "https://www.chibalook.com/schedule/index.html",
    "source": "https://www.chibalook.com/schedule/index.html",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-16",
+   "weekday": "金",
+   "open": "",
+   "start": "",
+   "title": "吉祥寺WARP presents / 「SEEDS」",
+   "artists": "",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-16-24474",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -5238,6 +5659,25 @@
    "source": "https://www-shibuya.jp/schedule/202610.php",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-17",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "16:50",
+   "title": "ゲスバンド企画「MAKELOVEお茶割り祭ファイナル」",
+   "artists": "ゲスバンド / ผ้าอ้อม99999 / SEVENTEEN AGAiN / 超酔拳 / Guido / Panorama Panama Town / ノーボアダムズ / Laget’s Jam Stack / the twenties / あとみJAPAN",
+   "price": "",
+   "url": "https://shinjuku-marble.com/calender/%e3%82%b2%e3%82%b9%e3%83%90%e3%83%b3%e3%83%89%e4%bc%81%e7%94%bb%e3%80%8cmakelove%e3%81%8a%e8%8c%b6%e5%89%b2%e3%82%8a%e7%a5%ad%e3%83%95%e3%82%a1%e3%82%a4%e3%83%8a%e3%83%ab%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "saitama-heavensrock",
@@ -5959,6 +6399,23 @@
    ]
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-18",
+   "weekday": "日",
+   "open": "20:30",
+   "start": "21:00",
+   "title": "【即日完売御礼/キャンセル分→10/18正午、若干枚数受付！】sickufo free short one-man 「NO MONEY OK！」",
+   "artists": "sickufo / / ★お茶割り飲み放隊★ / オフィスカジュアルズ",
+   "price": "完全無料(入場無料/飲み放題無料/焼きそば無料)",
+   "url": "https://shinjuku-marble.com/calender/sickufo-free-short-one-man%e3%80%8cno-money-ok%ef%bc%81%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "ebisu-liquidroom",
    "venue": "恵比寿 LIQUIDROOM",
    "pref": "東京都",
@@ -6023,6 +6480,23 @@
    "price": "¥2,300 / ¥2,800(各+1D¥700)",
    "url": "https://chikamatsu-nite.com/schedule/2026/10/19-id3644.php",
    "source": "https://chikamatsu-nite.com/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-19",
+   "weekday": "月",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "吉祥寺ワープpresents / 「SMALL LAKE!!」",
+   "artists": "rough / くらし / まんぷくっ / sickufo / 手塚智晴 / / ※rue deaneはキャンセルとなりました。",
+   "price": "ADV ¥2,800 / DOOR ¥3,300 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-19-24520",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -6200,6 +6674,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-19",
+   "weekday": "月",
+   "open": "19:15",
+   "start": "19:45",
+   "title": "WALTZMORE EXTRA ONEMAN SHOW- 1st full album “birthday” 完全再現公演 –",
+   "artists": "WALTZMORE",
+   "price": "前売り ¥3500(D別)",
+   "url": "https://shinjuku-marble.com/calender/waltzmore-extra-oneman-show-1st-full-album-birthday-%e5%ae%8c%e5%85%a8%e5%86%8d%e7%8f%be%e5%85%ac%e6%bc%94/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "ebisu-liquidroom",
    "venue": "恵比寿 LIQUIDROOM",
    "pref": "東京都",
@@ -6247,6 +6738,23 @@
    "price": "TICKET ¥2,600(+1Drink ¥700)",
    "url": "https://mu-seum.co.jp/schedule.html#20",
    "source": "https://mu-seum.co.jp/schedule.html",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-20",
+   "weekday": "火",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "「30センチと5ミリ」",
+   "artists": "18:30- ヒノヨーコ / 19:00- 助(Tonto) / 19:40- 樂円音樂 / 20:20- 木之元清士朗(ANTI HIMITSU CLUB) / 21:00- NAVARASA / 21:35- Pualala",
+   "price": "前売り 一般¥2400(D別) / 女性割¥1000(D別) / U22¥1000(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%80%8c30%e3%82%bb%e3%83%b3%e3%83%81%e3%81%a85%e3%83%9f%e3%83%aa%e3%80%8d-2/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -6300,6 +6808,23 @@
    "price": "ADV ¥3500 / DOOR ¥4000 (+1D¥700)",
    "url": "http://s-era.jp/schedule/56398.html",
    "source": "http://s-era.jp/schedule_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-20",
+   "weekday": "火",
+   "open": "18:40",
+   "start": "19:00",
+   "title": "キキレイレイpresents / 『 kikitown #5 』",
+   "artists": "キキレイレイ / SEEE2 / MID POP / THE ORGANICS / グデイ",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-20-24601",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -6496,6 +7021,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-21",
+   "weekday": "水",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "吉祥寺WARP pre. HEIJITSU FANCLUB",
+   "artists": "ずっとグルーミー（新潟） / ドラマカ / hirunotsuki / るつ / and more",
+   "price": "ADV ¥2500 / DOOR ¥3000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-21-24570",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -6634,6 +7176,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-21",
+   "weekday": "水",
+   "open": "19:00",
+   "start": "19:30",
+   "title": "klllthemind × Shinjuku Marble pre.「XX CHRONICLE vol.5」",
+   "artists": "歌田真紀 / 森あんぱん / 助(Tonto) / 変身願望(衝子にメアリーズ)",
+   "price": "前売り ¥3000(D別) / ¥3500(D別) / U22 ¥2000(D別) / U19 ENTRANCE FREE(D別)",
+   "url": "https://shinjuku-marble.com/calender/klllthemind-x-shinjuku-marble-pre-%e3%80%8cxx-chronicle-vol-5%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-www",
    "venue": "渋谷 WWW",
    "pref": "東京都",
@@ -6715,6 +7274,23 @@
    "price": "前売 ￥3000 / 当日 ￥3500",
    "url": "http://www.yokohamabaysis.com/schedule.php?mt=2026.10#5643",
    "source": "http://www.yokohamabaysis.com/schedule.php?mt=2026.10",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-22",
+   "weekday": "木",
+   "open": "18:15",
+   "start": "18:45",
+   "title": "吉祥寺WARP presents / 「Large Serving」",
+   "artists": "旧市街 / 粋葬 / Niwa / aether / おばけいぬ",
+   "price": "ADV ¥2300 / DOOR ¥2800 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-22-24538",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -6940,6 +7516,26 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-23",
+   "weekday": "金",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "ゆっくりな光×吉祥寺WARP共催フェス / 「 吉祥寺灯火祭 」",
+   "artists": "⚫︎BAND / ゆっくりな光 / かたこと / イロムク / メトロワ / / ⚫︎ACOUSTIC ARTIST / 山口諒也(Absolute area) / ヨシキ(ORCALAND) / 有明(レイラ) / 福島勇也(飲んだくれday&night)",
+   "price": "ADV / DOOR ¥3000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-23-24617",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": [
+    "ロック/バンド",
+    "アコースティック/弾き語り"
+   ]
+  },
+  {
    "venue_id": "utsunomiya2-heavensrock",
    "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
    "pref": "栃木県",
@@ -7110,6 +7706,25 @@
    "source": "https://www.liquidroom.net/schedule/2026/10",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-23",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "MONSTER Gann 4ヶ月連続企画第2弾「ヒーローになって」– 水魚之交 –",
+   "artists": "MONSTER Gann / Space of Pumpkin / クリームヒーローズ / DOPErockers.JP",
+   "price": "前売り ¥2400(D別) / 当日 ¥2900(D別)",
+   "url": "https://shinjuku-marble.com/calender/monster-gann-4%e3%83%b6%e6%9c%88%e9%80%a3%e7%b6%9a%e4%bc%81%e7%94%bb%e7%ac%ac2%e5%bc%be%e3%80%8c%e3%83%92%e3%83%bc%e3%83%ad%e3%83%bc%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%a6%e3%80%8d-%e6%b0%b4/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "yokohama-bbstreet",
@@ -7303,6 +7918,40 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-24",
+   "weekday": "土",
+   "open": "10:30",
+   "start": "11:00",
+   "title": "「39 -THANK YOU- in TOKYO」",
+   "artists": "横木 章弘",
+   "price": "前売り ¥5000(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%80%8c39-thank-you-in-tokyo%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-24",
+   "weekday": "土",
+   "open": "11:30",
+   "start": "12:00",
+   "title": "タナカズ&モモ presents / 「Étranger」",
+   "artists": "Akane Streaking Crowd / 極東飯店 / 是猫",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-24-24478",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -7405,6 +8054,23 @@
    "genres": [
     "ロック/バンド"
    ]
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-24",
+   "weekday": "土",
+   "open": "15:30",
+   "start": "16:00",
+   "title": "FUMO FES 2 / July & elena Wレコ発",
+   "artists": "July / elena / 弱虫倶楽部 / 杏仁クルーエル / butta-gil / Yoshin∀ni / the parahills / LARK / AKUTAGAWA FANCLUB / 滑稽のドア / / food:きしぱん食堂",
+   "price": "ADV / DOOR ¥3,300 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-24-24458",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "mito-lighthouse",
@@ -7732,6 +8398,23 @@
    "price": "無料 / 一般入場可・未就学児可",
    "url": "https://www.tcf.or.jp/exhibition/027540/",
    "source": "https://www.tcf.or.jp/exhibition/capio/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-25",
+   "weekday": "日",
+   "open": "11:00",
+   "start": "11:30",
+   "title": "「divergent vol.5」",
+   "artists": "lang / /naname / to overflow evidence",
+   "price": "ADV ¥2800 / DOOR ¥3300 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-25-24488",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -8288,21 +8971,23 @@
    "genres": []
   },
   {
-   "venue_id": "kawasaki-citta",
-   "venue": "川崎 CLUB CITTA'",
-   "pref": "神奈川県",
-   "area": "川崎",
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
    "date": "2026-10-26",
    "weekday": "月",
-   "open": "17:00",
+   "open": "18:00",
    "start": "18:30",
-   "title": "松山あおい生誕単独公演「未来旅行」",
-   "artists": "松山あおい / 熊本哲也(Key) / 馬原美穂(Gu) / 秋澤正志(Ba) / Nosuke(Dr) / VJ & DANCER 吉川マッハスペシャル／渡辺とんそく",
-   "price": "前売り / 玄人(最前指定席) 10,000円 / 限界(前方指定席) 5,000円 / 達人(指定席) 3,000円 / 初心者(後方自由席＆立ち見) 2,000円 / / 【当日券】2,000円(税込)※現金のみ",
-   "url": "https://clubcitta.co.jp/schedule/1770",
-   "source": "https://clubcitta.co.jp/schedule?year=2026&month=Oct",
+   "title": "吉祥寺WARP pre. 【SANTERiA vol.5】",
+   "artists": "TREE TRANK / Daddy's Punk / アサがツキ / NISHIDAS",
+   "price": "ADV / DOOR ¥1,300 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-26-24750",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
-   "genres": []
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "kashiwa-palooza",
@@ -8388,6 +9073,25 @@
    "price": "ADV ¥2,400-（+1Drink ¥600-）",
    "url": "https://toos.co.jp/calabash.b1f/event/love-spreads-3/",
    "source": "https://toos.co.jp/3/",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-26",
+   "weekday": "月",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "「SECOND LOCAL – TICKET FREE -」",
+   "artists": "19:00- 永野(MOCKEN)(30min) / 19:40- 木下大雅(アンジーモーテル)(30min) / 20:20- イチバンロック(35min) / 21:05- AIRTONIC(35min)",
+   "price": "前売り TICKET FREE(＋2DRINK¥1200) / 当日 TICKET FREE(＋3DRINK¥1800)",
+   "url": "https://shinjuku-marble.com/calender/%e3%80%8csecond-local-ticket-free-%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": [
     "ロック/バンド"
@@ -8651,6 +9355,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-27",
+   "weekday": "火",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "Gnaw Asia Tour 2026 – Inside a Machine That’s Glistening –",
+   "artists": "Gnaw(SG) / Wednesday Wonderland. / 2beef / ghost girl in my bed",
+   "price": "ADV ¥3800(D別) / DOOR ¥4300(D別) / U23 ¥2000(D別)",
+   "url": "https://shinjuku-marble.com/calender/gnaw-asia-tour-2026-inside-a-machine-thats-glistening/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-bbstreet",
    "venue": "横浜 B.B.STREET",
    "pref": "神奈川県",
@@ -8720,6 +9441,23 @@
    "price": "",
    "url": "https://www-shibuya.jp/schedule/020151.php",
    "source": "https://www-shibuya.jp/schedule/202610.php",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-27",
+   "weekday": "火",
+   "open": "19:00",
+   "start": "19:30",
+   "title": "ピューパ!! pre. / 『#ツリィハウス vol.45』 ~ ハロウィンSP!! ~",
+   "artists": "ピューパ!! / キュニコ / Lion net girl / syqsyq",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-27-24603",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -8843,6 +9581,25 @@
    "source": "https://www.liquidroom.net/schedule/2026/10",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-28",
+   "weekday": "水",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "長嶋水徳 – serval DOG – × Marble pre.リリースイベント第一弾「秋空とパンク」",
+   "artists": "長嶋水徳 – serval DOG – / のっぺら / やさしくなれない / 歌田真紀 / あらいやかしこ",
+   "price": "前売り券¥3000(D別)/当日券¥3500(D別) / 学割¥2000(D別",
+   "url": "https://shinjuku-marble.com/calender/7309/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "yokohama-baysis",
@@ -9035,6 +9792,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-28",
+   "weekday": "水",
+   "open": "19:00",
+   "start": "19:30",
+   "title": "吉祥寺WARP presents / 「Large Serving」",
+   "artists": "Sezyo / The Lit FIXION / kill me Elk / fragmentz / MAVCHI",
+   "price": "ADV ¥2,300 / DOOR ¥2,800 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-28-24605",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-bbstreet",
    "venue": "横浜 B.B.STREET",
    "pref": "神奈川県",
@@ -9099,6 +9873,42 @@
    "price": "前売 ¥2500 / 当日 ¥3000",
    "url": "https://daisybar.jp/schedule/2026/10/",
    "source": "https://daisybar.jp/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-29",
+   "weekday": "木",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "吉祥寺WARP presents. / 「 CATTLE 」",
+   "artists": "ランドラーク / Ray / SHAMROCK / TREE TRANK",
+   "price": "ADV ¥2300 / DOOR ¥2800 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-29-24674",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-29",
+   "weekday": "木",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "稲アレルギー1stアルバム”発熱前夜”リリースツアー初日",
+   "artists": "稲アレルギー / THE NOiSE / シュシュがーる / 在多ヒデハル / totemぽぉる",
+   "price": "前売り券¥3000(D別)/当日券¥3500(D別) / 学割¥2000(D別",
+   "url": "https://shinjuku-marble.com/calender/%e7%a8%b2%e3%82%a2%e3%83%ac%e3%83%ab%e3%82%ae%e3%83%bc1st%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e7%99%ba%e7%86%b1%e5%89%8d%e5%a4%9c%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e3%83%84%e3%82%a2%e3%83%bc/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -9390,6 +10200,23 @@
    "price": "¥2,300-/¥2,800-(＋1D)",
    "url": "https://chikamatsu-nite.com/schedule/2026/10/30-id3614.php",
    "source": "https://chikamatsu-nite.com/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-10-30",
+   "weekday": "金",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "「どんぶりアタックvol.3」",
+   "artists": "カルナロッタ / ユタ州 / ザ ノイズ / アンジーモーテル",
+   "price": "ADV ¥3,000 / DOOR ¥3,500 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-10#box-30-24469",
+   "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
   },
@@ -9691,6 +10518,23 @@
    "genres": [
     "ロック/バンド"
    ]
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-30",
+   "weekday": "金",
+   "open": "20:30",
+   "start": "21:00",
+   "title": "赤気単独公演「最後の赤字」赤気七百計画決起集会",
+   "artists": "赤気",
+   "price": "入場無料(予約不要/2DRINK別¥1200)",
+   "url": "https://shinjuku-marble.com/calender/%e8%b5%a4%e6%b0%97%e5%8d%98%e7%8b%ac%e5%85%ac%e6%bc%94%e3%80%8c%e6%9c%80%e5%be%8c%e3%81%ae%e8%b5%a4%e5%ad%97%e3%80%8d%e8%b5%a4%e6%b0%97%e4%b8%83%e7%99%be%e8%a8%88%e7%94%bb%e6%b1%ba%e8%b5%b7%e9%9b%86/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "tsukuba-parkdiner",
@@ -10103,6 +10947,23 @@
    "price": "前売り¥2,500 / 当日¥3,000 / 学生¥2,000(各+1D¥700)",
    "url": "https://chikamatsu-nite.com/schedule/2026/10/31-id3625.php",
    "source": "https://chikamatsu-nite.com/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-10-31",
+   "weekday": "土",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "みく＆はづき pre.『sharing』",
+   "artists": "・Fast Foolish / ※“Place to Daybreak Tour” / / ・MORGIC / ※“STICKER BOMB TOUR” / / ・akebono / / ・NOCOGIRI / / ・Northrop",
+   "price": "前売り¥3000(D別) / 当日 ¥3500(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%81%bf%e3%81%8f%ef%bc%86%e3%81%af%e3%81%a5%e3%81%8d-pre-%e3%80%8esharing%e3%80%8f/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -10619,23 +11480,6 @@
    "genres": []
   },
   {
-   "venue_id": "mito-hirosawa",
-   "venue": "ザ・ヒロサワ・シティ会館",
-   "pref": "茨城県",
-   "area": "水戸",
-   "date": "2026-11-01",
-   "weekday": "日",
-   "open": "17:30",
-   "start": "18:30",
-   "title": "ミュージカル「ALICE ～不思議の国のアリスより～」",
-   "artists": "",
-   "price": "全席指定 / 一般： S席 11,000円 A席 9,000円 / 友の会会員：S席 10,500円 A席 8,500円 / ※車椅子をご利用の方はS席をご購入のうえ、キョ－ド－東京チケットセンタｰまでご連絡ください。",
-   "url": "https://www.ibarakiken-bunkacenter.com/event/20261101.html",
-   "source": "https://www.ibarakiken-bunkacenter.com/event/",
-   "status": "",
-   "genres": []
-  },
-  {
    "venue_id": "shimokita-era",
    "venue": "下北沢 ERA",
    "pref": "東京都",
@@ -10653,6 +11497,25 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-01",
+   "weekday": "日",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "「rocknomukougawa」",
+   "artists": "モーモールルギャバン / ゲスバンド",
+   "price": "一般 ¥3900(D別) / 学割 ¥1400(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%80%8crocknomukougawa%e3%80%8d-14/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
    "venue_id": "shibuya-www",
    "venue": "渋谷 WWW",
    "pref": "東京都",
@@ -10666,6 +11529,23 @@
    "price": "一般：¥3,000 / 学割：¥2,500 (税込 / D代別)",
    "url": "https://www-shibuya.jp/schedule/019909.php",
    "source": "https://www-shibuya.jp/schedule/202611.php",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "mito-hirosawa",
+   "venue": "ザ・ヒロサワ・シティ会館",
+   "pref": "茨城県",
+   "area": "水戸",
+   "date": "2026-11-01",
+   "weekday": "日",
+   "open": "",
+   "start": "",
+   "title": "ミュージカル「ALICE ～不思議の国のアリスより～」",
+   "artists": "",
+   "price": "",
+   "url": "https://www.ibarakiken-bunkacenter.com/event/20261101.html",
+   "source": "https://www.ibarakiken-bunkacenter.com/event/",
    "status": "",
    "genres": []
   },
@@ -10891,6 +11771,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-02",
+   "weekday": "月",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "𝘉𝘖𝘉(𝘵𝘩𝘦)𝘏𝘰𝘶𝘴𝘦 𝘗𝘳𝘦. / 《𝙤𝙝𝙖𝙩𝙨𝙪》",
+   "artists": "BOB(the)House / 夢(BOY) / らんまん",
+   "price": "ADV ¥2,300 / DOOR ¥2,800 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-02-24627",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-www-x",
    "venue": "渋谷 WWW X",
    "pref": "東京都",
@@ -10904,6 +11801,23 @@
    "price": "Sチケット：¥25,000 / -（税込 / スタンディング / ドリンク代別） / Aチケット ：¥3,000 / -（税込 / スタンディング / ドリンク代別） / 一般： ¥1,000 / -（税込 / スタンディング / ドリンク代別）",
    "url": "https://www-shibuya.jp/schedule/020138.php",
    "source": "https://www-shibuya.jp/schedule/202611.php",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-02",
+   "weekday": "月",
+   "open": "19:00",
+   "start": "19:30",
+   "title": "「dessin」6th ANNIVERSARY of INDEPENDENCE",
+   "artists": "千野隆尋(GOOD ON THE REEL) / 篠塚将行(それでも世界が続くなら)",
+   "price": "前売り3500(D別)/当日¥3900(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%80%8cdessin%e3%80%8d6th-anniversary-of-independence/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -10959,6 +11873,25 @@
    "source": "https://www.tcf.or.jp/exhibition/capio/",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "10:30",
+   "start": "11:30",
+   "title": "はしちゃん＆おけた pre. / 弾き語りイベント / 「あたたかい1日」",
+   "artists": "act. / 淡甘(終日柄, 止め処なく、渇き) / フクダチナツ(ウマシカて) / はしちゃん(よすが) / 宝(nett!) / 梅サワ(Rhakka, 海風邪) / / SHOP🏡 / 梅サワ / はしちゃん / 峯岸利恵 / / FOOD🍙 / タナカカズマ / / BAR🍻 / いせのみや(旧市街) / すけけん(旧市街) / おけた",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-03-24720",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": [
+    "アコースティック/弾き語り"
+   ]
   },
   {
    "venue_id": "shimokita-era",
@@ -11080,6 +12013,23 @@
    "genres": [
     "クラシック"
    ]
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "12:30",
+   "start": "13:00",
+   "title": "歌田真紀マンスリーワンマンライブ「ゆりちゃんのナイフ」",
+   "artists": "歌田真紀",
+   "price": "前売り¥3000(D別)/当日¥3500(D別) / U22 ¥2000(D別) / U19 FREE (D別)",
+   "url": "https://shinjuku-marble.com/calender/%e6%ad%8c%e7%94%b0%e7%9c%9f%e7%b4%80%e3%83%9e%e3%83%b3%e3%82%b9%e3%83%aa%e3%83%bc%e3%83%af%e3%83%b3%e3%83%9e%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%96%e3%80%8c%e3%82%86%e3%82%8a%e3%81%a1%e3%82%83%e3%82%93-4/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "tsukuba-novahall",
@@ -11412,6 +12362,40 @@
    "price": "ADV ¥3,000- ／ DOOR ¥3,500-（+1Drink ¥600-）",
    "url": "https://toos.co.jp/calabash.b1f/event/magic-moments-lp-release-party/",
    "source": "https://toos.co.jp/3/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "",
+   "start": "18:30",
+   "title": "BAD END BOYS × Hyper Intensity × 新宿Marble共同企画「Lush Life」",
+   "artists": "BAD END BOYS / and more",
+   "price": "",
+   "url": "https://shinjuku-marble.com/calender/bad-end-boys-x-hyper-intensity-x-%e6%96%b0%e5%ae%bfmarble%e5%85%b1%e5%90%8c%e4%bc%81%e7%94%bb%e3%80%8clush-life%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "BAD END BOYS×Hyper Intensity×新宿Marble共同企画「Lush Life」",
+   "artists": "BAD END BOYS / Acle / sassya- / Mahara Boys",
+   "price": "前売り ¥2900(D別) / 当日 ¥3400(D別) / 大学生・専門生 ¥1,900(D別) / 高校生以下 ¥0(D別)",
+   "url": "https://shinjuku-marble.com/calender/bad-end-boysxhyper-intensityx%e6%96%b0%e5%ae%bfmarble%e5%85%b1%e5%90%8c%e4%bc%81%e7%94%bb%e3%80%8clush-life%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -11843,6 +12827,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-05",
+   "weekday": "木",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "吉祥寺ワープpresents / 「SMALL LAKE!!」",
+   "artists": "大平伸正 / 髙橋レオ / 金廣真悟(グッドモーニングアメリカ/わたしたちは真悟) / 森公一 / ヨコタヒロユキ",
+   "price": "ADV ¥3000 / DOOR ¥3500 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-05-24629",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-fad",
    "venue": "F.A.D YOKOHAMA",
    "pref": "神奈川県",
@@ -12202,6 +13203,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-06",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "SAIHATE × Marble pre.FLOOR LIVE EVENT「ONE HORIZON」",
+   "artists": "SAIHATE / 健やかなる子ら / CULTURES!!!",
+   "price": "前売り 一般 ¥2900(D別) / 学割 ¥2400(D別) / 当日券 プラス¥500",
+   "url": "https://shinjuku-marble.com/calender/7380/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-baysis",
    "venue": "横浜 BAYSIS",
    "pref": "神奈川県",
@@ -12250,6 +13268,23 @@
    "url": "https://www-shibuya.jp/schedule/020080.php",
    "source": "https://www-shibuya.jp/schedule/202611.php",
    "status": "sold_out",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-06",
+   "weekday": "金",
+   "open": "18:45",
+   "start": "19:15",
+   "title": "さいわいな部屋「すみやかな気息」リリース企画 / さいわいな部屋 × シノエフヒ pre. / 『signature nature B』",
+   "artists": "さいわいな部屋 / 魚田二月 / シノエフヒ",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-06-24608",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
    "genres": []
   },
   {
@@ -12402,6 +13437,23 @@
    "price": "ADV ¥TBA / DOOR ¥TBA (+1D¥700)",
    "url": "http://s-era.jp/schedule/56448.html",
    "source": "http://s-era.jp/schedule_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-07",
+   "weekday": "土",
+   "open": "11:30",
+   "start": "11:45",
+   "title": "Pink Zaphod Magical Beeblebrox底なしのバケツのようにざらざら共同企画「BEATY BOOTLEG」",
+   "artists": "Pink Zaphod Magical Beeblebrox / 底なしのバケツのようにざらざら / ゲスト：MEAT EATERS",
+   "price": "入場無料（ワンドリンクオーダー制）",
+   "url": "https://shinjuku-marble.com/calender/pink-zaphod-magical-beeblebrox%e5%ba%95%e3%81%aa%e3%81%97%e3%81%ae%e3%83%90%e3%82%b1%e3%83%84%e3%81%ae%e3%82%88%e3%81%86%e3%81%ab%e3%81%96%e3%82%89%e3%81%96%e3%82%89%e5%85%b1%e5%90%8c%e4%bc%81-2/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -12718,6 +13770,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-07",
+   "weekday": "土",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "じじ&せりのpre. 『Radiate vol.1』",
+   "artists": "Maybe Lied / HOLIC / akebono / インタールード / Tear rain",
+   "price": "前売り ¥2900(D別) / 当日 ¥3400 (D別)",
+   "url": "https://shinjuku-marble.com/calender/7221/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-www-x",
    "venue": "渋谷 WWW X",
    "pref": "東京都",
@@ -12856,6 +13925,40 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "11:30",
+   "start": "12:00",
+   "title": "𝐓𝐇𝐄 𝟏𝟏𝟖'𝐬 𝐩𝐫𝐞. / イチイチハチの日 𝟐𝟎𝟐𝟔",
+   "artists": "𝐓𝐇𝐄 𝟏𝟏𝟖'𝐬 / スクールガールズエンド",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-08-24611",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "11:30",
+   "start": "12:00",
+   "title": "The Whoops 「FILM!!!」リリース10周年記念アルバム再現ライブ【再振替公演】",
+   "artists": "The Whoops / [ゲスト]マリースメック",
+   "price": "前売り¥3000(1DRINK別¥600)",
+   "url": "https://shinjuku-marble.com/calender/the-whoops-%e3%80%8cfilm%e3%80%8d%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b910%e5%91%a8%e5%b9%b4%e8%a8%98%e5%bf%b5%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e5%86%8d%e7%8f%be%e3%83%a9%e3%82%a4%e3%83%96%e3%80%90-2/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "postponed",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-baysis",
    "venue": "横浜 BAYSIS",
    "pref": "神奈川県",
@@ -12945,23 +14048,6 @@
    ]
   },
   {
-   "venue_id": "mito-hirosawa",
-   "venue": "ザ・ヒロサワ・シティ会館",
-   "pref": "茨城県",
-   "area": "水戸",
-   "date": "2026-11-08",
-   "weekday": "日",
-   "open": "13:15",
-   "start": "14:00",
-   "title": "茨城県芸術祭 第46回 洋舞フェスティバル",
-   "artists": "",
-   "price": "全席自由 3,000円 4歳からの未就学児1,000円",
-   "url": "https://www.ibarakiken-bunkacenter.com/event/20261108.html",
-   "source": "https://www.ibarakiken-bunkacenter.com/event/",
-   "status": "",
-   "genres": []
-  },
-  {
    "venue_id": "kawasaki-citta",
    "venue": "川崎 CLUB CITTA'",
    "pref": "神奈川県",
@@ -13026,6 +14112,23 @@
    "price": "Adv Sチケット(前方) ¥4,000 / Aチケット(一般) ¥1,000",
    "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-08/",
    "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "Erase The Period & disordermade presents / No Period, No Order vol.1",
+   "artists": "Erase The Period / disordermade / Lana / GIVE ME BACK! / weave",
+   "price": "ADV ¥2,800 / DOOR ¥3,300 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-08-24631",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
    "status": "",
    "genres": []
   },
@@ -13253,6 +14356,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "Beat Light ”Beyond of the seasons TOUR”",
+   "artists": "Beat Light / NOCOGIRI / HOLlC / MUSHRO.mo / LOFT",
+   "price": "前売り¥2400(D別) / 当日¥3000(D別)",
+   "url": "https://shinjuku-marble.com/calender/beat-light-beyond-of-the-seasons-tour/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-three",
    "venue": "下北沢 THREE",
    "pref": "東京都",
@@ -13266,6 +14386,23 @@
    "price": "ADV ¥3,000- ／ DOOR ¥3,500-（+1Drink ¥600-）",
    "url": "https://toos.co.jp/calabash.b1f/event/%e5%b1%8b%e5%86%85%e7%86%b1%e5%b8%af%e3%81%ae%e5%a4%9c-vol-11/",
    "source": "https://toos.co.jp/3/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "mito-hirosawa",
+   "venue": "ザ・ヒロサワ・シティ会館",
+   "pref": "茨城県",
+   "area": "水戸",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "",
+   "start": "",
+   "title": "茨城県芸術祭 第46回 洋舞フェスティバル",
+   "artists": "",
+   "price": "",
+   "url": "https://www.ibarakiken-bunkacenter.com/event/20261108.html",
+   "source": "https://www.ibarakiken-bunkacenter.com/event/",
    "status": "",
    "genres": []
   },
@@ -13699,6 +14836,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-10",
+   "weekday": "火",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "吉祥寺ワープpresents / 「SMALL LAKE!!」",
+   "artists": "Etranger / 魚田二月 / ジウな夢 / COME FROM TINY / and more...",
+   "price": "ADV ¥2500 / DOOR ¥3000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-10-24633",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-bbstreet",
    "venue": "横浜 B.B.STREET",
    "pref": "神奈川県",
@@ -13882,6 +15036,23 @@
    "price": "ADV ¥6500 / DOOR ¥7300 (+1D¥700)",
    "url": "http://s-era.jp/schedule/56324.html",
    "source": "http://s-era.jp/schedule_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-11",
+   "weekday": "水",
+   "open": "18:00",
+   "start": "19:00",
+   "title": "WARP 28th Anniversary!! / 回春李 presents / 「JACKPOT SEASON」",
+   "artists": "回春李 / ルサンチマン",
+   "price": "ADV ¥2,800 / DOOR ¥3,300",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-11-24655",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
    "status": "",
    "genres": []
   },
@@ -14075,6 +15246,25 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-12",
+   "weekday": "木",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "Shimokitazawa SOUND CRUISING presents.サウクルラボ vol.10",
+   "artists": "-LIVE- / ゆっくり走れ / ここで生きてるず / DNA GAINZ / either / やさしくなれない / / -お笑い- / イチゴ / からし蓮根",
+   "price": "前売り ¥3000(D別)",
+   "url": "https://shinjuku-marble.com/calender/shimokitazawa-sound-cruising-presents-%e3%82%b5%e3%82%a6%e3%82%af%e3%83%ab%e3%83%a9%e3%83%9c-vol-10/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": [
+    "トーク/お笑い"
+   ]
+  },
+  {
    "venue_id": "shimokita-era",
    "venue": "下北沢 ERA",
    "pref": "東京都",
@@ -14245,6 +15435,25 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-12",
+   "weekday": "木",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "吉祥寺ワープpresents / 「SMALL LAKE!!」",
+   "artists": "CHUN. / Swing Skit / BATROICA METAL SUMMER JACKET / 茶封筒 / and more...",
+   "price": "ADV ¥2500 / DOOR ¥3000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-12-24635",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
    "venue_id": "ebisu-liquidroom",
    "venue": "恵比寿 LIQUIDROOM",
    "pref": "東京都",
@@ -14398,6 +15607,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-13",
+   "weekday": "金",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "YUEY & Marble presentsBANSHU TOKYO -晩秋東京-",
+   "artists": "YUEY / 石井卓とジョン中村 / ホピーハイボ / Coconuts Cats / Nebula Giacometti",
+   "price": "前売り ¥3000(D別) / 当日¥3500(D別) / 学割 ¥2000(D別)",
+   "url": "https://shinjuku-marble.com/calender/yuey-marble-presentsbanshu-tokyo-%e6%99%a9%e7%a7%8b%e6%9d%b1%e4%ba%ac/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-fad",
    "venue": "F.A.D YOKOHAMA",
    "pref": "神奈川県",
@@ -14500,6 +15726,23 @@
    "price": "¥3,000 / ¥3,500 / 学割(高校生以下)¥1,500※要学生証 (各+1D¥700)",
    "url": "https://chikamatsu-nite.com/schedule/2026/11/13-id3652.php",
    "source": "https://chikamatsu-nite.com/schedule/2026/11/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-13",
+   "weekday": "金",
+   "open": "18:00",
+   "start": "19:00",
+   "title": "Pororoca pre. / クラウドファンディング達成×エンバディツアー初日 / 2nd Full Album 「エンバディ」完全再現 / 無料ワンマンライブ\"Philosophy\"",
+   "artists": "Pororoca",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-13-24641",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
    "status": "",
    "genres": []
   },
@@ -14903,6 +16146,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-14",
+   "weekday": "土",
+   "open": "18:15",
+   "start": "18:45",
+   "title": "Wang-Wang(旺旺) pre. / 『まじはり vol.2』",
+   "artists": "Wang-Wang(旺旺) / sassya- / Arabz / PLOTOLEMS",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-14-24613",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-www",
    "venue": "渋谷 WWW",
    "pref": "東京都",
@@ -14951,6 +16211,23 @@
    "url": "https://toos.co.jp/calabash.b1f/event/%e3%80%8eprivate-party-radio-number%e3%80%8frelease-party/",
    "source": "https://toos.co.jp/3/",
    "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-14",
+   "weekday": "土",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "人畜乱弾3ヶ月連続企画「やりすぎ臭伝説」",
+   "artists": "人畜乱弾 / DNA GAINZ / のっぺら",
+   "price": "",
+   "url": "https://shinjuku-marble.com/calender/%e4%ba%ba%e7%95%9c%e4%b9%b1%e5%bc%be3%e3%83%b6%e6%9c%88%e9%80%a3%e7%b6%9a%e4%bc%81%e7%94%bb%e3%80%8c%e3%82%84%e3%82%8a%e3%81%99%e3%81%8e%e8%87%ad%e4%bc%9d%e8%aa%ac%e3%80%8d-2/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "sold_out",
    "genres": []
   },
   {
@@ -15338,6 +16615,25 @@
    ]
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-15",
+   "weekday": "日",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "ShitKid Japan Tour 2026 TOKYO DAY1",
+   "artists": "ShitKid / DOGO / Sorry No Camisole / DJ：村田タケル",
+   "price": "前売り¥6500(D別) / 当日 ¥7000(D別)",
+   "url": "https://shinjuku-marble.com/calender/shitkid-japan-tour-2026-tokyo-day1/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": [
+    "DJ/クラブ"
+   ]
+  },
+  {
    "venue_id": "tsukuba-parkdiner",
    "venue": "つくば PARKDINER",
    "pref": "茨城県",
@@ -15593,6 +16889,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-16",
+   "weekday": "月",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "GALAND pre.「月昇」〜Digital Single 夕景、江ノ島 Release Party〜",
+   "artists": "GALAND / 39degrees / SAIHATE / SLACK",
+   "price": "前売り ¥2900(D別) / 当日 ¥3400(D別)",
+   "url": "https://shinjuku-marble.com/calender/galand-pre-%e3%80%8c%e6%9c%88%e6%98%87%e3%80%8d%e3%80%9cdigital-single-%e5%a4%95%e6%99%af%e3%80%81%e6%b1%9f%e3%83%8e%e5%b3%b6-release-party%e3%80%9c/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "yokohama-baysis",
    "venue": "横浜 BAYSIS",
    "pref": "神奈川県",
@@ -15835,6 +17148,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-17",
+   "weekday": "火",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "吉祥寺ワープpresents / 「SMALL LAKE!!」",
+   "artists": "yurumi / CASANOVA FISH / Bless this union / the parahills / and more...",
+   "price": "ADV ¥2500 / DOOR ¥3000 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-17-24637",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-daisybar",
    "venue": "下北沢 DaisyBar",
    "pref": "東京都",
@@ -15848,6 +17178,23 @@
    "price": "前売 ¥3500 / 当日 ¥4000",
    "url": "https://daisybar.jp/schedule/2026/11/",
    "source": "https://daisybar.jp/schedule/2026/11/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-17",
+   "weekday": "火",
+   "open": "19:00",
+   "start": "19:30",
+   "title": "DAVID HUGO「Sunset in Tokyo」(9/12延期公演)",
+   "artists": "DAVID HUGO / guest：the engy",
+   "price": "前売り¥4800(D別¥600) / 当日¥5300(D別¥600)",
+   "url": "https://shinjuku-marble.com/calender/david-hugo%e3%80%8csunset-in-tokyo%e3%80%8d9-12%e5%bb%b6%e6%9c%9f%e5%85%ac%e6%bc%94/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -16003,6 +17350,23 @@
    "price": "前方S：¥3,500 / -（税込 / スタンディング / ドリンク代別） / 一般A：¥1,000 / -（税込 / スタンディング / ドリンク代別） / 女性B：¥500 / -（税込 / スタンディング / ドリンク代別）",
    "url": "https://www-shibuya.jp/schedule/020169.php",
    "source": "https://www-shibuya.jp/schedule/202611.php",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-18",
+   "weekday": "水",
+   "open": "18:15",
+   "start": "18:45",
+   "title": "吉祥寺WARP presents / 「Large Serving」",
+   "artists": "Ry / Amami / iraniran / くらげ計画 / ユノハナ",
+   "price": "ADV ¥2300 / DOOR ¥2800 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-18-24723",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
    "status": "",
    "genres": []
   },
@@ -16315,6 +17679,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-19",
+   "weekday": "木",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "センチメンタル思春期 presents「あるてぃめっとふぇす2026」",
+   "artists": "センチメンタル思春期 / 少女脱兎 / アイアムアイ / 他",
+   "price": "前売り¥3000(D別) / 当日¥3500(D別) / 学割(要学生証)¥1500(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e3%82%bb%e3%83%b3%e3%83%81%e3%83%a1%e3%83%b3%e3%82%bf%e3%83%ab%e6%80%9d%e6%98%a5%e6%9c%9f-presents%e3%80%8c%e3%81%82%e3%82%8b%e3%81%a6%e3%81%83%e3%82%81%e3%81%a3%e3%81%a8%e3%81%b5%e3%81%87%e3%81%9920/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-quattro",
    "venue": "渋谷 CLUB QUATTRO",
    "pref": "東京都",
@@ -16383,6 +17764,23 @@
    "price": "カメラエリア 12,000円(税込) / VIP 25,000円(税込) / Sエリア 15,000円(税込) / Aエリア 1,000円(税込) / Bエリア 500円(税込)",
    "url": "https://clubcitta.co.jp/schedule/1833",
    "source": "https://clubcitta.co.jp/schedule?year=2026&month=Nov",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-19",
+   "weekday": "木",
+   "open": "19:30",
+   "start": "20:00",
+   "title": "『 kikitown SP -入場無料- 』",
+   "artists": "キキレイレイ",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-19-24725",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
    "status": "",
    "genres": []
   },
@@ -16610,6 +18008,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-20",
+   "weekday": "金",
+   "open": "19:00",
+   "start": "19:30",
+   "title": "初雪音楽社 pre.「僕を殺せるのは僕だけさ」",
+   "artists": "僕のレテパシーズ / Ⅱララ / のっぺら",
+   "price": "前売り¥2000円(D別) / 当日 ¥2400円(D別)",
+   "url": "https://shinjuku-marble.com/calender/%e5%88%9d%e9%9b%aa%e9%9f%b3%e6%a5%bd%e7%a4%be-pre-%e3%80%8c%e5%83%95%e3%82%92%e6%ae%ba%e3%81%9b%e3%82%8b%e3%81%ae%e3%81%af%e5%83%95%e3%81%a0%e3%81%91%e3%81%95%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -16659,6 +18074,25 @@
    "source": "https://www.chibalook.com/schedule/new.html",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-20",
+   "weekday": "金",
+   "open": "",
+   "start": "",
+   "title": "BLOODAXE TOUR / 3WAY SPLIT RELEASE JAPAN TOUR",
+   "artists": "東京INDICATION, アメリカ次世代バンドWATCH YOU FALL, SEASONS END 3バンドによるワールドワイドなNEW SCHOOL・HARDCORE 3WAY SPLIT RELEASE JAPAN TOUR！ / / 伝統のニュースクール・サウンドを現代的にアップデートし正統継承する3バンドによる🇯🇵ツアーお見逃しなく！ / / ■ BLOODAXE TOUR / ・11/20 (FRI) TOKYO KICHIJOJI WARP / ・11/21 (SAT) OSAKA Pangea / ・11/22 (SUN) NIIGATA NAGAOKA HOOD / ・11/23 (MON) TOKYO SHINJUKU ANTIKNOCK",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-20-24639",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "shimokita-era",
@@ -17385,6 +18819,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-22",
+   "weekday": "日",
+   "open": "20:30",
+   "start": "21:00",
+   "title": "【即日満枠御礼】神々のゴライコーズ free short one-man 「NO MONEY OK！」",
+   "artists": "神々のゴライコーズ / / ★お茶割り飲み放隊★ / オフィスカジュアルズ",
+   "price": "完全無料(入場無料/飲み放題無料/焼きそば無料)",
+   "url": "https://shinjuku-marble.com/calender/%e7%a5%9e%e3%80%85%e3%81%ae%e3%82%b4%e3%83%a9%e3%82%a4%e3%82%b3%e3%83%bc%e3%82%ba-free-short-one-man%e3%80%8cno-money-ok%ef%bc%81%e3%80%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -17506,6 +18957,25 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-23",
+   "weekday": "月",
+   "open": "11:30",
+   "start": "12:00",
+   "title": "武蔵野音楽祭 20th ANNIVERSARY / MUSASHINO IDOL RIOT JAM",
+   "artists": "吉祥寺WARP＆SHUFFLE / 2会場サーキットフェス / 総勢全18組出演🌈 / / IQ99 / AIBECK / EMPATHY / XOXO EXTREME / GANGDEMICo / くぴぽ / グデイ / THE PINK MINDS / 絶世のインペリアルドール / BABYTANTS / 魔訶不思議変革者-デスデス- / MAPA / Maison de Queen / LUCY / 闇雲-yamikumo- / ゆらぴこ / ゆるめるモ！ / LiVS",
+   "price": "ADV ¥3,900 / DOOR ¥4,900 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-23-24718",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": [
+    "アイドル"
+   ]
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -17523,6 +18993,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-23",
+   "weekday": "月",
+   "open": "12:30",
+   "start": "13:05",
+   "title": "BAHAMAS FEST 2026",
+   "artists": "QOOPIE / 水中スピカ / tiny yawn / 1inamillion / elephant / 夕張工業団地 / pudelhunds / /naname / österreich / RUSANTI-MAN(Instrumental set) / Daijiro Nakagawa(JYOCHO) / RAY(GROOVE SET) / WOZNIAK / Blume popo / ミクロ菩薩 / / MARZ",
+   "price": "超 早割¥4000(D別) [終了] / 早割 ¥4500(D別) [終了] / 学割¥4500(D別) / 一般¥5000(D別) [9月9日(水) 17:00 -] / 当日¥5500(D別)",
+   "url": "https://shinjuku-marble.com/calender/bahamas-fest-2026/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "tsukuba-novahall",
    "venue": "つくば ノバホール",
    "pref": "茨城県",
@@ -17536,23 +19023,6 @@
    "price": "一般 2,500円 / 中学生以下 1,000円 / 未就学児 500円",
    "url": "https://www.tcf.or.jp/exhibition/027544/",
    "source": "https://www.tcf.or.jp/exhibition/novahall/",
-   "status": "",
-   "genres": []
-  },
-  {
-   "venue_id": "mito-hirosawa",
-   "venue": "ザ・ヒロサワ・シティ会館",
-   "pref": "茨城県",
-   "area": "水戸",
-   "date": "2026-11-23",
-   "weekday": "月",
-   "open": "13:30",
-   "start": "14:00",
-   "title": "最強!!歌マネLIVE in 水戸 / 荒牧陽子×松浦航大",
-   "artists": "",
-   "price": "全席指定 / 一般 5,500円 友の会会員割引 5,200円 / ※未就学児入場不可",
-   "url": "https://www.ibarakiken-bunkacenter.com/event/20261123.html",
-   "source": "https://www.ibarakiken-bunkacenter.com/event/",
    "status": "",
    "genres": []
   },
@@ -17833,6 +19303,23 @@
    "genres": []
   },
   {
+   "venue_id": "mito-hirosawa",
+   "venue": "ザ・ヒロサワ・シティ会館",
+   "pref": "茨城県",
+   "area": "水戸",
+   "date": "2026-11-23",
+   "weekday": "月",
+   "open": "",
+   "start": "",
+   "title": "最強!!歌マネLIVE in 水戸 / 荒牧陽子×松浦航大",
+   "artists": "",
+   "price": "",
+   "url": "https://www.ibarakiken-bunkacenter.com/event/20261123.html",
+   "source": "https://www.ibarakiken-bunkacenter.com/event/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "chiba-look",
    "venue": "千葉 LOOK",
    "pref": "千葉県",
@@ -17918,6 +19405,23 @@
    "genres": []
   },
   {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-24",
+   "weekday": "火",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "AIRTONIC presents“authentic”",
+   "artists": "AIRTONIC / Brave Back / THE NOiSE / / FOOD : Handies",
+   "price": "前売り ¥3000(D別) / U-20割 ¥0 (+2Drink¥1200)",
+   "url": "https://shinjuku-marble.com/calender/airtonic-presentsauthentic/",
+   "source": "https://shinjuku-marble.com/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "mito-lighthouse",
    "venue": "水戸 LIGHT HOUSE",
    "pref": "茨城県",
@@ -17982,6 +19486,23 @@
    "price": "ADV ¥2,400- ／ DOOR ¥3,000-（+1Drink ¥600-）",
    "url": "https://toos.co.jp/calabash.b1f/event/trimming-26/",
    "source": "https://toos.co.jp/3/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-24",
+   "weekday": "火",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "SABANNAMAN x TOP ME UP! pre. / SABANNAMAN new single “Low Animal / CAMEL feat. MYKEY” release party",
+   "artists": "SABANNAMAN / Ratchild / 我ヲ捨ツル / lawind",
+   "price": "ADV ¥3000 / DOOR ¥3500 (+1D)",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-24-24643",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
    "status": "",
    "genres": []
   },
@@ -18103,6 +19624,23 @@
    "price": "¥5,000 (税込・ドリンクチャージ別)",
    "url": "https://www.liquidroom.net/schedule/pasocom_music_club_20261125",
    "source": "https://www.liquidroom.net/schedule/2026/11",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-25",
+   "weekday": "水",
+   "open": "",
+   "start": "19:00",
+   "title": "The Dilong1st Full Album Release Tour“少年少女たちに明日はない”Final Series~竜虎相搏~",
+   "artists": "The Dilong / ユタ州 / and more…?",
+   "price": "前売り¥2900(D別) / 当日 ¥3400(D別)",
+   "url": "https://shinjuku-marble.com/calender/the-dilong1st-full-album-release-tour%e5%b0%91%e5%b9%b4%e5%b0%91%e5%a5%b3%e3%81%9f%e3%81%a1%e3%81%ab%e6%98%8e%e6%97%a5%e3%81%af%e3%81%aa%e3%81%84final-series%e7%ab%9c%e8%99%8e/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -18450,6 +19988,23 @@
    "genres": []
   },
   {
+   "venue_id": "kichijoji-warp",
+   "venue": "吉祥寺 WARP",
+   "pref": "東京都",
+   "area": "吉祥寺",
+   "date": "2026-11-27",
+   "weekday": "金",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "in sea hole presents. / \"ひとりを知ったよ\"",
+   "artists": "in sea hole / cyan / Rhakka",
+   "price": "",
+   "url": "http://warp.rinky.info/schedules_cat/2026-11#box-27-24615",
+   "source": "http://warp.rinky.info/schedules_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "kashiwa-palooza",
    "venue": "柏 PALOOZA",
    "pref": "千葉県",
@@ -18514,6 +20069,23 @@
    "price": "ADV ¥3,400- ／ DOOR ¥3,900-（+1Drink ¥600-） / U25&海外の方¥2,900-（+1Drink ¥600-）",
    "url": "https://toos.co.jp/calabash.b1f/event/gift-of-love/",
    "source": "https://toos.co.jp/basementbar/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-27",
+   "weekday": "金",
+   "open": "",
+   "start": "19:00",
+   "title": "MONSTER Gann 4ヶ月連続企画第4弾「ヒーローになって」–前途遼遠–",
+   "artists": "MONSTER Gann / イチバンボシ / shoka / MOOD / and more",
+   "price": "前売り ¥2400(D別) / 当日 ¥2900(D別)",
+   "url": "https://shinjuku-marble.com/calender/monster-gann-4%e3%83%b6%e6%9c%88%e9%80%a3%e7%b6%9a%e4%bc%81%e7%94%bb%e7%ac%ac4%e5%bc%be%e3%80%8c%e3%83%92%e3%83%bc%e3%83%ad%e3%83%bc%e3%81%ab%e3%81%aa%e3%81%a3%e3%81%a6%e3%80%8d-%e5%89%8d/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -19014,6 +20586,23 @@
    "price": "ADV ¥S席 ¥6,000 , 通常 ¥4,500 / DOOR TBA (+1D¥700)",
    "url": "http://s-era.jp/schedule/55885.html",
    "source": "http://s-era.jp/schedule_cat/2026-11",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "shinjuku-marble",
+   "venue": "新宿 Marble",
+   "pref": "東京都",
+   "area": "新宿",
+   "date": "2026-11-28",
+   "weekday": "土",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "THE KING OF ROOKIE×ザ・あどばんスプリットツアーファイナルofファイナル“平凡な僕らのデルトラクエスト”",
+   "artists": "THE KING OF ROOKIE / ザ・あどばん / 千年メモリーズ / サテライト / まなつ",
+   "price": "",
+   "url": "https://shinjuku-marble.com/calender/the-king-of-rookiex%e3%82%b6%e3%83%bb%e3%81%82%e3%81%a9%e3%81%b0%e3%82%93%e3%82%b9%e3%83%97%e3%83%aa%e3%83%83%e3%83%88%e3%83%84%e3%82%a2%e3%83%bc%e3%83%95%e3%82%a1%e3%82%a4%e3%83%8a%e3%83%abof/",
+   "source": "https://shinjuku-marble.com/schedule/",
    "status": "",
    "genres": []
   },
@@ -19765,11 +21354,11 @@
    "area": "水戸",
    "date": "2026-12-04",
    "weekday": "金",
-   "open": "17:00",
-   "start": "18:00",
+   "open": "",
+   "start": "",
    "title": "石崎ひゅーい TOUR 2026-2027 -City Lights-",
    "artists": "",
-   "price": "全席指定 / 一般：7,500円 学生：5,500円 / ※未就学児入場不可、小学生以上チケット必要 / ※学割対象は、小学生・中学生・高校生・大学生・大学院生・専門学生が対象です。 / ※入場時に学生証、保険証などの提示が必要です(コピー不可)。忘れた場合は一般料金との差額をいただきます。 / ※小学生は、保険証など",
+   "price": "",
    "url": "https://www.ibarakiken-bunkacenter.com/event/20261204.html",
    "source": "https://www.ibarakiken-bunkacenter.com/event/",
    "status": "",
@@ -19935,11 +21524,11 @@
    "area": "水戸",
    "date": "2026-12-19",
    "weekday": "土",
-   "open": "12:30",
-   "start": "13:00",
+   "open": "",
+   "start": "",
    "title": "松平健 マツケンサンバコンサート2026",
    "artists": "",
-   "price": "全席指定 / 前売券 一般：7,700円 友の会：7,200円 / サンクス（70歳以上）2,000円（アイエスまでお問い合わせ下さい） / ※未就学児入場不可",
+   "price": "",
    "url": "https://www.ibarakiken-bunkacenter.com/event/20261219.html",
    "source": "https://www.ibarakiken-bunkacenter.com/event/",
    "status": "",
@@ -20179,11 +21768,11 @@
    "area": "水戸",
    "date": "2027-01-16",
    "weekday": "土",
-   "open": "14:15",
-   "start": "15:00",
+   "open": "",
+   "start": "",
    "title": "【開館60周年記念イベント】 日本フィルハーモニ－交響楽団演奏会茨城公演",
-   "artists": "広上淳一（指揮）、水野優也（チェロ）、日本フィルハーモニー交響楽団（演奏）",
-   "price": "全席指定 / 一般 S席￥7,500 A席￥6,500 学生￥4,000 / 友の会 S席￥7,000 A席￥6,000 (各税込) / ※未就学児入場不可 / ※車椅子のお客様、介助犬同伴のお客様はお座席へのスムーズなご案内のため予約時にお知らせください。 / ※開演時間を過ぎてのご入場は制限させていただく場合がござ",
+   "artists": "",
+   "price": "",
    "url": "https://www.ibarakiken-bunkacenter.com/event/20270116.html",
    "source": "https://www.ibarakiken-bunkacenter.com/event/",
    "status": "",
@@ -20198,11 +21787,11 @@
    "area": "水戸",
    "date": "2027-01-20",
    "weekday": "水",
-   "open": "12:30",
-   "start": "13:00",
+   "open": "",
+   "start": "",
    "title": "福田こうへい デビュ－15周年記念 コンサ－トツア－",
    "artists": "",
-   "price": "全席指定 / S席7,500円 A席6,000円 / ※未就学児入場不可 / ※車椅子席はベルワ－ルドミュ－ジックでの取り扱い",
+   "price": "",
    "url": "https://www.ibarakiken-bunkacenter.com/event/20270120.html",
    "source": "https://www.ibarakiken-bunkacenter.com/event/",
    "status": "",
