@@ -3,7 +3,9 @@
 
 生成物は単体 HTML（データを script タグに内包）なので、
 そのままブラウザで開いても、GitHub Pages に置いても動く。
-表示対象は「本日（JST）以降」の公演のみ、日付昇順。
+生成時点で「本日（JST）以降」の公演に絞り、閲覧時にもブラウザ側で
+閲覧日（JST）以降に絞り直す（生成から日付が変わっても過去公演を出さない）。
+日付昇順。
 使い方: python3 collector/build.py
 """
 
@@ -48,6 +50,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .venue { display:inline-block; font-size:11.5px; padding:2px 8px; border-radius:999px; background:#ece7fb; color:var(--accent); margin-right:6px; }
   .badge { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; margin-right:6px; color:#fff; }
   .b-sold_out { background:#c82a45; } .b-cancelled { background:#44404d; } .b-postponed { background:#d9820a; }
+  .b-stale { background:#8a8496; font-weight:400; }
   .gtag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px; background:#eef7ee; color:#2e7d32; border:1px solid #cfe6cf; margin-right:4px; }
   .badges { margin:2px 0 5px; }
   .card.is-cancelled { opacity:.6; }
@@ -99,13 +102,17 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <script id="data" type="application/json">__DATA_JSON__</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
-const events = DATA.events, venues = DATA.venues;
-const todayStr = DATA.today;
+// 「今日」は生成時ではなく閲覧時の JST で決める（生成から日付が変わっても正しく絞る）
+const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' });
+const events = DATA.events.filter(e => e.date >= todayStr), venues = DATA.venues;
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function addDays(ds, n) { const d = new Date(ds + 'T00:00:00+09:00'); d.setDate(d.getDate() + n); return d.toLocaleDateString('sv-SE', { timeZone: 'Asia/Tokyo' }); }
+// 日付演算は UTC で行う（閲覧端末のタイムゾーンや夏時間の影響を受けない）
+function ymd(ds) { return ds.split('-').map(Number); }
+function addDays(ds, n) { const [y, m, d] = ymd(ds); return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10); }
+function dowOf(ds) { const [y, m, d] = ymd(ds); return new Date(Date.UTC(y, m - 1, d)).getUTCDay(); }
 const weekEnd = addDays(todayStr, 6);
 const weekendDates = new Set();
-for (let i = 0; i < 7; i++) { const ds = addDays(todayStr, i); const dow = new Date(ds + 'T00:00:00+09:00').getDay(); if (dow === 0 || dow === 6) weekendDates.add(ds); }
+for (let i = 0; i < 7; i++) { const ds = addDays(todayStr, i); const dow = dowOf(ds); if (dow === 0 || dow === 6) weekendDates.add(ds); }
 let period = 'all', pref = '', venueId = '', kw = '', genre = '', hideBad = false;
 let filteredNow = [];
 const STATUS_LABEL = { sold_out: 'SOLD OUT', cancelled: '公演中止', postponed: '延期' };
@@ -152,8 +159,12 @@ function render() {
       const wkCls = e.weekday === '土' ? 'wk-sat' : (e.weekday === '日' ? 'wk-sun' : '');
       out += `<div class="day-head">${esc(e.date)} <span class="${wkCls}">(${esc(e.weekday)})</span></div>`;
     }
-    const time = (e.open || e.start) ? `OPEN ${esc(e.open || '-')} / START ${esc(e.start || '-')}` : '時間未定（公式ページ参照）';
-    const badge = e.status ? `<span class="badge b-${esc(e.status)}">${esc(STATUS_LABEL[e.status] || e.status)}</span>` : '';
+    const note = e.time_note ? esc(e.time_note) : '';
+    const time = (e.open || e.start)
+      ? `OPEN ${esc(e.open || '-')} / START ${esc(e.start || '-')}` + (note ? `（${note}）` : '')
+      : (note || '時間未定（公式ページ参照）');
+    const badge = (e.status ? `<span class="badge b-${esc(e.status)}">${esc(STATUS_LABEL[e.status] || e.status)}</span>` : '')
+      + (e.stale ? `<span class="badge b-stale" title="今回の収集で会場サイトから取得できなかったため、前回取得した情報を表示しています">前回取得分・未更新</span>` : '');
     const gtags = (e.genres || []).map(g => `<span class="gtag">${esc(g)}</span>`).join('');
     out += `<div class="card${e.status === 'cancelled' ? ' is-cancelled' : ''}"><div class="meta"><span class="venue">${esc(e.venue)}</span>${esc(e.pref)}・${esc(e.area)} ｜ ${time}</div>`
       + `<h3><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h3>`
@@ -169,17 +180,30 @@ function render() {
     downloadICS([e], 'event-' + e.date + '.ics');
   });
 }
-// ---- .ics カレンダー書き出し（時刻は JST のローカル時刻として出力） ----
+// ---- .ics カレンダー書き出し（JST の公演時刻を UTC に換算して出力） ----
 function icsEsc(s) { return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n'); }
 function pad2(n) { return String(n).padStart(2, '0'); }
 function icsHash(s) { let h = 5381; for (let i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; } return h.toString(36); }
 function dtstamp() { const d = new Date(); return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + 'T' + pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + 'Z'; }
-function addHoursJST(dateStr, timeStr, hours) {
-  let [h, m] = timeStr.split(':').map(Number); h += hours; let ds = dateStr;
-  while (h >= 24) { h -= 24; ds = addDays(ds, 1); }
-  return [ds, pad2(h) + ':' + pad2(m)];
+// JST の日付＋時刻（+addHours 時間）を UTC の iCalendar 形式 YYYYMMDDTHHMMSSZ にする。
+// フローティング時刻だと閲覧端末のタイムゾーンで解釈されてずれるため。
+// "25:00" のような深夜表記も Date.UTC の繰り上がりで翌日になる。
+function utcDT(ds, ts, addHours) {
+  const [y, mo, d] = ymd(ds); const [h, mi] = ts.split(':').map(Number);
+  const t = new Date(Date.UTC(y, mo - 1, d, h - 9 + (addHours || 0), mi));
+  return t.toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
 }
-function fmtDT(ds, ts) { const [h, m] = ts.split(':'); return ds.replace(/-/g, '') + 'T' + pad2(Number(h)) + pad2(Number(m)) + '00'; }
+// RFC 5545: 1行 75 オクテットを超える場合は CRLF + 空白で折り返す（UTF-8 のバイト数で数える）
+const utf8 = new TextEncoder();
+function foldLine(line) {
+  let out = '', bytes = 0;
+  for (const ch of line) {
+    const n = utf8.encode(ch).length;
+    if (bytes + n > 75) { out += '\r\n '; bytes = 1; }
+    out += ch; bytes += n;
+  }
+  return out;
+}
 function eventICS(e, stamp) {
   const lines = ['BEGIN:VEVENT',
     'UID:' + e.venue_id + '-' + e.date + '-' + icsHash(e.title + '|' + e.url) + '@live-in',
@@ -187,9 +211,8 @@ function eventICS(e, stamp) {
   const rawT = e.start || e.open;
   const t = /^\d{1,2}:\d{2}$/.test(rawT || '') ? rawT : '';  // "TBA" 等は終日扱い
   if (t) {
-    const [eds, ets] = addHoursJST(e.date, t, 2);
-    lines.push('DTSTART:' + fmtDT(e.date, t));
-    lines.push('DTEND:' + fmtDT(eds, ets));  // 終了時刻不明のため +2時間
+    lines.push('DTSTART:' + utcDT(e.date, t));
+    lines.push('DTEND:' + utcDT(e.date, t, 2));  // 終了時刻不明のため +2時間
   } else {
     lines.push('DTSTART;VALUE=DATE:' + e.date.replace(/-/g, ''));
     lines.push('DTEND;VALUE=DATE:' + addDays(e.date, 1).replace(/-/g, ''));
@@ -200,7 +223,7 @@ function eventICS(e, stamp) {
   lines.push('DESCRIPTION:' + icsEsc(desc));
   if (e.status === 'cancelled') lines.push('STATUS:CANCELLED');
   lines.push('END:VEVENT');
-  return lines.join('\r\n');
+  return lines.map(foldLine).join('\r\n');
 }
 function downloadICS(list, filename) {
   if (!list.length) return;
@@ -237,7 +260,6 @@ def main():
     upcoming = [e for e in data["events"] if e["date"] >= today]
     payload = {
         "generated_at": data.get("generated_at", ""),
-        "today": today,
         "events": upcoming,
         "venues": [{k: v.get(k, "") for k in
                     ("id", "name", "pref", "area", "site_url", "status")}

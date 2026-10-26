@@ -17,6 +17,9 @@ data/events.json に正規化して保存する。
   - 収集後に前回実行分と比較してアラートを生成する（会場の取得失敗・
     0件・like-for-like で 40%超の件数減少）。アラートは state.json の
     "alerts" に保存し、ログ末尾にも要約を出す。詳細は build_alerts 参照。
+    アラート会場は前回の公演（今日以降）を stale=True で最大
+    CARRY_MAX_DAYS 日引き継ぎ、サイトから消えないようにする（carry_over）。
+  - 開場/開演は "HH:MM" に正規化し、TBA 等は time_note に回す（normalize_times）。
   - 日付は各サイトの月別ページの文脈（URL の YYYYMM 等）から確定する。
     年跨ぎは「対象月 < 現在月 なら翌年」ではなく、月別 URL を
     現在月・翌月で生成するため自然に正しい年になる。
@@ -213,7 +216,44 @@ def make_event(venue, date_str, title, artists="", open_t="", start_t="",
         "source": source or venue.get("schedule_url", ""),
         "status": detect_status(status_src) if status_src else "",
         "genres": detect_genres(title, artists),
+        "time_note": "",
     }
+
+
+def norm_time(t):
+    """時刻を "HH:MM"（0埋め）に正規化する。
+
+    戻り値: (時刻, 注記)。"9:30" → ("09:30", "")。"TBA" のような時刻でない
+    値は (""、元の値) にして注記側へ回す（並べ替えが文字列比較のため、
+    "9:30" が "18:00" より後ろに来たり "TBA" が時刻欄に入るのを防ぐ）。
+    深夜公演の "25:00" 表記は 29 時まで許容する。
+    """
+    t = (t or "").strip()
+    if not t:
+        return "", ""
+    m = re.fullmatch(r"(\d{1,2})\s*[:：]\s*(\d{2})", t)
+    if m and int(m.group(1)) <= 29 and int(m.group(2)) < 60:
+        return f"{int(m.group(1)):02d}:{m.group(2)}", ""
+    return "", t
+
+
+def normalize_times(ev):
+    """open / start を正規化し、時刻でない値は time_note にまとめる。
+
+    詳細ページ補完（_enrich_*）は ev を直接書き換えるため、
+    make_event ではなくアダプタの戻り値に対して main でまとめて適用する。
+    """
+    notes = []
+    for key, label in (("open", "OPEN"), ("start", "START")):
+        val, note = norm_time(ev.get(key, ""))
+        ev[key] = val
+        if note:
+            notes.append(f"{label} {note}")
+    if notes:
+        ev["time_note"] = " / ".join(notes)
+    else:
+        ev.setdefault("time_note", "")
+    return ev
 
 
 def split_segments(text, marker_pat):
@@ -2080,16 +2120,28 @@ ADAPTERS = {
 # 減少判定の対象にしない（小さい会場の自然な増減で誤報しないため）。
 ALERT_DROP_RATIO = 0.40
 ALERT_MIN_PREV = 5
+# 同じ会場のアラートがこの回数連続したら Actions のジョブを失敗させる
+# （1回きりの一過性の取得失敗では通知しない）。state.json に書き出し、
+# ワークフロー側はその値を読む。
+ALERT_FAIL_STREAK = 2
+# アラート会場の前回公演を引き継ぐ最大日数。これを過ぎた引き継ぎ分は
+# 落とす（壊れたまま古い情報を出し続けないため）。
+CARRY_MAX_DAYS = 3
+# 引き継ぎ対象のアラート種別（いずれも収集側の不調が疑われるもの）
+CARRY_KINDS = ("fetch_failed", "zero_events", "count_drop")
 
 
 def load_previous(state_path, out_path, today_str):
-    """前回実行の件数を読み込む。
+    """前回実行の件数・公演・アラート連続回数を読み込む。
 
-    戻り値: (raw_counts, like_counts)
+    戻り値: (raw_counts, like_counts, prev_events, prev_streaks)
       raw_counts:  前回 state.json の会場別件数 {venue_id: count}
       like_counts: 前回 events.json のうち「today_str 以降の公演」だけを
                    数えた会場別件数。events.json が読めない場合は None
                    （呼び出し側で raw_counts にフォールバックする）。
+      prev_events: 前回 events.json の公演リスト（読めなければ []）。
+                   アラート会場の公演の引き継ぎ（carry_over）に使う。
+      prev_streaks: 前回アラートの会場別連続回数 {venue_id: streak}。
     like-for-like で数える理由: ほとんどの会場は当月+翌月の2ヶ月分を
     返すため、月替わりでは前月分が一斉に失効するが、同時に翌月分が
     入って生件数はほぼ横ばいになる。生件数同士の比較でも概ね問題ないが、
@@ -2099,29 +2151,79 @@ def load_previous(state_path, out_path, today_str):
     自然に小さくなり、ALERT_MIN_PREV 未満になって減少判定が自動的に
     外れる（月替わり直後の減少は検出できない、という既知の限界）。
     """
-    raw = {}
+    raw, streaks = {}, {}
     try:
         prev_state = json.loads(Path(state_path).read_text(encoding="utf-8"))
         for vid, info in prev_state.get("venues", {}).items():
             if isinstance(info, dict) and isinstance(info.get("count"), int):
                 raw[vid] = info["count"]
+        for a in prev_state.get("alerts", []):
+            if isinstance(a, dict) and a.get("venue"):
+                streaks[a["venue"]] = int(a.get("streak", 1))
     except Exception:  # noqa: BLE001 - 前回が無い/壊れている場合は空で続行
-        raw = {}
+        raw, streaks = {}, {}
     like = None
+    events = []
     try:
-        prev_events = json.loads(Path(out_path).read_text(encoding="utf-8"))
+        prev = json.loads(Path(out_path).read_text(encoding="utf-8"))
+        events = prev.get("events", [])
         like = {}
-        for ev in prev_events.get("events", []):
+        for ev in events:
             if ev.get("date", "") >= today_str:
                 vid = ev.get("venue_id", "")
                 like[vid] = like.get(vid, 0) + 1
     except Exception:  # noqa: BLE001
-        like = None
-    return raw, like
+        like, events = None, []
+    return raw, like, events, streaks
+
+
+def carry_over(alerts, prev_events, fresh_keys, today_str):
+    """アラート会場の前回公演（today_str 以降）を引き継ぐ。
+
+    取得失敗・0件・件数激減は収集側の不調であることが多く、そのまま
+    書き出すとその会場の公演がサイトから消えてしまう。そこで前回の
+    events.json から該当会場の今日以降の公演を stale=True で引き継ぐ。
+      - count_drop では今回取れた公演と同じキーのものは引き継がない
+        （今回分を優先し、消えた分だけを補う）
+      - 引き継ぎ開始日 stale_since から CARRY_MAX_DAYS 日を過ぎたものは
+        引き継がない（壊れたまま古い情報を出し続けないため）
+    各アラートに carried（引き継ぎ件数）を記録する。
+    戻り値: 引き継いだ公演のリスト。
+    """
+    today = datetime.strptime(today_str, "%Y-%m-%d").date()
+    by_venue = {}
+    for ev in prev_events:
+        if ev.get("date", "") >= today_str:
+            by_venue.setdefault(ev.get("venue_id", ""), []).append(ev)
+    carried = []
+    for a in alerts:
+        if a["kind"] not in CARRY_KINDS:
+            continue
+        n = 0
+        for ev in by_venue.get(a["venue"], []):
+            key = (ev["venue_id"], ev["date"], ev.get("title", ""),
+                   ev.get("url", ""))
+            if key in fresh_keys:
+                continue
+            since = ev.get("stale_since") or today_str
+            try:
+                age = (today - datetime.strptime(since, "%Y-%m-%d").date()).days
+            except ValueError:
+                age = 0
+            if age >= CARRY_MAX_DAYS:
+                continue
+            ev = dict(ev, stale=True, stale_since=since)
+            normalize_times(ev)  # 旧形式の前回データにも同じ正規化をかける
+            carried.append(ev)
+            n += 1
+        a["carried"] = n
+        if n:
+            a["message"] += f"; carried over {n} previous events (stale)"
+    return carried
 
 
 def build_alerts(active_ids, new_state_venues, new_like, prev_raw, prev_like,
-                 names, month_roll_ids, today_str):
+                 names, month_roll_ids, today_str, prev_streaks=None):
     """今回の結果と前回を比較してアラートのリストを作る。
 
     アラート条件（active 会場のみ）:
@@ -2133,10 +2235,11 @@ def build_alerts(active_ids, new_state_venues, new_like, prev_raw, prev_like,
                       その旨を message に明記する）
     部分的な警告（翌月ページ未公開など、件数が残っているもの）は単独では
     アラートにしない。実害が出れば count_drop が拾う。
-    各アラートは {venue, venue_name, kind, prev, new, message}。
+    各アラートは {venue, venue_name, kind, prev, new, message, streak}。
     prev/new は比較に使った件数（count_drop では窓側の件数、それ以外は
-    state の件数）。
+    state の件数）。streak は同じ会場のアラートの連続回数（種別は問わない）。
     """
+    prev_streaks = prev_streaks or {}
     alerts = []
     for vid in active_ids:
         info = new_state_venues.get(vid, {})
@@ -2178,6 +2281,8 @@ def build_alerts(active_ids, new_state_venues, new_like, prev_raw, prev_like,
                 "message": (f"count dropped {prev_cmp} -> {new_cmp} "
                             f"(-{drop_pct:.0f}%, like-for-like: {basis})"
                             + roll_note)})
+    for a in alerts:
+        a["streak"] = prev_streaks.get(a["venue"], 0) + 1
     return alerts
 
 
@@ -2196,7 +2301,8 @@ def main():
     state = {"updated_at": now_jst().strftime("%Y-%m-%d %H:%M JST"),
              "venues": {}}
     today_str = now_jst().strftime("%Y-%m-%d")
-    prev_raw, prev_like = load_previous(args.state, args.out, today_str)
+    prev_raw, prev_like, prev_events, prev_streaks = load_previous(
+        args.state, args.out, today_str)
     active_ids = [v["id"] for v in venues if v.get("status") == "active"]
     names = {v["id"]: v["name"] for v in venues}
     month_roll_ids = {v["id"] for v in venues if v.get("month_roll")}
@@ -2221,6 +2327,7 @@ def main():
         kept = 0
         kept_like = 0
         for ev in events:
+            normalize_times(ev)
             key = (ev["venue_id"], ev["date"], ev["title"], ev["url"])
             if key in seen:
                 continue
@@ -2241,6 +2348,15 @@ def main():
             print(f"[ok] {venue['name']}: {kept} events"
                   + (f" (warnings: {'; '.join(errors)[:120]})" if errors else ""))
 
+    alerts = build_alerts(active_ids, state["venues"], new_like,
+                          prev_raw, prev_like, names, month_roll_ids,
+                          today_str, prev_streaks)
+    # アラート会場は前回の公演を引き継ぎ、サイトから消えないようにする
+    carried = carry_over(alerts, prev_events, seen, today_str)
+    all_events += carried
+    for a in alerts:
+        if a.get("carried"):
+            state["venues"][a["venue"]]["carried"] = a["carried"]
     all_events.sort(key=lambda e: (e["date"], e["start"] or "99:99",
                                    e["venue"], e["title"]))
     from collections import Counter
@@ -2250,15 +2366,15 @@ def main():
     print(f"genre tags: {dict(gc)} "
           f"untagged={sum(1 for e in all_events if not e.get('genres'))}")
     state["total_events"] = len(all_events)
-    alerts = build_alerts(active_ids, state["venues"], new_like,
-                          prev_raw, prev_like, names, month_roll_ids,
-                          today_str)
+    state["carried_events"] = len(carried)
+    state["alert_fail_streak"] = ALERT_FAIL_STREAK
     state["alerts"] = alerts
     if alerts:
         print(f"=== ALERTS: {len(alerts)} ===")
         for a in alerts:
             print(f"  [{a['kind']}] {a['venue_name']} ({a['venue']}): "
-                  f"prev={a['prev']} new={a['new']} - {a['message']}")
+                  f"prev={a['prev']} new={a['new']} streak={a['streak']} "
+                  f"- {a['message']}")
     else:
         print("alerts: none")
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
