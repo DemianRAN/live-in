@@ -14,6 +14,9 @@ data/events.json に正規化して保存する。
   - 収集するのは公演の事実情報（日付・時刻・タイトル・出演・料金）と
     公式詳細ページへのリンクまで。紹介文・画像などは転載しない。
   - チケットプラットフォーム（e+/ぴあ/ローチケ等）は収集対象にしない。
+  - 収集後に前回実行分と比較してアラートを生成する（会場の取得失敗・
+    0件・like-for-like で 40%超の件数減少）。アラートは state.json の
+    "alerts" に保存し、ログ末尾にも要約を出す。詳細は build_alerts 参照。
   - 日付は各サイトの月別ページの文脈（URL の YYYYMM 等）から確定する。
     年跨ぎは「対象月 < 現在月 なら翌年」ではなく、月別 URL を
     現在月・翌月で生成するため自然に正しい年になる。
@@ -1705,6 +1708,113 @@ ADAPTERS = {
 }
 
 
+# ---------------------------------------------------------------- alerts
+
+# 件数減少アラートの閾値。前回（like-for-like）がこの件数未満の会場は
+# 減少判定の対象にしない（小さい会場の自然な増減で誤報しないため）。
+ALERT_DROP_RATIO = 0.40
+ALERT_MIN_PREV = 5
+
+
+def load_previous(state_path, out_path, today_str):
+    """前回実行の件数を読み込む。
+
+    戻り値: (raw_counts, like_counts)
+      raw_counts:  前回 state.json の会場別件数 {venue_id: count}
+      like_counts: 前回 events.json のうち「today_str 以降の公演」だけを
+                   数えた会場別件数。events.json が読めない場合は None
+                   （呼び出し側で raw_counts にフォールバックする）。
+    like-for-like で数える理由: ほとんどの会場は当月+翌月の2ヶ月分を
+    返すため、月替わりでは前月分が一斉に失効するが、同時に翌月分が
+    入って生件数はほぼ横ばいになる。生件数同士の比較でも概ね問題ないが、
+    「前回ファイルに含まれる今日以降の公演」と「今回の今日以降の公演」を
+    同じ窓で比べることで、月替わりの失効分を比較から完全に外せる。
+    当月分しか無い会場（MOSAiC 等）は、月末が近づくと窓側の前回件数が
+    自然に小さくなり、ALERT_MIN_PREV 未満になって減少判定が自動的に
+    外れる（月替わり直後の減少は検出できない、という既知の限界）。
+    """
+    raw = {}
+    try:
+        prev_state = json.loads(Path(state_path).read_text(encoding="utf-8"))
+        for vid, info in prev_state.get("venues", {}).items():
+            if isinstance(info, dict) and isinstance(info.get("count"), int):
+                raw[vid] = info["count"]
+    except Exception:  # noqa: BLE001 - 前回が無い/壊れている場合は空で続行
+        raw = {}
+    like = None
+    try:
+        prev_events = json.loads(Path(out_path).read_text(encoding="utf-8"))
+        like = {}
+        for ev in prev_events.get("events", []):
+            if ev.get("date", "") >= today_str:
+                vid = ev.get("venue_id", "")
+                like[vid] = like.get(vid, 0) + 1
+    except Exception:  # noqa: BLE001
+        like = None
+    return raw, like
+
+
+def build_alerts(active_ids, new_state_venues, new_like, prev_raw, prev_like,
+                 names, month_roll_ids, today_str):
+    """今回の結果と前回を比較してアラートのリストを作る。
+
+    アラート条件（active 会場のみ）:
+      - fetch_failed: 取得が失敗した（status == "fail"）
+      - zero_events:  取得は成功扱いだが 0 件だった
+      - count_drop:   like-for-like 件数が前回比で ALERT_DROP_RATIO 超
+                      減少した（前回が ALERT_MIN_PREV 未満なら対象外。
+                      前回 events.json が無い場合は state の生件数で代用し、
+                      その旨を message に明記する）
+    部分的な警告（翌月ページ未公開など、件数が残っているもの）は単独では
+    アラートにしない。実害が出れば count_drop が拾う。
+    各アラートは {venue, venue_name, kind, prev, new, message}。
+    prev/new は比較に使った件数（count_drop では窓側の件数、それ以外は
+    state の件数）。
+    """
+    alerts = []
+    for vid in active_ids:
+        info = new_state_venues.get(vid, {})
+        new_total = info.get("count", 0)
+        name = names.get(vid, vid)
+        roll_note = (" (month-rolling venue; like-for-like window used)"
+                     if vid in month_roll_ids else "")
+        if info.get("status") == "fail":
+            alerts.append({
+                "venue": vid, "venue_name": name, "kind": "fetch_failed",
+                "prev": prev_raw.get(vid, 0), "new": 0,
+                "message": f"fetch failed: {info.get('error', '')[:200]}"})
+            continue
+        if info.get("status") != "ok":
+            continue
+        if new_total == 0:
+            alerts.append({
+                "venue": vid, "venue_name": name, "kind": "zero_events",
+                "prev": prev_raw.get(vid, 0), "new": 0,
+                "message": ("returned 0 events "
+                            f"(previous run: {prev_raw.get(vid, 0)})"
+                            + roll_note)})
+            continue
+        if prev_like is not None:
+            prev_cmp = prev_like.get(vid)
+            new_cmp = new_like.get(vid, 0)
+            basis = f"dates >= {today_str}"
+        else:
+            prev_cmp = prev_raw.get(vid)
+            new_cmp = new_total
+            basis = "raw totals (previous events.json unavailable)"
+        if prev_cmp is None or prev_cmp < ALERT_MIN_PREV:
+            continue  # 前回実績が無い/小さい会場は減少判定をしない
+        if new_cmp < prev_cmp * (1 - ALERT_DROP_RATIO):
+            drop_pct = (1 - new_cmp / prev_cmp) * 100 if prev_cmp else 0
+            alerts.append({
+                "venue": vid, "venue_name": name, "kind": "count_drop",
+                "prev": prev_cmp, "new": new_cmp,
+                "message": (f"count dropped {prev_cmp} -> {new_cmp} "
+                            f"(-{drop_pct:.0f}%, like-for-like: {basis})"
+                            + roll_note)})
+    return alerts
+
+
 # ---------------------------------------------------------------- main
 
 def main():
@@ -1719,6 +1829,12 @@ def main():
     all_events, seen = [], set()
     state = {"updated_at": now_jst().strftime("%Y-%m-%d %H:%M JST"),
              "venues": {}}
+    today_str = now_jst().strftime("%Y-%m-%d")
+    prev_raw, prev_like = load_previous(args.state, args.out, today_str)
+    active_ids = [v["id"] for v in venues if v.get("status") == "active"]
+    names = {v["id"]: v["name"] for v in venues}
+    month_roll_ids = {v["id"] for v in venues if v.get("month_roll")}
+    new_like = {}
     for venue in venues:
         vid = venue["id"]
         if venue.get("status") != "active":
@@ -1737,6 +1853,7 @@ def main():
         except Exception as e:  # noqa: BLE001 - 1会場の例外で全体を止めない
             events, errors = [], [f"{type(e).__name__}: {e}"]
         kept = 0
+        kept_like = 0
         for ev in events:
             key = (ev["venue_id"], ev["date"], ev["title"], ev["url"])
             if key in seen:
@@ -1744,6 +1861,9 @@ def main():
             seen.add(key)
             all_events.append(ev)
             kept += 1
+            if ev["date"] >= today_str:
+                kept_like += 1
+        new_like[vid] = kept_like
         if errors and kept == 0:
             state["venues"][vid] = {"status": "fail", "count": 0,
                                     "error": "; ".join(errors)}
@@ -1764,6 +1884,17 @@ def main():
     print(f"genre tags: {dict(gc)} "
           f"untagged={sum(1 for e in all_events if not e.get('genres'))}")
     state["total_events"] = len(all_events)
+    alerts = build_alerts(active_ids, state["venues"], new_like,
+                          prev_raw, prev_like, names, month_roll_ids,
+                          today_str)
+    state["alerts"] = alerts
+    if alerts:
+        print(f"=== ALERTS: {len(alerts)} ===")
+        for a in alerts:
+            print(f"  [{a['kind']}] {a['venue_name']} ({a['venue']}): "
+                  f"prev={a['prev']} new={a['new']} - {a['message']}")
+    else:
+        print("alerts: none")
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(
         json.dumps({"generated_at": state["updated_at"],

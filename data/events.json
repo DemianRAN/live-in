@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-26 18:33 JST",
+ "generated_at": "2026-10-26 19:22 JST",
  "events": [
   {
    "venue_id": "shimokitazawa-chikamatsu",
@@ -8525,12 +8525,14 @@
    "open": "18:00",
    "start": "18:30",
    "title": "AKAMONE 2ndEP / 「会える人、会えない人」リリースツアー",
-   "artists": "AKAMONE / MONICA / andmore...",
+   "artists": "AKAMONE / MONICA / Qoonelu(弾き語り)",
    "price": "一般 ¥3,000 / 学生 ¥1,500(+1Drink ¥700)",
    "url": "https://mu-seum.co.jp/schedule.html#28",
    "source": "https://mu-seum.co.jp/schedule.html",
    "status": "",
-   "genres": []
+   "genres": [
+    "アコースティック/弾き語り"
+   ]
   },
   {
    "venue_id": "ebisu-liquidroom",
@@ -11877,7 +11879,7 @@
    "start": "17:00",
    "title": "デビュー20周年！！ 20箇所記念ツアー！！ 全員集合☆彡",
    "artists": "SPECIAL OTHERS",
-   "price": "",
+   "price": "Adv ¥6,000 / Door ¥6,500",
    "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-07/",
    "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
    "status": "",
@@ -18111,10 +18113,10 @@
    "start": "18:00",
    "title": "Chilli Beans. Tour 2026-2027 “HONESTY”",
    "artists": "Chilli Beans.",
-   "price": "",
+   "price": "Adv ¥5,500 / Door ¥6,000",
    "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-28/",
    "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
-   "status": "",
+   "status": "sold_out",
    "genres": []
   },
   {

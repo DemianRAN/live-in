@@ -4,7 +4,7 @@
 
 - リポジトリ: DemianRAN/live-in
 - 公開先（予定）: https://demianran.github.io/live-in/
-- 更新: GitHub Actions で毎日 07:00 JST に収集・再生成・コミット
+- 更新: GitHub Actions で毎日 07:00 / 19:00 JST（1日2回）に収集・再生成・コミット
 
 ## ソース方針
 
@@ -56,7 +56,7 @@ collector/
 data/           収集結果（events.json / state.json）
 web/            GitHub Pages に公開する生成物
 .github/workflows/
-  collect.yml   毎日 07:00 JST に collect + build + commit
+  collect.yml   毎日 07:00 / 19:00 JST に collect + build + commit（+ アラート検査）
   pages.yml     web/ の変更で Pages へデプロイ
 ```
 
@@ -69,6 +69,18 @@ python3 collector/build.py     # サイト生成
 ```
 
 Python 3 の標準ライブラリのみで動作する（pip install 不要）。
+
+## 収集アラート（失敗・件数減少の検知）
+
+会場サイトの改版やブロックで収集が静かに壊れるのを防ぐため、`collect.py` は実行のたびに前回結果と比較してアラートを生成する。アラートは `data/state.json` の `alerts` 配列（`venue`, `venue_name`, `kind`, `prev`, `new`, `message`）に保存され、収集ログの末尾にも要約が出る。
+
+- `fetch_failed`: 会場の取得が失敗した
+- `zero_events`: 取得は成功扱いだが 0 件だった
+- `count_drop`: 件数が前回比で 40% 超減少した（前回が 5 件未満の会場は対象外）
+
+件数比較は **like-for-like**：前回の `events.json` から「今回の実行日以降の公演」だけを数え直し、今回分も同じ窓で数えて比べる。これにより、月替わりで前月分が一斉に失効しても（翌月分は前回ファイルにも含まれるため）誤報にならない。前回の `events.json` が読めない場合のみ state.json の生件数で代用する（その場合は message に明記される）。既知の限界：当月分しか載らない会場（MOSAiC 等、`venues.json` で `month_roll: true` の会場）は、月末が近づくと窓側の前回件数が小さくなり減少判定が自動的に外れるため、月替わり直後の減少は検出できない。部分的な警告（翌月ページ未公開など、件数が残っているもの）は単独ではアラートにしない（実害が出れば `count_drop` が拾う）。
+
+GitHub Actions では、データのコミット＆プッシュが済んだ**後**にアラート検査ステップが走り、アラートがある場合はジョブを失敗させる（GitHub の失敗通知でオーナーに届く）。データ自体は失敗時も先に保存される。
 
 ## 会場の追加方法
 

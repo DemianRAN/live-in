@@ -245,3 +245,61 @@ START **91.2% → 91.1%**（969→995；绝对数 +26，百分比持平是因为
 - サイト生成：web/index.html に 636 件内包、status/genres が埋め込み JSON に
   含まれていることを確認。バッジ・ジャンル chips・完売/中止を隠す・
   一括書き出しボタンの UI 要素が生成物に存在することを静的に確認。
+
+## 運維批 (2026-10-26 夜，本地实跑验证，未推送)
+
+件数不変：合計 **1092 条** / 今日起 **636 条**（会場別件数も前回と完全一致）。
+build.py は state.json を読まない（入力は events.json + venues.json のみ）ため、
+state への alerts 追加は生成物に影響なし。再 build 済み・件数再確認済み。
+
+### 1. 失敗・件数減少アラート
+- [x] `collect.py` に `load_previous` / `build_alerts` を実装。実行開始時に
+  前回の state.json（生件数）と events.json を読み、会場別に比較する。
+  アラートは state.json の `alerts`（venue / venue_name / kind / prev / new /
+  message）に保存し、ログ末尾にも要約を出す。collect 自体の終了コードは
+  従来どおり 0（ジョブの失敗化は workflow 側の検査ステップが担う）。
+- 閾値と方式：
+  - `fetch_failed`：取得失敗（status=fail）→ 常時アラート
+  - `zero_events`：成功扱いで 0 件 → 常時アラート
+  - `count_drop`：**like-for-like** 件数が前回比 40% 超減少、かつ前回
+    （窓側）が 5 件以上（`ALERT_DROP_RATIO=0.40` / `ALERT_MIN_PREV=5`）。
+    前回 events.json が読めない場合のみ state の生件数で代用し message に明記。
+  - like-for-like の窓：前回 events.json のうち「今回の実行日以降の公演」
+    だけを数え直し、今回分も同じ窓で数える。月替わりで前月分が一斉失効
+    しても、翌月分は前回ファイルにも含まれるため誤報にならない。
+  - 部分警告（翌月ページ未公開等で件数が残る場合）は単独ではアラートに
+    しない（実害は count_drop が拾う）。
+  - `month_roll: true` を venues.json に付与：PARKDINER / 千葉 LOOK
+    （当月+翌月型）、MOSAiC（当月のみ）、CLUB CITTA'（当月は本日以降のみ
+    表示で件数が月内に自然減する）。既知の限界：MOSAiC のような当月のみ型は
+    月末に窓側の前回件数が 5 未満に縮み減少判定が自動的に外れるため、
+    月替わり直後の減少は検出できない。アラート message には
+    month-rolling の注記が付く。
+- [x] workflow 側：`collect.yml` の Commit ステップの後に
+  「Fail if collection alerts exist」ステップ（`if: always()`）を追加。
+  データの commit/push が先に済み、その後 state.json の alerts を検査して
+  あれば要約を出力してジョブを失敗させる（GitHub の失敗通知で届く）。
+
+### 2. 1日2回収集
+- [x] `collect.yml` の schedule を 07:00 JST（`0 22 * * *` UTC）と
+  19:00 JST（`0 10 * * *` UTC）の2本に変更。YAML 妥当性とステップ順序は
+  ローカルで検証済み。
+- ⚠️ 注意：collect.yml は GitHub App の権限ではプッシュできないため、
+  **ユーザーが GitHub 上で collect.yml を新しい内容に差し替える手作業が
+  必要**（今回の変更分はローカルに完成済み）。collect.py / venues.json /
+  README / PLAN / data / web は通常のプッシュで届く。
+
+### 検証結果（運維批）
+- テスト (a) 通常全量収集（19:22〜19:39 JST）：24 active 全会場 ok、
+  会場別件数は前回（18:33 分）と完全一致、合計 1092 件、
+  **alerts = []**（正当なアラートもなし）。
+- テスト (b) 失敗系シミュレーション（/tmp のスクラッチコピー、実 venues.json
+  は不変）：WWW の schedule_url をデッド URL（127.0.0.1:9）に向けると
+  `fetch_failed`（prev=55 → 0）が発火。MOSAiC の前回イベントを 3 倍化した
+  前回ファイルでは `count_drop`（like-for-like 15 → 5、-67%）が発火。
+  どちらも state.json の alerts に記録され、ログ要約にも出力された。
+  追加の単体チェック：zero_events の発火、前回 5 件未満ガード、20% 減では
+  発火しないこと、初回（前回なし）で発火しないこと、生件数フォールバック
+  （message に "raw totals" 明記）を確認。
+- workflow のアラート検査スニペット自体もスクラッチ state で実行し、
+  アラートありで exit 1・要約出力になることを確認。
