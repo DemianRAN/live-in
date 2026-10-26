@@ -166,6 +166,140 @@
    "schedule_url": "https://www.chibalook.com/schedule/index.html",
    "site_url": "https://www.chibalook.com/",
    "status": "active"
+  },
+  {
+   "adapter": "club251",
+   "area": "下北沢",
+   "id": "shimokitazawa-club251",
+   "name": "下北沢 CLUB251",
+   "note": "月別ページ /schedule/?mo=M&yr=YYYY（Events Manager）。前月・翌月の端数日が混ざるため当月・翌月分のみ採用。h2.eventname がタイトル、CHARGE 行から料金。",
+   "pref": "東京都",
+   "schedule_url": "https://club251.com/schedule/",
+   "site_url": "https://club251.com/",
+   "status": "active"
+  },
+  {
+   "adapter": "toos_calabash",
+   "area": "下北沢",
+   "id": "shimokitazawa-three",
+   "name": "下北沢 THREE",
+   "note": "toos.co.jp の共通 calabash システム（BASEMENTBAR と同一アダプタ）。会場トップの月カレンダー ?cb_month=YYYY-MM → 詳細ページで取得。place_label='three'。",
+   "place_label": "three",
+   "pref": "東京都",
+   "schedule_url": "https://toos.co.jp/3/",
+   "site_url": "https://toos.co.jp/3/",
+   "status": "active"
+  },
+  {
+   "adapter": "toos_calabash",
+   "area": "下北沢",
+   "id": "shimokitazawa-basementbar",
+   "name": "下北沢 BASEMENTBAR",
+   "note": "THREE と同一サイト・同一アダプタ。place_label='basementbar'。両会場の合同公演は各会場の公演として掲載（公式カレンダーの表示どおり）。",
+   "place_label": "basementbar",
+   "pref": "東京都",
+   "schedule_url": "https://toos.co.jp/basementbar/",
+   "site_url": "https://toos.co.jp/basementbar/",
+   "status": "active"
+  },
+  {
+   "adapter": "era",
+   "area": "下北沢",
+   "id": "shimokita-era",
+   "name": "下北沢 ERA",
+   "note": "月別アーカイブ schedule_cat/YYYY-MM。time datetime に日付明示。detail-grid の OPEN/START/ADV/DOOR を取得。",
+   "pref": "東京都",
+   "schedule_url": "http://s-era.jp/schedule_cat/",
+   "site_url": "http://s-era.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "mosaic",
+   "area": "下北沢",
+   "id": "shimokitazawa-mosaic",
+   "name": "下北沢 MOSAiC",
+   "note": "schedule.html の表形式ページ（当月分のみ・月別ページなし）。live_title のある日のみ掲載。",
+   "pref": "東京都",
+   "schedule_url": "https://mu-seum.co.jp/schedule.html",
+   "site_url": "https://mu-seum.co.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "shimokita_ticket",
+   "area": "下北沢",
+   "id": "shimokitazawa-laguna",
+   "name": "下北沢 Laguna",
+   "note": "月別ページ /schedule/YYYY/M/。DaisyBar と同一テーマ・同一アダプタ（schedule-ticket 記事）。前売/当日のみ料金に採用（配信は除く）。",
+   "pref": "東京都",
+   "schedule_url": "http://s-laguna.jp/schedule/",
+   "site_url": "http://s-laguna.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "shimokita_ticket",
+   "area": "下北沢",
+   "id": "shimokitazawa-daisybar",
+   "name": "下北沢 DaisyBar",
+   "note": "Laguna と同一テーマ・同一アダプタ。月別ページ /schedule/YYYY/M/。",
+   "pref": "東京都",
+   "schedule_url": "https://daisybar.jp/schedule/",
+   "site_url": "https://daisybar.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "chikamatsu",
+   "area": "下北沢",
+   "id": "shimokitazawa-chikamatsu",
+   "name": "下北沢 近松",
+   "note": "月別一覧 /schedule/YYYY/MM/（time datetime に日付明示）+ 詳細ページから OPEN/START・ADV/DOOR・LINE UP を取得。",
+   "pref": "東京都",
+   "schedule_url": "https://chikamatsu-nite.com/schedule/",
+   "site_url": "https://chikamatsu-nite.com/",
+   "status": "active"
+  },
+  {
+   "adapter": "fad",
+   "area": "横浜・中華街",
+   "id": "yokohama-fad",
+   "name": "F.A.D YOKOHAMA",
+   "note": "公式 WP（/fad/）の投稿一覧は公演日昇順で、タイトル冒頭の 'YY.MM.DD が公演日。詳細ページから OPEN/START・ADV/DOOR を補完。タイトルに公演名と出演が混在するのはサイト表記のまま。",
+   "pref": "神奈川県",
+   "schedule_url": "http://www.fad-music.com/fad/",
+   "site_url": "http://www.fad-music.com/fad/",
+   "status": "active"
+  },
+  {
+   "adapter": "citta",
+   "area": "川崎",
+   "id": "kawasaki-citta",
+   "name": "川崎 CLUB CITTA'",
+   "note": "/schedule?year=YYYY&month=Mon（月は英語略称）の月別ページ。当月分はサイト仕様で本日以降のみ表示。料金は一覧になく詳細ページのみのため空欄。",
+   "pref": "神奈川県",
+   "schedule_url": "https://clubcitta.co.jp/schedule",
+   "site_url": "https://clubcitta.co.jp/",
+   "status": "active"
+  },
+  {
+   "adapter": "bbstreet",
+   "area": "横浜・関内",
+   "id": "yokohama-bbstreet",
+   "name": "横浜 B.B.STREET",
+   "note": "月別アーカイブ /YYYY/MM/?cat=5 のカードに日付・タイトル・OPEN/START・ADV/DOOR・出演まで含まれるため一覧で完結。",
+   "pref": "神奈川県",
+   "schedule_url": "https://www.bbstreet.com/category/schedule/",
+   "site_url": "https://www.bbstreet.com/",
+   "status": "active"
+  },
+  {
+   "adapter": "reg",
+   "area": "下北沢",
+   "id": "shimokitazawa-reg",
+   "name": "下北沢 ReG",
+   "note": "2026-10-26 調査: 公式サイトが Web 検索・下北沢ポータル（shimonite）から特定できず、TIGET 等の公演情報のみ確認できた。公式サイトのみを収集元とする方針のため保留（チケットプラットフォームは収集しない）。公式サイトが判明したら再調査する。",
+   "pref": "東京都",
+   "schedule_url": "",
+   "site_url": "",
+   "status": "pending"
   }
  ]
 }

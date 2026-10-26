@@ -28,6 +28,17 @@ data/events.json に正規化して保存する。
   - palooza:     柏 PALOOZA（pc/Schedule/YYYYMM.html、アコーディオン形式）
   - mito_lighthouse: 水戸 LIGHT HOUSE（sche{YY}{月}.html の月別ページ）
   - chiba_look:  千葉 LOOK（schedule/index.html、当月分のみ・表形式）
+  - club251:     下北沢 CLUB251（?mo=M&yr=YYYY、Events Manager 形式）
+  - toos_calabash: 下北沢 THREE / BASEMENTBAR（toos.co.jp 共通 "calabash"
+    イベントシステム。月カレンダー→詳細ページで取得、place_label で振り分け）
+  - era:         下北沢 ERA（schedule_cat/YYYY-MM、time datetime に日付明示）
+  - shimokita_ticket: 下北沢 Laguna / DaisyBar（同一テーマ・同一アダプタ、
+    /schedule/YYYY/M/ の schedule-ticket 記事）
+  - mosaic:      下北沢 MOSAiC（schedule.html、当月分のみ・表形式）
+  - chikamatsu:  下北沢 近松（/schedule/YYYY/MM/ 一覧 + 詳細ページ）
+  - fad:         F.A.D YOKOHAMA（WP投稿一覧、タイトル冒頭の日付が公演日）
+  - citta:       川崎 CLUB CITTA'（/schedule?year=YYYY&month=Mon）
+  - bbstreet:    横浜 B.B.STREET（月別アーカイブ /YYYY/MM/?cat=5 のカード）
   - loft_project: LOFT PROJECT 系（全パス 403 メンテナンス表示のため未実装・保留）
 """
 
@@ -142,9 +153,18 @@ class Fetcher:
         accept_404=True のときは 404 でも本文を返す（HEAVEN'S ROCK の月別
         ページが、正しい内容を 404 ステータスで返すため。採用可否は
         アダプタ側で本文の月見出しを検証して判断する）。
+        転送が途中で切れる IncompleteRead のときだけ1回リトライする
+        （BAYSIS 等のサーバが大きなページを途中で切ることがあるため）。
         """
         if url in self.cache:
             return self.cache[url]
+        result = self._fetch_once(url, timeout, accept_404)
+        if not result[0] and "IncompleteRead" in result[1]:
+            result = self._fetch_once(url, timeout, accept_404)
+        self.cache[url] = result
+        return result
+
+    def _fetch_once(self, url, timeout, accept_404):
         req = urllib.request.Request(url, headers=HEADERS)
         try:
             try:
@@ -153,16 +173,13 @@ class Fetcher:
                 if not (accept_404 and e.code == 404):
                     raise
                 raw = e.read()
-                result = (True, self._decode(raw, ""))
-                self.cache[url] = result
-                return result
+                return (True, self._decode(raw, ""))
             with resp_ctx as resp:
                 raw = resp.read()
                 ctype = resp.headers.get("Content-Type", "") or ""
             result = (True, self._decode(raw, ctype))
         except Exception as e:  # noqa: BLE001 - 失敗は記録して続行する
             result = (False, f"{type(e).__name__}: {e}")
-        self.cache[url] = result
         return result
 
 
@@ -689,6 +706,543 @@ def adapter_chiba_look(venue, fetcher):
     return events, errors
 
 
+def adapter_club251(venue, fetcher):
+    """下北沢 CLUB251。/schedule/?mo=M&yr=YYYY の月別ページ（Events Manager）。
+
+    1日分が <div class="schedule-in"> で、内側 div の class が
+    eventful-pre / eventful-post の日は前月・翌月の端数日。
+    公演は table.about-in ごとに1件で、h2.eventname がタイトル、
+    p.fw-bold が出演、続く <p> に OPEN/START と CHARGE（料金）。
+    端数日は当月・翌月の対象期間外になるため、最後に対象月で絞る。
+    """
+    events, errors = [], []
+    base = venue["schedule_url"].rstrip("/") + "/"
+    months = two_months(now_jst())
+    for (y, m) in months:
+        url = f"{base}?mo={m}&yr={y}"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        for _mt, block in split_segments(res, r'<div class="schedule-in">'):
+            cm = re.search(r'class="\s*(eventful[-\w]*)"', block)
+            cls = cm.group(1) if cm else ""
+            if "eventful-pre" in cls:
+                ey, em = (y - 1, 12) if m == 1 else (y, m - 1)
+            elif "eventful-post" in cls:
+                ey, em = (y + 1, 1) if m == 12 else (y, m + 1)
+            else:
+                ey, em = y, m
+            dm = re.search(
+                r'<tr class="list_date[^"]*">\s*<th><span class="fw-bold">'
+                r"[^<]*?(\d{1,2})", block)
+            if not dm:
+                continue
+            day = int(dm.group(1))
+            for _m2, evseg in split_segments(block, r'<table[^>]*class="about-in"'):
+                t = re.search(
+                    r'<h2 class="mb10 eventname mt10">(.*?)</h2>', evseg, re.S)
+                if not t:
+                    continue
+                art = re.search(r'<p class="fw-bold">(.*?)</p>', evseg, re.S)
+                info = ""
+                for pm in re.finditer(r"<p>(.*?)</p>", evseg, re.S):
+                    if "OPEN" in pm.group(1):
+                        info = clean(pm.group(1))
+                        break
+                tm = re.search(
+                    r"OPEN\s*(\d{1,2}:\d{2})\s*/\s*START\s*(\d{1,2}:\d{2})",
+                    info)
+                prm = re.search(r"CHARGE\s*[:：]\s*(.+)$", info)
+                ev = make_event(
+                    venue, f"{ey}-{em:02d}-{day:02d}",
+                    title=clean(t.group(1)),
+                    artists=clean(art.group(1)) if art else "",
+                    open_t=tm.group(1) if tm else "",
+                    start_t=tm.group(2) if tm else "",
+                    price=prm.group(1).strip() if prm else "",
+                    url=f"{base}?mo={em}&yr={ey}", source=url)
+                if ev:
+                    events.append(ev)
+    wset = set(months)
+    events = [e for e in events
+              if (int(e["date"][:4]), int(e["date"][5:7])) in wset]
+    return events, errors
+
+
+def adapter_toos_calabash(venue, fetcher):
+    """下北沢 THREE / BASEMENTBAR。toos.co.jp の共通 "calabash" システム。
+
+    会場トップの月カレンダー（?cb_month=YYYY-MM）から公演日と詳細URLを集め
+    （複数公演の日は日別ページ経由）、詳細ページ（calabash.b1f/event/...）
+    を解析する。詳細の time datetime が日付、h1 がタイトル、
+    summary より前の p.p1/p2 が出演、summary〜reservation 間の <p> に
+    OPEN/START と料金。両会場の合同公演は各会場のカレンダーに載るため
+    それぞれの会場の公演として登録する（サイトの表示どおり）。
+    """
+    events, errors = [], []
+    top = venue["schedule_url"]
+    detail_urls = {}  # url -> カレンダー上の日付
+    for (y, m) in two_months(now_jst()):
+        url = f"{top}?cb_month={y}-{m:02d}"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        for lab, href in re.findall(
+                r'aria-label="([^"]+)"[^>]*href="([^"]+)"', res):
+            dm = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", lab)
+            if not dm:
+                continue
+            dstr = (f"{int(dm.group(1))}-{int(dm.group(2)):02d}-"
+                    f"{int(dm.group(3)):02d}")
+            href = html_mod.unescape(href)
+            if "/event/" in href:
+                detail_urls.setdefault(href, dstr)
+            elif "calabash_day=" in href:
+                ok2, day_html = fetcher.fetch(href)
+                if not ok2:
+                    errors.append(f"{href}: {day_html}")
+                    continue
+                for eu in set(re.findall(
+                        r'href="(https://toos\.co\.jp/calabash\.b1f/event/'
+                        r'[^"]+)"', day_html)):
+                    detail_urls.setdefault(html_mod.unescape(eu), dstr)
+    for u, dstr in sorted(detail_urls.items(), key=lambda kv: kv[1]):
+        ok, det = fetcher.fetch(u)
+        if not ok:
+            errors.append(f"{u}: {det}")
+            continue
+        art = re.search(r"<article\b.*?</article>", det, re.S)
+        seg = art.group(0) if art else det
+        dtm = re.search(r'datetime="(\d{4}-\d{2}-\d{2})"', seg)
+        h1 = re.search(r"<h1[^>]*>(.*?)</h1>", seg, re.S)
+        pre = seg.split("toos-event__summary")[0]
+        acts = [clean(p) for p in re.findall(
+            r'<p class="p[12]">(.*?)</p>', pre, re.S)]
+        acts = [a for a in acts if a]
+        post = (seg.split("toos-event__summary", 1)[1]
+                if "toos-event__summary" in seg else "")
+        post = post.split("toos-event__reservation")[0]
+        open_t = start_t = ""
+        price_parts = []
+        for ln in [clean(p) for p in re.findall(
+                r"<p[^>]*>(.*?)</p>", post, re.S)]:
+            om = re.search(r"OPEN\s*(\d{1,2}:\d{2})", ln)
+            sm = re.search(r"START\s*(\d{1,2}:\d{2})", ln)
+            if om:
+                open_t = om.group(1)
+            if sm:
+                start_t = sm.group(1)
+            if ("¥" in ln or "￥" in ln) and not om and not sm:
+                price_parts.append(ln.replace("￥", "¥"))
+        ev = make_event(
+            venue, dtm.group(1) if dtm else dstr,
+            title=clean(h1.group(1)) if h1 else "",
+            artists=" / ".join(acts), open_t=open_t, start_t=start_t,
+            price=" / ".join(price_parts), url=u, source=top)
+        if ev and ev["title"]:
+            events.append(ev)
+    return events, errors
+
+
+def adapter_era(venue, fetcher):
+    """下北沢 ERA。schedule_cat/YYYY-MM の月別アーカイブ（WP）。
+
+    <article class="block schedule-box"> ごとに1公演。
+    <time datetime="YYYY-MM-DD"> に日付明示、h4 がタイトル、
+    .w-flyer 冒頭（[出演] ラベル有無ゆれあり）が出演、
+    detail-grid の OPEN/START/ADV/DOOR スパンから時刻と料金。
+    詳細URLは article id の投稿IDから /schedule/<id>.html を組み立てる。
+    """
+    events, errors = [], []
+    base = venue["schedule_url"].rstrip("/") + "/"
+    for (y, m) in two_months(now_jst()):
+        url = f"{base}{y}-{m:02d}"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        for _mt, seg in split_segments(res, r"<article\b"):
+            dt = re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"', seg)
+            if not dt or not dt.group(1).startswith(f"{y}-{m:02d}"):
+                continue
+            t = re.search(r"<h4>(.*?)</h4>", seg, re.S)
+            artists = ""
+            wf = re.search(
+                r'<div class="w-flyer">(.*?)(?:<div class="detail-texts">|'
+                r'<section class="notes-wrapper">)', seg, re.S)
+            if wf:
+                txt = clean(wf.group(1))
+                parts = re.split(r"\[[^\]]+\]", txt, maxsplit=1)
+                artists = (parts[1] if txt.startswith("[出演]")
+                           and len(parts) > 1 else parts[0]).strip(" /")
+                artists = re.sub(r"\s*/\s*/\s*", " / ", artists)
+            pairs = dict(re.findall(
+                r'<span class="title">(OPEN|START|ADV|DOOR)</span>\s*'
+                r'<span class="strong">(.*?)</span>', seg))
+            prices = []
+            if pairs.get("ADV"):
+                prices.append(f"ADV {clean(pairs['ADV'])}")
+            if pairs.get("DOOR"):
+                prices.append(f"DOOR {clean(pairs['DOOR'])}")
+            price = " / ".join(prices)
+            extra = re.search(r'class="inline-block">\(([^<]+)\)', seg)
+            if extra and price:
+                price += f" ({clean(extra.group(1))})"
+            pid = re.search(r'<article id="box-\d+-(\d+)"', seg)
+            url_ev = (f"http://s-era.jp/schedule/{pid.group(1)}.html"
+                      if pid else url)
+            ev = make_event(
+                venue, dt.group(1),
+                title=clean(t.group(1)) if t else "",
+                artists=artists,
+                open_t=clean(pairs.get("OPEN", "")),
+                start_t=clean(pairs.get("START", "")),
+                price=price, url=url_ev, source=url)
+            if ev and ev["title"]:
+                events.append(ev)
+    return events, errors
+
+
+def adapter_shimokita_ticket(venue, fetcher):
+    """下北沢 Laguna / DaisyBar（同一 WP テーマ・同一アダプタ）。
+
+    /schedule/YYYY/M/ の月別ページ。<article class="schedule-ticket">
+    ごとに1公演。日は .month/.day スパン、h2 がタイトル、
+    p.artist が出演、中段のラベル/値ペア（OPEN/START/前売/当日/配信）
+    から時刻と料金（配信は除く）。
+    """
+    events, errors = [], []
+    base = venue["schedule_url"].rstrip("/") + "/"
+    for (y, m) in two_months(now_jst()):
+        url = f"{base}{y}/{m}/"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        for _mt, seg in split_segments(res, r'<article class="schedule-ticket">'):
+            mm = re.search(
+                r"<span class='month'>(\d{1,2})\s*/</span>"
+                r"<span class='day'>(\d{1,2})</span>", seg)
+            if not mm or int(mm.group(1)) != m:
+                continue
+            t = re.search(r"<h2>(.*?)</h2>", seg, re.S)
+            art = re.search(r'<p class="artist">(.*?)</p>', seg, re.S)
+            pairs = {}
+            for lm, vm in re.findall(
+                    r"<div>\s*<p>([^<]+)</p>\s*<p>([^<]*)</p>\s*</div>", seg):
+                pairs[lm.strip()] = vm.strip()
+            prices = []
+            if pairs.get("前売"):
+                prices.append(f"前売 {pairs['前売']}")
+            if pairs.get("当日"):
+                prices.append(f"当日 {pairs['当日']}")
+            ev = make_event(
+                venue, f"{y}-{m:02d}-{int(mm.group(2)):02d}",
+                title=clean(t.group(1)) if t else "",
+                artists=clean(art.group(1)) if art else "",
+                open_t=pairs.get("OPEN", ""), start_t=pairs.get("START", ""),
+                price=" / ".join(prices), url=url, source=url)
+            if ev and ev["title"]:
+                events.append(ev)
+    return events, errors
+
+
+def adapter_mosaic(venue, fetcher):
+    """下北沢 MOSAiC。schedule.html（当月分のみ・旧来の表レイアウト）。
+
+    <div class="centerCont bottomLiner" id="D"> ごとに1日分。
+    listCal の th "M/D" が日付、p.live_title がタイトル、
+    td.live_menu の <strong> が出演、続く行に OPEN/START と料金。
+    live_title のない日（休業・貸切のみ等）は対象外。
+    """
+    events, errors = [], []
+    url = venue["schedule_url"]
+    ok, res = fetcher.fetch(url)
+    if not ok:
+        return [], [f"{url}: {res}"]
+    now = now_jst()
+    for _mt, block in split_segments(res, r'<div class="centerCont bottomLiner"'):
+        dm = re.search(r'<th width="90">(\d{1,2})/(\d{1,2})</th>', block)
+        if not dm:
+            continue
+        mo, day = int(dm.group(1)), int(dm.group(2))
+        if mo != now.month:
+            errors.append(f"{url}: month mismatch page={mo} now={now.month}")
+            break
+        titles = re.findall(r'<p class="live_title">(.*?)</p>', block, re.S)
+        if not titles:
+            continue
+        menu = re.search(
+            r'<td width="896" class="live_menu">(.*?)</td>', block, re.S)
+        menu_txt = clean(menu.group(1)) if menu else ""
+        strong = (re.search(r"<strong>(.*?)</strong>", menu.group(1), re.S)
+                  if menu else None)
+        artists = clean(strong.group(1)) if strong else ""
+        if artists and menu_txt.startswith(artists):
+            menu_txt = menu_txt[len(artists):].strip(" /")
+        tm = re.search(
+            r"OPEN\s*(\d{1,2}:\d{2})\s*/\s*START\s*(\d{1,2}:\d{2})", menu_txt)
+        rest = menu_txt[tm.end():] if tm else menu_txt
+        parts = [p.strip() for p in rest.split(" / ")]
+        price = " / ".join(p for p in parts
+                           if ("¥" in p or "￥" in p) and not p.startswith("●"))
+        ev = make_event(
+            venue, f"{now.year}-{mo:02d}-{day:02d}",
+            title=clean(titles[0]), artists=artists,
+            open_t=tm.group(1) if tm else "",
+            start_t=tm.group(2) if tm else "",
+            price=price, url=f"{url}#{day}", source=url)
+        if ev and ev["title"]:
+            events.append(ev)
+    return events, errors
+
+
+def adapter_chikamatsu(venue, fetcher):
+    """下北沢 近松。/schedule/YYYY/MM/ の月別一覧 + 個別詳細ページ。
+
+    一覧の <a class="entry-link"> 内に time datetime（日付明示）と
+    h2（タイトル）。詳細ページ本文の "OPEN / START H:MM/H:MM"、
+    "ADV / DOOR ..."、"LINE UP ..." から時刻・料金・出演を取る。
+    """
+    events, errors = [], []
+    base = venue["schedule_url"].rstrip("/") + "/"
+    for (y, m) in two_months(now_jst()):
+        url = f"{base}{y}/{m:02d}/"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        entries = []
+        seen_u = set()
+        for am in re.finditer(
+                r'<a [^>]*href="([^"]+/schedule/\d{4}/\d{2}/\d{2}-id\d+\.php)"'
+                r"[^>]*>(.*?)</a>", res, re.S):
+            inner = am.group(2)
+            tm2 = re.search(r'<time[^>]*datetime="(\d{4}-\d{2}-\d{2})"', inner)
+            h2 = re.search(r"<h2[^>]*>(.*?)</h2>", inner, re.S)
+            if tm2 and h2 and am.group(1) not in seen_u:
+                seen_u.add(am.group(1))
+                entries.append((am.group(1), tm2.group(1), clean(h2.group(1))))
+        if not entries:
+            errors.append(f"{url}: no entries parsed")
+        for u, dstr, title in entries:
+            open_t = start_t = price = artists = ""
+            ok2, det = fetcher.fetch(u)
+            if not ok2:
+                errors.append(f"{u}: {det}")
+            else:
+                txt = clean(det)
+                # 詳細には "OPEN / START H:MM/H:MM" 形式と
+                # "OPEN H:MM / START H:MM" 形式の2レイアウトがある
+                tm = re.search(
+                    r"OPEN\s*(\d{1,2}:\d{2})\s*/\s*START\s*(\d{1,2}:\d{2})",
+                    txt)
+                if not tm:
+                    tm = re.search(
+                        r"OPEN\s*/\s*START\s*(\d{1,2}:\d{2})\s*/\s*"
+                        r"(\d{1,2}:\d{2})", txt)
+                if tm:
+                    open_t, start_t = tm.group(1), tm.group(2)
+                pm = re.search(r"ADV\s*/\s*DOOR\s*(.+?)\s*LINE UP", txt)
+                if pm:
+                    price = pm.group(1).replace("￥", "¥")
+                am2 = re.search(r"LINE UP\s*(.+?)\s*TICKET", txt)
+                if am2:
+                    artists = re.sub(r"\s*/\s*", " / ", am2.group(1)).strip()
+            ev = make_event(
+                venue, dstr, title=title, artists=artists,
+                open_t=open_t, start_t=start_t, price=price,
+                url=u, source=url)
+            if ev and ev["title"]:
+                events.append(ev)
+    return events, errors
+
+
+def adapter_fad(venue, fetcher):
+    """F.A.D YOKOHAMA。公式 WP（/fad/）の投稿一覧を使う。
+
+    投稿は公演日昇順に並び、タイトル冒頭の 'YY.MM.DD [曜] が公演日
+    （日付のない告知投稿や期間まとめ投稿は対象外）。
+    一覧は最大3ページまで辿り、当月・翌月の公演だけ詳細ページから
+    OPEN/START と ADV/DOOR を補う。タイトルには公演名と出演が
+    混在するのがサイトの表記のため、そのままタイトルとして掲載する。
+    """
+    events, errors = [], []
+    base = venue["schedule_url"].rstrip("/") + "/"
+    months = two_months(now_jst())
+    wset = set(months)
+    posts = {}  # url -> (date_str, title)
+    for page in range(1, 4):
+        url = base if page == 1 else f"{base}?paged={page}"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            break
+        found = 0
+        for u, raw_t in re.findall(
+                r'<h3 class="entry-title"><a[^>]+href="([^"]+)"[^>]*>'
+                r"(.*?)</a></h3>", res, re.S):
+            t = clean(raw_t)
+            dm = re.search(r"(\d{2})\.(\d{1,2})\.(\d{1,2})\s*\[[^\]]*\]",
+                           t[:20])
+            if not dm:
+                continue
+            yy = 2000 + int(dm.group(1))
+            dstr = f"{yy}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}"
+            posts[u] = (dstr, t[dm.end():].strip())
+            found += 1
+        if not found:
+            break
+    for u, (dstr, title) in sorted(posts.items(), key=lambda kv: kv[1][0]):
+        if (int(dstr[:4]), int(dstr[5:7])) not in wset:
+            continue
+        open_t = start_t = price = ""
+        ok, det = fetcher.fetch(u)
+        if not ok:
+            errors.append(f"{u}: {det}")
+        else:
+            txt = clean(det)
+            # <title> にも同じ文字列があるため、本文側の出現（最後の一致）を
+            # アンカーにする。取れなければページ全体から探す。
+            i = txt.rfind(title[:20])
+            seg = txt[i:i + 1500] if i >= 0 else txt
+            om = re.search(r"OPEN\s*(\d{1,2}:\d{2})", seg)
+            sm = re.search(r"START\s*(\d{1,2}:\d{2})", seg)
+            if not om:
+                om = re.search(r"OPEN\s*(\d{1,2}:\d{2})", txt)
+                sm = re.search(r"START\s*(\d{1,2}:\d{2})", txt)
+            open_t = om.group(1) if om else ""
+            start_t = sm.group(1) if sm else ""
+            pm = re.search(
+                r"ADV\s*[¥￥]([\d,]+)(?:\s*/\s*DOOR\s*[¥￥]([\d,]+))?", seg)
+            if not pm:
+                pm = re.search(
+                    r"ADV\s*[¥￥]([\d,]+)(?:\s*/\s*DOOR\s*[¥￥]([\d,]+))?",
+                    txt)
+            if pm:
+                price = f"ADV ¥{pm.group(1)}"
+                if pm.group(2):
+                    price += f" / DOOR ¥{pm.group(2)}"
+        ev = make_event(
+            venue, dstr, title=title, open_t=open_t, start_t=start_t,
+            price=price, url=u, source=base)
+        if ev and ev["title"]:
+            events.append(ev)
+    return events, errors
+
+
+_CITTA_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def adapter_citta(venue, fetcher):
+    """川崎 CLUB CITTA'。/schedule?year=YYYY&month=Mon の月別ページ。
+
+    <div class="item"> ごとに1公演。日は item_detail の <p>、
+    h3 がタイトル、txt_wrap の <p> 冒頭に OPEN/START、続いて出演。
+    当月分はサイト仕様で本日以降のみ表示される。料金は一覧に無く
+    詳細ページのみのため空欄（HEAVEN'S ROCK と同様の扱い）。
+    """
+    events, errors = [], []
+    base = venue["schedule_url"].rstrip("/")
+    for (y, m) in two_months(now_jst()):
+        url = f"{base}?year={y}&month={_CITTA_MONTHS[m - 1]}"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        for match, seg in split_segments(
+                res, r'<div class="item"><a href="'
+                r'(https://clubcitta\.co\.jp/schedule/\d+)">'):
+            dm = re.search(
+                r'<div class="item_detail[^"]*">\s*<p>(\d{1,2})<span>', seg)
+            t = re.search(r"<h3>(.*?)</h3>", seg, re.S)
+            if not dm or not t:
+                continue
+            tw = re.search(r'<div class="txt_wrap">(.*?)</div>\s*</div>',
+                           seg, re.S)
+            body = (re.search(r"<p>(.*?)</p>", tw.group(1), re.S)
+                    if tw else None)
+            txt = clean(body.group(1)) if body else ""
+            om = re.search(r"OPEN\s*(\d{1,2}:\d{2})", txt)
+            sm = re.search(r"START\s*(\d{1,2}:\d{2})", txt)
+            artists = re.sub(
+                r"^(OPEN\s*\d{1,2}:\d{2}\s*/\s*START\s*\d{1,2}:\d{2}|"
+                r"START\s*\d{1,2}:\d{2}～?|OPEN\s*\d{1,2}:\d{2})\s*", "",
+                txt).strip(" /")
+            ev = make_event(
+                venue, f"{y}-{m:02d}-{int(dm.group(1)):02d}",
+                title=clean(t.group(1)), artists=artists,
+                open_t=om.group(1) if om else "",
+                start_t=sm.group(1) if sm else "",
+                url=match.group(1), source=url)
+            if ev and ev["title"]:
+                events.append(ev)
+    return events, errors
+
+
+def adapter_bbstreet(venue, fetcher):
+    """横浜 B.B.STREET。月別アーカイブ /YYYY/MM/?cat=5 のカード形式。
+
+    カードのアンカーテキストに "YYYY.MM.DD (曜) タイトル OPEN H:MM
+    START H:MM ADV ¥X(+1D) DOOR ¥Y(+1D) 出演 MORE INFO" まで含まれる
+    ため、一覧だけで完結する。月は各カードの日付が明示。
+    """
+    events, errors = [], []
+    origin = venue["site_url"].rstrip("/")
+    for (y, m) in two_months(now_jst()):
+        url = f"{origin}/{y}/{m:02d}/?cat=5"
+        ok, res = fetcher.fetch(url)
+        if not ok:
+            errors.append(f"{url}: {res}")
+            continue
+        cards = {}
+        for u, raw in re.findall(
+                r'href="(https://www\.bbstreet\.com/schedule/[^"]+)"[^>]*>'
+                r"(.*?)</a>", res, re.S):
+            t = clean(raw)
+            dm = re.match(r"(\d{4})\.(\d{1,2})\.(\d{1,2})\s*\([^)]*\)\s*",
+                          t)
+            if dm and (u not in cards or len(t) > len(cards[u][1])):
+                dstr = (f"{dm.group(1)}-{int(dm.group(2)):02d}-"
+                        f"{int(dm.group(3)):02d}")
+                cards[u] = (dstr, t)
+        for u, (dstr, full) in sorted(cards.items(), key=lambda kv: kv[1][0]):
+            if not dstr.startswith(f"{y}-{m:02d}"):
+                continue
+            om = re.search(r"OPEN\s+(\d{1,2}:\d{2})", full)
+            sm = re.search(r"START\s+(\d{1,2}:\d{2})", full)
+            cuts = [mm.start() for mm in re.finditer(
+                r"\s+(?:OPEN|ADV|DOOR)\s+(?:\d|TBA|[¥￥]|FREE)", full)]
+            title = (full[:min(cuts)] if cuts else full)
+            title = re.sub(
+                r"^\d{4}\.\d{1,2}\.\d{1,2}\s*\([^)]*\)\s*", "", title).strip()
+            price_parts = []
+            tail = full
+            for lab in ("ADV", "DOOR"):
+                pm = re.search(
+                    lab + r"\s*([¥￥][\d,]+(?:\+1D\([¥￥][\d,]+\))?|FREE|TBA)",
+                    full)
+                if pm and pm.group(1) != "TBA":
+                    price_parts.append(f"{lab} {pm.group(1)}")
+            for mm in re.finditer(
+                    r"(?:ADV|DOOR)\s*(?:[¥￥][\d,]+(?:\+1D\([¥￥][\d,]+\))?"
+                    r"|FREE|TBA)", full):
+                tail = full[mm.end():]
+            artists = (tail.replace("MORE INFO", "").strip(" /")
+                       if price_parts else "")
+            ev = make_event(
+                venue, dstr, title=title, artists=artists,
+                open_t=om.group(1) if om else "",
+                start_t=sm.group(1) if sm else "",
+                price=" / ".join(price_parts), url=u, source=url)
+            if ev and ev["title"]:
+                events.append(ev)
+    return events, errors
+
+
 ADAPTERS = {
     "www_shibuya": adapter_www_shibuya,
     "quattro": adapter_quattro,
@@ -699,6 +1253,15 @@ ADAPTERS = {
     "palooza": adapter_palooza,
     "mito_lighthouse": adapter_mito_lighthouse,
     "chiba_look": adapter_chiba_look,
+    "club251": adapter_club251,
+    "toos_calabash": adapter_toos_calabash,
+    "era": adapter_era,
+    "shimokita_ticket": adapter_shimokita_ticket,
+    "mosaic": adapter_mosaic,
+    "chikamatsu": adapter_chikamatsu,
+    "fad": adapter_fad,
+    "citta": adapter_citta,
+    "bbstreet": adapter_bbstreet,
     # "loft_project": 未実装（全パス 403 メンテナンス表示のため保留）
 }
 

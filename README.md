@@ -21,8 +21,28 @@
 | 渋谷 CLUB QUATTRO | 東京都 | 稼働中 |
 | 恵比寿 LIQUIDROOM | 東京都 | 稼働中 |
 | つくば PARKDINER | 茨城県 | 稼働中（当月分のみ） |
+| HEAVEN'S ROCK 熊谷 VJ-1 | 埼玉県 | 稼働中 |
+| HEAVEN'S ROCK さいたま新都心 VJ-3 | 埼玉県 | 稼働中 |
+| HEAVEN'S ROCK 宇都宮 VJ-2 | 栃木県 | 稼働中 |
+| HEAVEN'S ROCK 宇都宮 VJ-4 | 栃木県 | 稼働中 |
+| 横浜 BAYSIS | 神奈川県 | 稼働中 |
+| 柏 PALOOZA | 千葉県 | 稼働中 |
+| 水戸 LIGHT HOUSE | 茨城県 | 稼働中 |
+| 千葉 LOOK | 千葉県 | 稼働中（当月分のみ） |
+| 下北沢 CLUB251 | 東京都 | 稼働中 |
+| 下北沢 THREE | 東京都 | 稼働中 |
+| 下北沢 BASEMENTBAR | 東京都 | 稼働中 |
+| 下北沢 ERA | 東京都 | 稼働中 |
+| 下北沢 MOSAiC | 東京都 | 稼働中（当月分のみ） |
+| 下北沢 Laguna | 東京都 | 稼働中 |
+| 下北沢 DaisyBar | 東京都 | 稼働中 |
+| 下北沢 近松 | 東京都 | 稼働中 |
+| F.A.D YOKOHAMA | 神奈川県 | 稼働中 |
+| 川崎 CLUB CITTA' | 神奈川県 | 稼働中 |
+| 横浜 B.B.STREET | 神奈川県 | 稼働中 |
 | 新宿 LOFT | 東京都 | 保留（公式サイトが 403 を返すため） |
 | 下北沢 SHELTER | 東京都 | 保留（同上） |
+| 下北沢 ReG | 東京都 | 保留（公式サイトが特定できないため） |
 
 正確な一覧と各会場のメモは `collector/venues.json` が正。
 

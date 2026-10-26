@@ -64,3 +64,65 @@
   即站点对本网络一律返回维护页。维持 pending；若以后从日本国内网络/浏览器能打开，再议适配器。
 - 已知限制：LOOK 只有 OPEN 无 START 的公演较多（源站写法）；BAYSIS 出演者里的换行会变成「/」；
   HR/PALOOZA 个别自由格式公演的字段完整度随源站写法浮动。
+
+## 扩充结果・第2批 (2026-10-26 晚，本地实跑验证，未推送)
+
+总量 494 → **1062 条**（+568），今日起 269 → **606 条**。既存 13 家件数完全不变（无回归、无警告）。
+新增 11 家全部逐家抽查 2 条与官网原文核对一致。全量収集の所要時間は約 11 分
+（大半は toos.co.jp の詳細ページ取得：約 3 秒/件）。
+
+### 下北沢集群（此前为零 → 8 家 459 条）
+- [x] CLUB251 46：月页 /schedule/?mo=M&yr=YYYY（Events Manager 形式）。月页会混入
+  前月/次月的端数日（eventful-pre/post），只保留当月・翌月分；同一公演在两个月页
+  重复出现 5 条，靠主循环去重（原始 51 → 46）。
+- [x] THREE 62 / BASEMENTBAR 63：同一适配器 toos_calabash（toos.co.jp 共通
+  calabash 系统）。月历（?cb_month=YYYY-MM）→ 日别页（多公演日）→ 详细页解析。
+  件数与官网日历自报的「公演X件」合计**完全一致**（THREE 33+29=62、
+  BASEMENTBAR 34+29=63）。两店合同公演按官网日历的登载方式在两家各登一条。
+- [x] ERA 63：月归档 schedule_cat/YYYY-MM，time datetime 明示日期；
+  [出演] 标签有无两种写法都已处理，ADV/DOOR 取自 detail-grid。
+- [x] MOSAiC 21：schedule.html 表格页，仅当月分（无月页）。31 天中 21 天有公演
+  （无 live_title 的休业/贷切日不登）。
+- [x] Laguna 75 / DaisyBar 73：同一 WP 主题 → 同一适配器 shimokita_ticket，
+  月页 /schedule/YYYY/M/。料金は前売/当日のみ採用（配信チケットは除外）。
+- [x] 近松 56：月一覧 /schedule/YYYY/MM/ + 详细页（OPEN/START・ADV/DOOR・LINE UP）。
+  详细页有两种时刻写法（"OPEN / START H:MM/H:MM" 与 "OPEN H:MM / START H:MM"）
+  都已对应，最终 43/56 有时刻、54/56 有料金。注意：调查中途官网列表的 HTML
+  属性顺序变过一版（一度全灭），解析侧已改成属性顺序不敏感。
+  10/4「アスノポラリス＆ゼロカルpre.」是延期公演，详细页只有 INFORMATION
+  通知、无时刻料金，按列表页原样登载。
+
+### 横浜・川崎（+3 家 109 条）
+- [x] F.A.D YOKOHAMA 36：公式 WP（/fad/）投稿一覧は公演日昇順、标题冒头的
+  'YY.MM.DD が公演日。10/26〜11/30 **每天恰好 1 场、无缺日**。详细页补全后
+  35/36 有时刻、33/36 有料金。踩坑：详细页 <title> 与正文 h1 同文，
+  find 锚点一度落到 <head> 导致补全全灭，已改 rfind 锚到正文侧。
+  标题里公演名与出演混排是官网写法，原样登载。
+- [x] 川崎 CLUB CITTA' 36：/schedule?year=YYYY&month=Mon（月は英語略称）。
+  当月分官网只显示「今日起」（源站仕様）。一覧に料金なし（詳細のみ）のため
+  price 空栏（HEAVEN'S ROCK と同扱い）。
+- [x] 横浜 B.B.STREET 37：月归档 /YYYY/MM/?cat=5 的卡片里日期・标题・
+  OPEN/START・ADV/DOOR・出演一应俱全，一览即可完结。
+
+### 未加入
+- [ ] 下北沢 ReG：pending 登记。Web 搜索 + 下北沢门户 shimonite 都没找到
+  官方网站，只有 TIGET 等的公演情报。按「只收官网」方针保留 pending
+  （site_url 留空，页脚链接会是死链，属已知小瑕疵；找到官网再补）。
+- FLOWERS LOFT：LOFT 家族（全パス 403），按既定方针跳过，未重复登记。
+
+### 共通代码修正
+- Fetcher：IncompleteRead（服务器中途截断）时自动重试 1 次。本批中途实跑时
+  BAYSIS 10 月页被截断、一度掉到 33 条，靠此修正恢复 63 条。
+
+### 已知限制（第2批）
+- CLUB251 料金文字列含官网原样的多档票价（如优先票）；ERA 有官网占位条目
+  （11/30「EVENT」TBA、10/27 PRIVATE RENTAL）原样登载；MOSAiC 仅当月分
+  （月替自动跟进）；CITTA' 料金空栏（同上）。
+
+### 第3批候选（东京缺口・只做了域名核实与可达性初测，未做适配器）
+- 新宿 Marble：官网 shinjuku-marble.com，有 /schedule/（200、94KB，静态可取性高）
+- 吉祥寺 WARP：官网 warp.rinky.info，有 /schedules/（200、73KB，同上）
+- 新宿 Motion：官网 motion-web.jp，首页抓取被服务器断开（RemoteDisconnected，未验证，与 BAYSIS/PALOOZA 初期现象同类）
+- 吉祥寺 SHUFFLE：官网 k-shuffle.com（200、33KB），首页未见 schedule 链接，路径待找
+- 池袋 手刀 (Chop)：官网 chop-tokyo.info（200 但仅 2KB，像 frameset/跳转壳），日程页待找
+- 高円寺 HIGH：本轮搜索未核实到官方域名（只搜到 Bandsintown 等二级来源）

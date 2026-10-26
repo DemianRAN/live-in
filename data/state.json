@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-26 15:06 JST",
+ "updated_at": "2026-10-26 16:28 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -75,7 +75,67 @@
    "status": "ok",
    "count": 22,
    "error": ""
+  },
+  "shimokitazawa-club251": {
+   "status": "ok",
+   "count": 46,
+   "error": ""
+  },
+  "shimokitazawa-three": {
+   "status": "ok",
+   "count": 62,
+   "error": ""
+  },
+  "shimokitazawa-basementbar": {
+   "status": "ok",
+   "count": 63,
+   "error": ""
+  },
+  "shimokita-era": {
+   "status": "ok",
+   "count": 63,
+   "error": ""
+  },
+  "shimokitazawa-mosaic": {
+   "status": "ok",
+   "count": 21,
+   "error": ""
+  },
+  "shimokitazawa-laguna": {
+   "status": "ok",
+   "count": 75,
+   "error": ""
+  },
+  "shimokitazawa-daisybar": {
+   "status": "ok",
+   "count": 73,
+   "error": ""
+  },
+  "shimokitazawa-chikamatsu": {
+   "status": "ok",
+   "count": 56,
+   "error": ""
+  },
+  "yokohama-fad": {
+   "status": "ok",
+   "count": 36,
+   "error": ""
+  },
+  "kawasaki-citta": {
+   "status": "ok",
+   "count": 36,
+   "error": ""
+  },
+  "yokohama-bbstreet": {
+   "status": "ok",
+   "count": 37,
+   "error": ""
+  },
+  "shimokitazawa-reg": {
+   "status": "pending",
+   "count": 0,
+   "error": "2026-10-26 調査: 公式サイトが Web 検索・下北沢ポータル（shimonite）から特定できず、TIGET 等の公演情報のみ確認できた。公式サイトのみを収集元とする方針のため保留（チケットプラットフォームは収集しない）。公式サイトが判明したら再調査する。"
   }
  },
- "total_events": 494
+ "total_events": 1062
 }

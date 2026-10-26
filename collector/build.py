@@ -144,7 +144,7 @@ document.querySelectorAll('#periodChips .chip').forEach(c => c.onclick = () => {
 });
 document.getElementById('kw').addEventListener('input', ev => { kw = ev.target.value.trim(); render(); });
 document.getElementById('venueList').innerHTML = venues.map(v =>
-  `<li><a href="${esc(v.site_url)}" target="_blank" rel="noopener">${esc(v.name)}</a>（${esc(v.pref)}・${esc(v.area)}）${v.status === 'active' ? '' : ' — 取得準備中'}</li>`).join('');
+  `<li>${v.site_url ? `<a href="${esc(v.site_url)}" target="_blank" rel="noopener">${esc(v.name)}</a>` : esc(v.name)}（${esc(v.pref)}・${esc(v.area)}）${v.status === 'active' ? '' : ' — 取得準備中'}</li>`).join('');
 document.getElementById('updated').textContent = '最終更新: ' + DATA.generated_at + ' ｜ 掲載公演数: ' + events.length;
 render();
 </script>
