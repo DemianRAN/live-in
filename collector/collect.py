@@ -86,8 +86,103 @@ def clean(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip(" /").strip()
 
 
+# ------------------------------------------------------------ status / genre
+
+_STATUS_CANCELLED = (
+    r"開催中止|中止となりました|中止といたしました|中止いたします|"
+    r"中止を決定|中止のお知らせ|開催の中止|公演を中止|開催を中止|"
+    r"【[^】]{0,24}中止[^】]{0,12}】")
+_STATUS_POSTPONED = (
+    r"開催延期|公演延期|延期となりました|延期いたします|延期を決定|"
+    r"延期のお知らせ|振替公演|振替開催|【振替】")
+_STATUS_SOLDOUT = r"SOLD\s*OUT|SOLDOUT|ソールドアウト|完売|売り切れ"
+_STATUS_ANNOUNCE = (
+    r"中止となりました|中止いたします|中止を決定|中止のお知らせ|開催中止")
+
+
+def _strip_boilerplate(t):
+    """状態の「告知」ではない定型文を除去する。
+
+    詳細ページには「※公演中止の場合を除き払い戻しは行いません」
+    「※前売り完売の場合は当日券なし」のような条件文・払い戻し注記が
+    常設されている。これらは公演の状態ではないため、判定前に落とす。
+    払い戻しに触れる区間でも、中止の告知表現を含むものは残す。
+    """
+    parts = re.split(r"[。/]", t)
+    kept = []
+    for p in parts:
+        if ("払い戻し" in p or "払戻" in p or "返金" in p) and not re.search(
+                _STATUS_ANNOUNCE, p):
+            continue
+        kept.append(p)
+    t = " / ".join(kept)
+    t = re.sub(r"(完売|SOLD\s*OUT|売り切れ)\s*(の場合|した場合は|の際は?)",
+               " ", t, flags=re.I)
+    t = re.sub(r"中止\s*(の場合|以外|の際は?)", " ", t)
+    t = re.sub(r"(SOLD\s*OUT|完売|売り切れ)\s*(間近|目前)", "", t,
+               flags=re.I)
+    return t
+
+
+def detect_status(text):
+    """公演自身のテキストから状態を検出する（保守的・明示表現のみ）。
+
+    対象はその公演の一覧セグメントや詳細ページ本文だけ。
+    定型文（払い戻し注記・条件文）は _strip_boilerplate で落としてから
+    判定する。ページ全体の告知（他公演の案内など）は呼び出し側で
+    渡さないこと。戻り値: "cancelled" / "postponed" / "sold_out" / ""。
+    """
+    if not text:
+        return ""
+    t = clean(text) if "<" in text else re.sub(r"\s+", " ", text)
+    t = _strip_boilerplate(t)
+    # 中止の判定はさらに絞る:
+    # - 「配信は中止・会場公演は開催」のような配信だけの中止は公演中止にしない
+    #   （中止を含む区間のうち配信に触れるものを落としてから判定する）
+    # - 「内容を変更して開催」の場合は、公演自体は開催されるため中止にしない
+    if not re.search(r"変更して開催", t):
+        t_cancel = " / ".join(
+            p for p in re.split(r"[。/]", t)
+            if not ("配信" in p and "中止" in p))
+        if re.search(_STATUS_CANCELLED, t_cancel):
+            return "cancelled"
+    if re.search(_STATUS_POSTPONED, t):
+        return "postponed"
+    if re.search(_STATUS_SOLDOUT, t, flags=re.I):
+        return "sold_out"
+    return ""
+
+
+# ジャンルタグのキーワード規則（タイトル＋出演者の文字列だけから判定し、
+# 手がかりが無ければ付けない。複数タグ可）。規則表は README / PLAN にも明記。
+GENRE_RULES = [
+    ("ロック/バンド", [r"ロック", r"ROCK", r"パンク", r"PUNK", r"メタル",
+                        r"METAL", r"ハードコア", r"HARDCORE",
+                        r"シューゲイザー", r"ヴィジュアル系", r"ビジュアル系",
+                        r"バンド", r"BAND"]),
+    ("アコースティック/弾き語り", [r"アコースティック", r"ACOUSTIC",
+                                    r"弾き語り", r"アコギ"]),
+    ("アイドル", [r"アイドル", r"IDOL"]),
+    ("ヒップホップ", [r"ヒップホップ", r"HIP\s*HOP", r"ラッパー", r"\bRAP\b"]),
+    ("ジャズ", [r"ジャズ", r"JAZZ"]),
+    ("クラシック", [r"クラシック", r"CLASSIC", r"オーケストラ", r"交響楽団",
+                     r"室内楽", r"弦楽四重奏", r"リサイタル"]),
+    ("DJ/クラブ", [r"\bDJ\b", r"\bEDM\b", r"テクノ", r"クラブイベント",
+                    r"ドラムンベース"]),
+    ("トーク/お笑い", [r"トーク", r"お笑い", r"落語", r"漫才",
+                       r"TALK\s*(SHOW|EVENT)"]),
+]
+
+
+def detect_genres(title, artists=""):
+    """タイトル＋出演者のキーワードからジャンルタグを付ける。"""
+    up = f"{title or ''} {artists or ''}".upper()
+    return [tag for tag, pats in GENRE_RULES
+            if any(re.search(p, up) for p in pats)]
+
+
 def make_event(venue, date_str, title, artists="", open_t="", start_t="",
-               price="", url="", source=""):
+               price="", url="", source="", status_src=""):
     try:
         d = datetime.strptime(date_str, "%Y-%m-%d")
     except ValueError:
@@ -106,6 +201,8 @@ def make_event(venue, date_str, title, artists="", open_t="", start_t="",
         "price": price or "",
         "url": url or venue.get("site_url", ""),
         "source": source or venue.get("schedule_url", ""),
+        "status": detect_status(status_src) if status_src else "",
+        "genres": detect_genres(title, artists),
     }
 
 
@@ -258,6 +355,13 @@ def _enrich_www(events, fetcher):
                     ptxt = ptxt[:160].rstrip() + "…"
                 ev["price"] = ptxt
                 filled_p += 1
+        # 状態は詳細ページ全体からは付けない（過去公演一覧や定型注記に
+        # 他公演の状態が混ざるため）。料金欄（SOLD OUT 表記が付く場所）と
+        # タイトルだけを対象にする。
+        if not ev.get("status"):
+            st = detect_status(f"{ev['title']} {ev['price']}")
+            if st:
+                ev["status"] = st
     if fetched:
         print(f"    [enrich] www detail: fetched={fetched} "
               f"price+={filled_p} times+={filled_t}")
@@ -304,7 +408,8 @@ def adapter_www_shibuya(venue, fetcher):
                 venue, f"{y}-{m:02d}-{int(day.group(1)):02d}",
                 title=exp_txt or artist_txt, artists=artist_txt,
                 open_t=open_t, start_t=start_t,
-                url=link.group(1) if link else "", source=url)
+                url=link.group(1) if link else "", source=url,
+                status_src=seg)
             if ev:
                 events.append(ev)
     _enrich_www(events, fetcher)
@@ -348,7 +453,7 @@ def adapter_quattro(venue, fetcher):
                 artists=artist_txt, open_t=open_t, start_t=start_t,
                 price=price,
                 url=urllib.parse.urljoin(base, link.group(1)) if link else "",
-                source=url)
+                source=url, status_src=seg)
             if ev:
                 events.append(ev)
     return events, errors
@@ -395,7 +500,8 @@ def adapter_liquidroom(venue, fetcher):
             ev = make_event(
                 venue, date_str, title=sub_txt or artist_txt,
                 artists=artist_txt, open_t=open_t, start_t=start_t,
-                price=" / ".join(prices), url=link.group(1), source=url)
+                price=" / ".join(prices), url=link.group(1), source=url,
+                status_src=seg)
             if ev:
                 events.append(ev)
     return events, errors
@@ -440,7 +546,7 @@ def _parkdiner_parse_page(res, venue, source_url):
             venue, f"{year.group(1)}-{month:02d}-{int(day.group(1)):02d}",
             title=clean(title.group(1)), open_t=open_t, start_t=start_t,
             price=price, url=link.group(1) if link else "",
-            source=source_url)
+            source=source_url, status_src=seg)
         if ev:
             events.append(ev)
     return month, events
@@ -500,6 +606,10 @@ def adapter_parkdiner(venue, fetcher):
         if not ok3:
             continue
         txt = clean(det)
+        if not ev.get("status"):
+            st = detect_status(txt)
+            if st:
+                ev["status"] = st
         if not ev["open"] or not ev["start"]:
             tm = re.search(
                 r"open/start\s*(\d{1,2}:\d{2})\s*/\s*(\d{1,2}:\d{2})",
@@ -573,6 +683,10 @@ def _enrich_heavensrock(events, fetcher):
         if not ok:
             continue
         o, s, p = _parse_hr_detail(clean(det))
+        if not ev.get("status"):
+            st = detect_status(det)
+            if st:
+                ev["status"] = st
         if (not ev["open"] or not ev["start"]) and o and s:
             ev["open"], ev["start"] = o, s
             filled_t += 1
@@ -635,7 +749,7 @@ def adapter_heavensrock(venue, fetcher):
                 title=clean(title.group(1)) if title else "",
                 artists=clean(act.group(1)) if act else "",
                 open_t=open_t, start_t=start_t,
-                url=detail_url, source=url)
+                url=detail_url, source=url, status_src=seg)
             if ev and ev["title"]:
                 events.append(ev)
     _enrich_heavensrock(events, fetcher)
@@ -687,7 +801,8 @@ def adapter_baysis(venue, fetcher):
                 title=clean(head.group(2)),
                 artists=clean(guest.group(1)) if guest else "",
                 open_t=open_t, start_t=start_t, price=price,
-                url=f"{base}?mt={y}.{m:02d}#{head.group(1)}", source=url)
+                url=f"{base}?mt={y}.{m:02d}#{head.group(1)}", source=url,
+                status_src=seg)
             if ev and ev["title"]:
                 events.append(ev)
     return events, errors
@@ -775,7 +890,8 @@ def adapter_palooza(venue, fetcher):
                 venue,
                 f"{int(dm.group(1))}-{int(dm.group(2)):02d}-{int(dm.group(3)):02d}",
                 title=title, artists=artists, open_t=open_t,
-                start_t=start_t, price=price, url=url, source=url)
+                start_t=start_t, price=price, url=url, source=url,
+                status_src=seg)
             if ev and ev["title"]:
                 events.append(ev)
     return events, errors
@@ -847,7 +963,7 @@ def adapter_mito_lighthouse(venue, fetcher):
             ev = make_event(
                 venue, f"{ey}-{em}-{ed}", title=title, artists=artists,
                 open_t=open_t, start_t=start_t, price=price,
-                url=used_url, source=used_url)
+                url=used_url, source=used_url, status_src=seg)
             if ev and ev["title"]:
                 events.append(ev)
     return events, errors
@@ -865,16 +981,18 @@ def _chiba_look_parse(res, venue, page_url):
     events = []
     rows = re.findall(r"<tr.*?</tr>", res, re.S | re.I)
     year = month = day = None
-    pending = None  # (date_str, title, artists, open, start, price)
+    pending = None  # (date_str, title, artists, open, start, price, status)
 
     def flush():
         nonlocal pending
         if pending and pending[1]:
-            dstr, title, artists, o, s, p = pending
+            dstr, title, artists, o, s, p, st = pending
             ev = make_event(venue, dstr, title=title, artists=artists,
                             open_t=o, start_t=s, price=p, url=page_url,
                             source=page_url)
             if ev:
+                if st:
+                    ev["status"] = st
                 events.append(ev)
         pending = None
 
@@ -898,8 +1016,8 @@ def _chiba_look_parse(res, venue, page_url):
             if vm:
                 val = f"￥{vm.group(1)}"
             if val and val != "未定" and not pending[5]:
-                dstr, title, artists, o, s, _p = pending
-                pending = (dstr, title, artists, o, s, val)
+                dstr, title, artists, o, s, _p, st = pending
+                pending = (dstr, title, artists, o, s, val, st)
             continue
         if year and day and len(txt) > 8 and "[" in txt and "OPEN" in txt:
             # OPEN を含まない行はフッター等のナビ行として除外する。
@@ -919,7 +1037,7 @@ def _chiba_look_parse(res, venue, page_url):
             price = f"前売 ￥{pm.group(1)}" if pm else ""
             pending = (f"{year}-{month:02d}-{day:02d}", title, artists,
                        tm.group(1) if tm else "", sm.group(1) if sm else "",
-                       price)
+                       price, detect_status(content))
     flush()
     return events
 
@@ -1005,7 +1123,8 @@ def adapter_club251(venue, fetcher):
                     open_t=tm.group(1) if tm else "",
                     start_t=tm.group(2) if tm else "",
                     price=prm.group(1).strip() if prm else "",
-                    url=f"{base}?mo={em}&yr={ey}", source=url)
+                    url=f"{base}?mo={em}&yr={ey}", source=url,
+                    status_src=evseg)
                 if ev:
                     events.append(ev)
     wset = set(months)
@@ -1084,7 +1203,8 @@ def adapter_toos_calabash(venue, fetcher):
             venue, dtm.group(1) if dtm else dstr,
             title=clean(h1.group(1)) if h1 else "",
             artists=" / ".join(acts), open_t=open_t, start_t=start_t,
-            price=" / ".join(price_parts), url=u, source=top)
+            price=" / ".join(price_parts), url=u, source=top,
+            status_src=seg)
         if ev and ev["title"]:
             events.append(ev)
     return events, errors
@@ -1143,7 +1263,7 @@ def adapter_era(venue, fetcher):
                 artists=artists,
                 open_t=clean(pairs.get("OPEN", "")),
                 start_t=clean(pairs.get("START", "")),
-                price=price, url=url_ev, source=url)
+                price=price, url=url_ev, source=url, status_src=seg)
             if ev and ev["title"]:
                 events.append(ev)
     return events, errors
@@ -1187,7 +1307,8 @@ def adapter_shimokita_ticket(venue, fetcher):
                 title=clean(t.group(1)) if t else "",
                 artists=clean(art.group(1)) if art else "",
                 open_t=pairs.get("OPEN", ""), start_t=pairs.get("START", ""),
-                price=" / ".join(prices), url=url, source=url)
+                price=" / ".join(prices), url=url, source=url,
+                status_src=seg)
             if ev and ev["title"]:
                 events.append(ev)
     return events, errors
@@ -1237,7 +1358,7 @@ def adapter_mosaic(venue, fetcher):
             title=clean(titles[0]), artists=artists,
             open_t=tm.group(1) if tm else "",
             start_t=tm.group(2) if tm else "",
-            price=price, url=f"{url}#{day}", source=url)
+            price=price, url=f"{url}#{day}", source=url, status_src=block)
         if ev and ev["title"]:
             events.append(ev)
     return events, errors
@@ -1295,10 +1416,15 @@ def adapter_chikamatsu(venue, fetcher):
                 am2 = re.search(r"LINE UP\s*(.+?)\s*TICKET", txt)
                 if am2:
                     artists = re.sub(r"\s*/\s*", " / ", am2.group(1)).strip()
+            status_src = ""
+            if ok2:
+                _t = clean(det)
+                _i = _t.find(title[:20]) if title else -1
+                status_src = _t[_i:_i + 2000] if _i >= 0 else _t[:2000]
             ev = make_event(
                 venue, dstr, title=title, artists=artists,
                 open_t=open_t, start_t=start_t, price=price,
-                url=u, source=url)
+                url=u, source=url, status_src=status_src)
             if ev and ev["title"]:
                 events.append(ev)
     return events, errors
@@ -1371,7 +1497,8 @@ def adapter_fad(venue, fetcher):
                     price += f" / DOOR ¥{pm.group(2)}"
         ev = make_event(
             venue, dstr, title=title, open_t=open_t, start_t=start_t,
-            price=price, url=u, source=base)
+            price=price, url=u, source=base,
+            status_src=seg if ok else "")
         if ev and ev["title"]:
             events.append(ev)
     return events, errors
@@ -1421,6 +1548,12 @@ def _enrich_citta(events, fetcher):
         if not ok:
             continue
         o, s, p = _parse_citta_detail(clean(det))
+        # 状態は料金節とタイトルだけから付ける（詳細ページ全体には
+        # 「前売り完売の場合は…」等の定型条件文があるため）
+        if not ev.get("status"):
+            st = detect_status(f"{ev['title']} {p}")
+            if st:
+                ev["status"] = st
         got_t = False
         if not ev["open"] and o:
             ev["open"] = o
@@ -1478,7 +1611,10 @@ def adapter_citta(venue, fetcher):
                 title=clean(t.group(1)), artists=artists,
                 open_t=om.group(1) if om else "",
                 start_t=sm.group(1) if sm else "",
-                url=match.group(1), source=url)
+                url=match.group(1), source=url,
+                # seg は次のマッチまで長く伸びて他公演を含むため、
+                # 状態判定は自公演の本文（txt_wrap）とタイトルだけに限る
+                status_src=f"{clean(t.group(1))} {txt}")
             if ev and ev["title"]:
                 events.append(ev)
     _enrich_citta(events, fetcher)
@@ -1539,7 +1675,8 @@ def adapter_bbstreet(venue, fetcher):
                 venue, dstr, title=title, artists=artists,
                 open_t=om.group(1) if om else "",
                 start_t=sm.group(1) if sm else "",
-                price=" / ".join(price_parts), url=u, source=url)
+                price=" / ".join(price_parts), url=u, source=url,
+                status_src=full)
             if ev and ev["title"]:
                 events.append(ev)
     return events, errors
@@ -1620,6 +1757,12 @@ def main():
 
     all_events.sort(key=lambda e: (e["date"], e["start"] or "99:99",
                                    e["venue"], e["title"]))
+    from collections import Counter
+    sc = Counter(e["status"] for e in all_events if e.get("status"))
+    gc = Counter(g for e in all_events for g in e.get("genres", []))
+    print(f"status marks: {dict(sc)}")
+    print(f"genre tags: {dict(gc)} "
+          f"untagged={sum(1 for e in all_events if not e.get('genres'))}")
     state["total_events"] = len(all_events)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(

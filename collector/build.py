@@ -46,6 +46,15 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .artists { font-size:13.5px; line-height:1.6; }
   .price { font-size:13px; color:#7a5200; margin-top:2px; }
   .venue { display:inline-block; font-size:11.5px; padding:2px 8px; border-radius:999px; background:#ece7fb; color:var(--accent); margin-right:6px; }
+  .badge { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px; margin-right:6px; color:#fff; }
+  .b-sold_out { background:#c82a45; } .b-cancelled { background:#44404d; } .b-postponed { background:#d9820a; }
+  .gtag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px; background:#eef7ee; color:#2e7d32; border:1px solid #cfe6cf; margin-right:4px; }
+  .badges { margin:2px 0 5px; }
+  .card.is-cancelled { opacity:.6; }
+  .actions { margin-top:7px; }
+  .ics-btn { border:1px solid var(--line); background:#fff; border-radius:8px; padding:4px 10px; font-size:12.5px; cursor:pointer; color:var(--accent); }
+  .ics-btn:hover { background:var(--chip); }
+  .hidebad { font-size:13px; color:var(--muted); display:flex; align-items:center; gap:5px; cursor:pointer; }
   .empty { color:var(--muted); text-align:center; padding:40px 0; }
   .venues { margin-top:28px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; font-size:13.5px; }
   .venues h2 { font-size:15px; margin:0 0 8px; }
@@ -71,6 +80,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   </div>
   <div class="chips" id="prefChips"><span class="lbl">都県：</span></div>
   <div class="chips" id="venueChips"><span class="lbl">会場：</span></div>
+  <div class="chips" id="genreChips"><span class="lbl">ジャンル：</span></div>
+  <div class="chips">
+    <label class="hidebad"><input type="checkbox" id="hideBad"> 完売・中止を隠す</label>
+    <button class="chip" id="exportBtn">📅 表示中を .ics で書き出す</button>
+  </div>
   <div class="count" id="count"></div>
   <div id="list"></div>
   <section class="venues">
@@ -92,7 +106,10 @@ function addDays(ds, n) { const d = new Date(ds + 'T00:00:00+09:00'); d.setDate(
 const weekEnd = addDays(todayStr, 6);
 const weekendDates = new Set();
 for (let i = 0; i < 7; i++) { const ds = addDays(todayStr, i); const dow = new Date(ds + 'T00:00:00+09:00').getDay(); if (dow === 0 || dow === 6) weekendDates.add(ds); }
-let period = 'all', pref = '', venueId = '', kw = '';
+let period = 'all', pref = '', venueId = '', kw = '', genre = '', hideBad = false;
+let filteredNow = [];
+const STATUS_LABEL = { sold_out: 'SOLD OUT', cancelled: '公演中止', postponed: '延期' };
+const GENRE_ORDER = ['ロック/バンド', 'アコースティック/弾き語り', 'アイドル', 'ヒップホップ', 'ジャズ', 'クラシック', 'DJ/クラブ', 'トーク/お笑い'];
 function mkChips(el, values, cur, fn) {
   el.querySelectorAll('.chip').forEach(c => c.remove());
   const all = document.createElement('button'); all.className = 'chip' + (cur === '' ? ' on' : ''); all.textContent = 'すべて';
@@ -101,12 +118,15 @@ function mkChips(el, values, cur, fn) {
 }
 const prefChipsEl = document.getElementById('prefChips');
 const venueChipsEl = document.getElementById('venueChips');
+const genreChipsEl = document.getElementById('genreChips');
 function renderChips() {
   mkChips(prefChipsEl, [...new Set(events.map(e => e.pref))].sort(), pref, v => { pref = v; render(); });
   const vs = venues.filter(v => v.status === 'active' && (!pref || v.pref === pref));
   mkChips(venueChipsEl, vs.map(v => v.name), venueId, v => { venueId = v; render(); });
   // 会場チップは名前で絞るため、選択値をそのまま保持する
   venueChipsEl.querySelectorAll('.chip').forEach(c => { if (c.textContent !== 'すべて' && c.textContent === venueId) c.classList.add('on'); });
+  const gs = GENRE_ORDER.filter(g => events.some(e => (e.genres || []).includes(g)));
+  mkChips(genreChipsEl, gs, genre, v => { genre = v; render(); });
 }
 function inPeriod(e) {
   if (period === 'today') return e.date === todayStr;
@@ -119,7 +139,10 @@ function render() {
   const list = events.filter(e => inPeriod(e)
     && (!pref || e.pref === pref)
     && (!venueId || e.venue === venueId)
+    && (!genre || (e.genres || []).includes(genre))
+    && (!hideBad || (e.status !== 'sold_out' && e.status !== 'cancelled'))
     && (!kw || (e.title + ' ' + e.artists + ' ' + e.venue).includes(kw)));
+  filteredNow = list;
   document.getElementById('count').textContent = list.length + ' 件の公演';
   if (!list.length) { document.getElementById('list').innerHTML = '<div class="empty">条件に合う公演がありません。</div>'; return; }
   let out = '', curDate = '';
@@ -130,14 +153,67 @@ function render() {
       out += `<div class="day-head">${esc(e.date)} <span class="${wkCls}">(${esc(e.weekday)})</span></div>`;
     }
     const time = (e.open || e.start) ? `OPEN ${esc(e.open || '-')} / START ${esc(e.start || '-')}` : '時間未定（公式ページ参照）';
-    out += `<div class="card"><div class="meta"><span class="venue">${esc(e.venue)}</span>${esc(e.pref)}・${esc(e.area)} ｜ ${time}</div>`
+    const badge = e.status ? `<span class="badge b-${esc(e.status)}">${esc(STATUS_LABEL[e.status] || e.status)}</span>` : '';
+    const gtags = (e.genres || []).map(g => `<span class="gtag">${esc(g)}</span>`).join('');
+    out += `<div class="card${e.status === 'cancelled' ? ' is-cancelled' : ''}"><div class="meta"><span class="venue">${esc(e.venue)}</span>${esc(e.pref)}・${esc(e.area)} ｜ ${time}</div>`
       + `<h3><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h3>`
+      + (badge || gtags ? `<div class="badges">${badge}${gtags}</div>` : '')
       + (e.artists && e.artists !== e.title ? `<div class="artists">${esc(e.artists)}</div>` : '')
       + (e.price ? `<div class="price">${esc(e.price)}</div>` : '')
+      + `<div class="actions"><button class="ics-btn" data-idx="${events.indexOf(e)}">📅 カレンダーに追加 (.ics)</button></div>`
       + `</div>`;
   });
   document.getElementById('list').innerHTML = out;
+  document.querySelectorAll('.ics-btn').forEach(b => b.onclick = () => {
+    const e = events[Number(b.dataset.idx)];
+    downloadICS([e], 'event-' + e.date + '.ics');
+  });
 }
+// ---- .ics カレンダー書き出し（時刻は JST のローカル時刻として出力） ----
+function icsEsc(s) { return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n'); }
+function pad2(n) { return String(n).padStart(2, '0'); }
+function icsHash(s) { let h = 5381; for (let i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; } return h.toString(36); }
+function dtstamp() { const d = new Date(); return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + 'T' + pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + 'Z'; }
+function addHoursJST(dateStr, timeStr, hours) {
+  let [h, m] = timeStr.split(':').map(Number); h += hours; let ds = dateStr;
+  while (h >= 24) { h -= 24; ds = addDays(ds, 1); }
+  return [ds, pad2(h) + ':' + pad2(m)];
+}
+function fmtDT(ds, ts) { const [h, m] = ts.split(':'); return ds.replace(/-/g, '') + 'T' + pad2(Number(h)) + pad2(Number(m)) + '00'; }
+function eventICS(e, stamp) {
+  const lines = ['BEGIN:VEVENT',
+    'UID:' + e.venue_id + '-' + e.date + '-' + icsHash(e.title + '|' + e.url) + '@live-in',
+    'DTSTAMP:' + stamp];
+  const rawT = e.start || e.open;
+  const t = /^\d{1,2}:\d{2}$/.test(rawT || '') ? rawT : '';  // "TBA" 等は終日扱い
+  if (t) {
+    const [eds, ets] = addHoursJST(e.date, t, 2);
+    lines.push('DTSTART:' + fmtDT(e.date, t));
+    lines.push('DTEND:' + fmtDT(eds, ets));  // 終了時刻不明のため +2時間
+  } else {
+    lines.push('DTSTART;VALUE=DATE:' + e.date.replace(/-/g, ''));
+    lines.push('DTEND;VALUE=DATE:' + addDays(e.date, 1).replace(/-/g, ''));
+  }
+  lines.push('SUMMARY:' + icsEsc(e.title));
+  lines.push('LOCATION:' + icsEsc(e.venue + '（' + e.pref + '・' + e.area + '）'));
+  const desc = [e.artists ? '出演: ' + e.artists : '', e.price ? '料金: ' + e.price : '', '公式: ' + e.url].filter(Boolean).join('\n');
+  lines.push('DESCRIPTION:' + icsEsc(desc));
+  if (e.status === 'cancelled') lines.push('STATUS:CANCELLED');
+  lines.push('END:VEVENT');
+  return lines.join('\r\n');
+}
+function downloadICS(list, filename) {
+  if (!list.length) return;
+  const stamp = dtstamp();
+  const body = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//live-in//Kanto Live Events//JA', 'CALSCALE:GREGORIAN']
+    .concat(list.map(e => eventICS(e, stamp)), ['END:VCALENDAR']).join('\r\n') + '\r\n';
+  const blob = new Blob([body], { type: 'text/calendar;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+document.getElementById('hideBad').addEventListener('change', ev => { hideBad = ev.target.checked; render(); });
+document.getElementById('exportBtn').onclick = () => downloadICS(filteredNow, 'live-events.ics');
 document.querySelectorAll('#periodChips .chip').forEach(c => c.onclick = () => {
   document.querySelectorAll('#periodChips .chip').forEach(x => x.classList.remove('on'));
   c.classList.add('on'); period = c.dataset.period; render();
