@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-28 10:05 JST",
+ "updated_at": "2026-10-29 01:25 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -68,7 +68,7 @@
   },
   "mito-lighthouse": {
    "status": "ok",
-   "count": 34,
+   "count": 35,
    "error": ""
   },
   "chiba-look": {
@@ -78,7 +78,7 @@
   },
   "shimokitazawa-club251": {
    "status": "ok",
-   "count": 46,
+   "count": 47,
    "error": ""
   },
   "shimokitazawa-three": {
@@ -113,12 +113,12 @@
   },
   "shimokitazawa-chikamatsu": {
    "status": "ok",
-   "count": 56,
+   "count": 58,
    "error": ""
   },
   "yokohama-fad": {
    "status": "ok",
-   "count": 34,
+   "count": 33,
    "error": ""
   },
   "kawasaki-citta": {
@@ -182,6 +182,6 @@
    "error": "保留（小ホール二期で調査）: 練馬区文化振興協会のイベントスケジュールはJS描画で、静的HTMLに公演エントリが含まれない。データAPIが判明したら再挑戦"
   }
  },
- "total_events": 1289,
+ "total_events": 1292,
  "alerts": []
 }
