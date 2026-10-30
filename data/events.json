@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-30 01:34 JST",
+ "generated_at": "2026-10-30 10:47 JST",
  "events": [
   {
    "venue_id": "shimokitazawa-chikamatsu",
@@ -5602,7 +5602,7 @@
    "price": "",
    "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-17-01/",
    "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
-   "status": "sold_out",
+   "status": "",
    "genres": []
   },
   {
@@ -8368,23 +8368,6 @@
    "genres": []
   },
   {
-   "venue_id": "tsukuba-capio",
-   "venue": "つくばカピオ",
-   "pref": "茨城県",
-   "area": "つくば",
-   "date": "2026-10-25",
-   "weekday": "日",
-   "open": "10:30",
-   "start": "10:45",
-   "title": "ピティナピアノステップ",
-   "artists": "",
-   "price": "無料 / 一般入場可・未就学児可",
-   "url": "https://www.tcf.or.jp/exhibition/027540/",
-   "source": "https://www.tcf.or.jp/exhibition/capio/",
-   "status": "",
-   "genres": []
-  },
-  {
    "venue_id": "kichijoji-warp",
    "venue": "吉祥寺 WARP",
    "pref": "東京都",
@@ -8848,23 +8831,6 @@
    "price": "特典付き前売チケット：¥4,000税込・ドリンクチャージ別)",
    "url": "https://www.liquidroom.net/schedule/dennouhimeca_20261026",
    "source": "https://www.liquidroom.net/schedule/2026/10",
-   "status": "",
-   "genres": []
-  },
-  {
-   "venue_id": "tsukuba-capio",
-   "venue": "つくばカピオ",
-   "pref": "茨城県",
-   "area": "つくば",
-   "date": "2026-10-26",
-   "weekday": "月",
-   "open": "17:30",
-   "start": "18:00",
-   "title": "國井美香 オペラコンサート",
-   "artists": "",
-   "price": "＜全席自由＞ / 3,000円",
-   "url": "https://www.tcf.or.jp/exhibition/027080/",
-   "source": "https://www.tcf.or.jp/exhibition/capio/",
    "status": "",
    "genres": []
   },
@@ -9390,23 +9356,6 @@
    "price": "ADV TBA / DOOR TBA",
    "url": "http://s-era.jp/schedule/56474.html",
    "source": "http://s-era.jp/schedule_cat/2026-10",
-   "status": "",
-   "genres": []
-  },
-  {
-   "venue_id": "tsukuba-capio",
-   "venue": "つくばカピオ",
-   "pref": "茨城県",
-   "area": "つくば",
-   "date": "2026-10-28",
-   "weekday": "水",
-   "open": "14:00",
-   "start": "15:00",
-   "title": "川神あい オータムスペシャルライブ",
-   "artists": "",
-   "price": "＜全席指定＞ / 6,000円",
-   "url": "https://www.tcf.or.jp/exhibition/027467/",
-   "source": "https://www.tcf.or.jp/exhibition/capio/",
    "status": "",
    "genres": []
   },
@@ -9996,23 +9945,6 @@
    "price": "TICKET ¥3,000-（1Drink Included） / People from overseas ¥2,500-（1Drink Included）",
    "url": "https://toos.co.jp/calabash.b1f/event/4-sure-3/",
    "source": "https://toos.co.jp/3/",
-   "status": "",
-   "genres": []
-  },
-  {
-   "venue_id": "tsukuba-capio",
-   "venue": "つくばカピオ",
-   "pref": "茨城県",
-   "area": "つくば",
-   "date": "2026-10-29",
-   "weekday": "木",
-   "open": "10:15",
-   "start": "",
-   "title": "わくわく♪ファミリーコンサート / ～親子で楽しむ金管演奏～",
-   "artists": "",
-   "price": "無料（要問合せ）",
-   "url": "https://www.tcf.or.jp/exhibition/027380/",
-   "source": "https://www.tcf.or.jp/exhibition/capio/",
    "status": "",
    "genres": []
   },
@@ -21914,23 +21846,6 @@
    "genres": [
     "クラシック"
    ]
-  },
-  {
-   "venue_id": "tsukuba-capio",
-   "venue": "つくばカピオ",
-   "pref": "茨城県",
-   "area": "つくば",
-   "date": "2026-12-26",
-   "weekday": "土",
-   "open": "13:00",
-   "start": "13:30",
-   "title": "Hālau Hula´O Mino´aka / 第1回 HŌ´IKE",
-   "artists": "",
-   "price": "＜全席指定＞ / 1,000円",
-   "url": "https://www.tcf.or.jp/exhibition/027597/",
-   "source": "https://www.tcf.or.jp/exhibition/capio/",
-   "status": "",
-   "genres": []
   },
   {
    "venue_id": "mito-civic-hall",
