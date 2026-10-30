@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-30 10:47 JST",
+ "updated_at": "2026-10-31 01:30 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
@@ -37,24 +37,24 @@
    "error": "2026-10-26 拡充時再検証: 新宿LOFT と同様、全パスで同一のメンテナンス403。保留継続（同上）。"
   },
   "kumagaya-heavensrock": {
-   "status": "ok",
-   "count": 22,
-   "error": ""
+   "status": "fail",
+   "count": 0,
+   "error": "https://www.heavensrock.com/kumagaya/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/kumagaya/schedule/202611: URLError: <urlopen error timed out>"
   },
   "saitama-heavensrock": {
-   "status": "ok",
-   "count": 30,
-   "error": ""
+   "status": "fail",
+   "count": 0,
+   "error": "https://www.heavensrock.com/shintoshin/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/shintoshin/schedule/202611: URLError: <urlopen error timed out>"
   },
   "utsunomiya-heavensrock": {
-   "status": "ok",
-   "count": 25,
-   "error": ""
+   "status": "fail",
+   "count": 0,
+   "error": "https://www.heavensrock.com/utsunomiya/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/utsunomiya/schedule/202611: URLError: <urlopen error timed out>"
   },
   "utsunomiya2-heavensrock": {
-   "status": "ok",
-   "count": 25,
-   "error": ""
+   "status": "fail",
+   "count": 0,
+   "error": "https://www.heavensrock.com/utsunomiya2/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/utsunomiya2/schedule/202611: URLError: <urlopen error timed out>"
   },
   "yokohama-baysis": {
    "status": "ok",
@@ -93,7 +93,7 @@
   },
   "shimokita-era": {
    "status": "ok",
-   "count": 63,
+   "count": 65,
    "error": ""
   },
   "shimokitazawa-mosaic": {
@@ -108,7 +108,7 @@
   },
   "shimokitazawa-daisybar": {
    "status": "ok",
-   "count": 73,
+   "count": 75,
    "error": ""
   },
   "shimokitazawa-chikamatsu": {
@@ -118,12 +118,12 @@
   },
   "yokohama-fad": {
    "status": "ok",
-   "count": 33,
+   "count": 31,
    "error": ""
   },
   "kawasaki-citta": {
    "status": "ok",
-   "count": 33,
+   "count": 32,
    "error": ""
   },
   "yokohama-bbstreet": {
@@ -182,6 +182,39 @@
    "error": "保留（小ホール二期で調査）: 練馬区文化振興協会のイベントスケジュールはJS描画で、静的HTMLに公演エントリが含まれない。データAPIが判明したら再挑戦"
   }
  },
- "total_events": 1296,
- "alerts": []
+ "total_events": 1195,
+ "alerts": [
+  {
+   "venue": "kumagaya-heavensrock",
+   "venue_name": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "kind": "fetch_failed",
+   "prev": 22,
+   "new": 0,
+   "message": "fetch failed: https://www.heavensrock.com/kumagaya/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/kumagaya/schedule/202611: URLError: <urlopen error timed out>"
+  },
+  {
+   "venue": "saitama-heavensrock",
+   "venue_name": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "kind": "fetch_failed",
+   "prev": 30,
+   "new": 0,
+   "message": "fetch failed: https://www.heavensrock.com/shintoshin/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/shintoshin/schedule/202611: URLError: <urlopen error timed out>"
+  },
+  {
+   "venue": "utsunomiya-heavensrock",
+   "venue_name": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "kind": "fetch_failed",
+   "prev": 25,
+   "new": 0,
+   "message": "fetch failed: https://www.heavensrock.com/utsunomiya/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/utsunomiya/schedule/202611: URLError: <urlopen error timed out>"
+  },
+  {
+   "venue": "utsunomiya2-heavensrock",
+   "venue_name": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "kind": "fetch_failed",
+   "prev": 25,
+   "new": 0,
+   "message": "fetch failed: https://www.heavensrock.com/utsunomiya2/schedule/202610: URLError: <urlopen error timed out>; https://www.heavensrock.com/utsunomiya2/schedule/202611: URLError: <urlopen error timed out>"
+  }
+ ]
 }
