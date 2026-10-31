@@ -1,29 +1,29 @@
 {
- "updated_at": "2026-10-31 10:28 JST",
+ "updated_at": "2026-11-01 00:35 JST",
  "venues": {
   "shibuya-www": {
    "status": "ok",
-   "count": 56,
+   "count": 45,
    "error": ""
   },
   "shibuya-www-x": {
    "status": "ok",
-   "count": 58,
+   "count": 46,
    "error": ""
   },
   "shibuya-quattro": {
    "status": "ok",
-   "count": 58,
+   "count": 50,
    "error": ""
   },
   "ebisu-liquidroom": {
    "status": "ok",
-   "count": 59,
+   "count": 51,
    "error": ""
   },
   "tsukuba-parkdiner": {
    "status": "ok",
-   "count": 26,
+   "count": 24,
    "error": ""
   },
   "shinjuku-loft": {
@@ -38,22 +38,22 @@
   },
   "kumagaya-heavensrock": {
    "status": "ok",
-   "count": 22,
+   "count": 17,
    "error": ""
   },
   "saitama-heavensrock": {
    "status": "ok",
-   "count": 30,
+   "count": 26,
    "error": ""
   },
   "utsunomiya-heavensrock": {
    "status": "ok",
-   "count": 25,
+   "count": 21,
    "error": ""
   },
   "utsunomiya2-heavensrock": {
    "status": "ok",
-   "count": 25,
+   "count": 18,
    "error": ""
   },
   "yokohama-baysis": {
@@ -63,82 +63,82 @@
   },
   "kashiwa-palooza": {
    "status": "ok",
-   "count": 32,
+   "count": 23,
    "error": ""
   },
   "mito-lighthouse": {
    "status": "ok",
-   "count": 35,
+   "count": 34,
    "error": ""
   },
   "chiba-look": {
    "status": "ok",
-   "count": 39,
+   "count": 30,
    "error": ""
   },
   "shimokitazawa-club251": {
    "status": "ok",
-   "count": 49,
+   "count": 26,
    "error": ""
   },
   "shimokitazawa-three": {
    "status": "ok",
-   "count": 63,
+   "count": 41,
    "error": ""
   },
   "shimokitazawa-basementbar": {
    "status": "ok",
-   "count": 65,
+   "count": 40,
    "error": ""
   },
   "shimokita-era": {
    "status": "ok",
-   "count": 65,
+   "count": 48,
    "error": ""
   },
   "shimokitazawa-mosaic": {
-   "status": "ok",
-   "count": 21,
-   "error": ""
+   "status": "fail",
+   "count": 0,
+   "error": "https://mu-seum.co.jp/schedule.html: month mismatch page=10 now=11"
   },
   "shimokitazawa-laguna": {
    "status": "ok",
-   "count": 75,
+   "count": 54,
    "error": ""
   },
   "shimokitazawa-daisybar": {
    "status": "ok",
-   "count": 75,
+   "count": 52,
    "error": ""
   },
   "shimokitazawa-chikamatsu": {
    "status": "ok",
-   "count": 58,
-   "error": ""
+   "count": 39,
+   "error": "https://chikamatsu-nite.com/schedule/2026/11/03-id3609.php: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>; https://chikamatsu-nite.com/schedule/2026/11/04-id3638.php: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>; https://chikamatsu-nite.com/schedule/2026/11/05-id3649.php: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>; https://chikamatsu-nite.com/schedule/2026/11/06-id3639.php: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>; https://chikamatsu-nite.com/schedule/2026/11/07-id3586.php: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>; https://chikamatsu-nite.com/schedule/2026/11/08-id3635.php: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>; https://chikamatsu-nite.com/schedule/2026/11/09-id3630.php: URLError: <urlopen error _ssl.c:993: The handshake operation timed out>; https://chikamatsu-nite.com/schedule/2026/11/10-id3650.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/12-id3632.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/13-id3652.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/14-id3452.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/15-id3566.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/16-id3664.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/17-id3648.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/18-id3550.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/19-id3660.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/20-id3589.php: URLError: <urlopen error timed out>; https://chikamatsu-nite.com/schedule/2026/11/21-id3615.php: URLError: <urlopen error timed out>"
   },
   "yokohama-fad": {
    "status": "ok",
-   "count": 31,
+   "count": 54,
    "error": ""
   },
   "kawasaki-citta": {
    "status": "ok",
-   "count": 32,
+   "count": 51,
    "error": ""
   },
   "yokohama-bbstreet": {
    "status": "ok",
-   "count": 39,
+   "count": 22,
    "error": ""
   },
   "shinjuku-marble": {
    "status": "ok",
-   "count": 48,
+   "count": 36,
    "error": ""
   },
   "kichijoji-warp": {
    "status": "ok",
-   "count": 48,
+   "count": 35,
    "error": ""
   },
   "shimokitazawa-reg": {
@@ -182,6 +182,23 @@
    "error": "保留（小ホール二期で調査）: 練馬区文化振興協会のイベントスケジュールはJS描画で、静的HTMLに公演エントリが含まれない。データAPIが判明したら再挑戦"
   }
  },
- "total_events": 1297,
- "alerts": []
+ "total_events": 1046,
+ "alerts": [
+  {
+   "venue": "chiba-look",
+   "venue_name": "千葉 LOOK",
+   "kind": "count_drop",
+   "prev": 17,
+   "new": 8,
+   "message": "count dropped 17 -> 8 (-53%, like-for-like: dates >= 2026-11-01) (month-rolling venue; like-for-like window used)"
+  },
+  {
+   "venue": "shimokitazawa-mosaic",
+   "venue_name": "下北沢 MOSAiC",
+   "kind": "fetch_failed",
+   "prev": 21,
+   "new": 0,
+   "message": "fetch failed: https://mu-seum.co.jp/schedule.html: month mismatch page=10 now=11"
+  }
+ ]
 }
