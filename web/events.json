@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31 01:30 JST",
+ "generated_at": "2026-10-31 10:28 JST",
  "events": [
   {
    "venue_id": "shimokitazawa-chikamatsu",
@@ -671,6 +671,60 @@
    ]
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-03",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "THE BEAT GARDEN one man live tour 2026 NITRO POP",
+   "artists": "THE BEAT GARDEN",
+   "price": "Adv オールスタンディング ¥6,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-03/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-03",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "『aoen LIVE TOUR 2026 ～青のはじまり 47+1～』",
+   "artists": "aoen",
+   "price": "Adv ¥7,700 / U-18 ¥4,400",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-03/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-03",
+   "weekday": "土",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "岩田ワタル企画 ヘブンズロック黒田還暦祭 -60th Anniversary Council-",
+   "artists": "【BAND】ペルーカGROUP(改) / NANISAMA? / WOW I SEE / 猫ちどり / ザ・オープニングアクツ 【DJ】Johnny / タクロー",
+   "price": "Adv ¥2,000 / Door ¥2,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-03/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド",
+    "DJ/クラブ"
+   ]
+  },
+  {
    "venue_id": "kashiwa-palooza",
    "venue": "柏 PALOOZA",
    "pref": "千葉県",
@@ -1110,6 +1164,40 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-04",
+   "weekday": "日",
+   "open": "15:15",
+   "start": "15:45",
+   "title": "ロージークロニクル ライブツアー2026秋 〜Blueprint〜",
+   "artists": "ロージークロニクル",
+   "price": "Adv ¥8,000",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-04/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-04",
+   "weekday": "日",
+   "open": "15:30",
+   "start": "16:00",
+   "title": "大日本壱夜芸者PRESENTS 「潜在記憶」",
+   "artists": "大日本壱夜芸者 / シン・爆音大怪獣２ / kana@tochiotome / incanto shines / アンデッ党",
+   "price": "Adv ¥3,000 / Door ¥3,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-04/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-three",
    "venue": "下北沢 THREE",
    "pref": "東京都",
@@ -1250,6 +1338,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-04",
+   "weekday": "日",
+   "open": "18:00",
+   "start": "18:20",
+   "title": "metarium ONEMAN TOUR 「すすめ！未来へちゃん！〜新世界 歌謡SHOW〜」",
+   "artists": "metarium",
+   "price": "Adv 前方エリア¥4,000・一般エリア¥1,000 / 各ドリンク代別 / Door 前方エリア¥5,000・一般エリア¥2,000 / 各ドリンク代別",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-04/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-club251",
    "venue": "下北沢 CLUB251",
    "pref": "東京都",
@@ -1331,6 +1436,23 @@
    "price": "前売り¥2,500- / 当日 ¥3,000- / 高校生以下 ¥1,300-(各1ドリンク別)",
    "url": "https://chikamatsu-nite.com/schedule/2026/10/04-id3600.php",
    "source": "https://chikamatsu-nite.com/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-04",
+   "weekday": "日",
+   "open": "",
+   "start": "",
+   "title": "MIDNIGHT DRIVE LIVE EVENT「FRAGMENT Part6」",
+   "artists": "MIDNIGHT DRIVE",
+   "price": "Adv 通常チケット(NAVI)¥8,800 / 学生割引チケット¥4,400 / ご新規様限定チケット(初心者 NAVI 限定)¥2,200 / Door ¥9,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-04/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -1910,6 +2032,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-07",
+   "weekday": "水",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "LM.C 20th Anniversary Tour -The Best Shows Ever!!",
+   "artists": "LM.C",
+   "price": "Adv オールスタンディング ¥8,800 / Door スタンディング¥9,300・BOYS&GIRLSチケット ¥4,400・KIDSチケット ¥2,200",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-07/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-chikamatsu",
    "venue": "下北沢 近松",
    "pref": "東京都",
@@ -2256,6 +2395,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-08",
+   "weekday": "木",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "粗品TOUR2026「怪獣こやけ」",
+   "artists": "粗品",
+   "price": "Adv スタンディング¥6,500・学割スタンディング¥5,000 / 各ドリンク代別",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-08/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-club251",
    "venue": "下北沢 CLUB251",
    "pref": "東京都",
@@ -2460,6 +2616,23 @@
    "price": "前売 ¥3000 / 当日 ¥3500",
    "url": "http://s-laguna.jp/schedule/2026/10/",
    "source": "http://s-laguna.jp/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-09",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "POWERFUL PIGMONZ TOUR",
+   "artists": "PIGMONZ",
+   "price": "Adv スタンディング ¥3,939 / Door スタンディング ¥4,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-09/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -2796,6 +2969,40 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-10",
+   "weekday": "土",
+   "open": "13:45",
+   "start": "14:15",
+   "title": "青春讃歌2026 -AUTUMN AUTUMN AUTUMN-",
+   "artists": "Age gap / サイクリーズ / ハムちゃんポンポン / 250cc / 恋吐捨 / Ashuputtel. / Kosei. / modern geek",
+   "price": "Adv ¥1,000 / Door ¥1,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-10/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-10",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "UNiTE. 2026 AUTUMN ONEMAN LIVE TOUR「SPIRITUAL CRYSTAL」",
+   "artists": "UNiTE.",
+   "price": "Adv ¥5,000 / Door ¥6,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-10/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "ebisu-liquidroom",
    "venue": "恵比寿 LIQUIDROOM",
    "pref": "東京都",
@@ -2860,6 +3067,42 @@
    "price": "前売 ￥5,700",
    "url": "https://www.club-quattro.com/shibuya/schedule/detail/?cd=018385",
    "source": "https://www.club-quattro.com/shibuya/schedule/?ym=202610",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-10",
+   "weekday": "土",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "「ヘブンズロック 黒田 還暦祭 POTSHOT One-Man 2026」",
+   "artists": "POTSHOT",
+   "price": "Adv ¥3,900 / Door ¥4,400",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-10/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-10",
+   "weekday": "土",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "one man live tour 2026 「RE:TAKE」",
+   "artists": "TOOKAMI",
+   "price": "Adv オールスタンディング ¥7,000 / Door オールスタンディング ¥7,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-10/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -3215,6 +3458,25 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-11",
+   "weekday": "日",
+   "open": "14:00",
+   "start": "14:30",
+   "title": "ヘブンズロック黒田還暦祭 一生馬鹿の仲間達 ROCK'N SPECIAL!!!!",
+   "artists": "THE STAND UP / WONDERS / KENTA MARK SAKAIRI / Twilight music room / WAIS BOY / The myeahns / カルナロッタ",
+   "price": "Adv ¥3,000 / Door ¥3,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-11/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
    "venue_id": "yokohama-baysis",
    "venue": "横浜 BAYSIS",
    "pref": "神奈川県",
@@ -3251,6 +3513,23 @@
    ]
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-11",
+   "weekday": "日",
+   "open": "16:15",
+   "start": "16:45",
+   "title": "「さいしょのいっぽ Vol.32」",
+   "artists": "竹田侑海 / 櫻井脩弥 / べーこんえっぐ / 平瀬真夜 / りんごアレルギー / FreeHold / Tenta(RUMMYNOSE) / 宇都宮大学フォークギター同好会〈たろう / サクライリョウタ〉",
+   "price": "Adv ¥1,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-11/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "kichijoji-warp",
    "venue": "吉祥寺 WARP",
    "pref": "東京都",
@@ -3266,6 +3545,44 @@
    "source": "http://warp.rinky.info/schedules_cat/2026-10",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-11",
+   "weekday": "日",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "パンクの落とし児 2026 GIGS SC TOUR",
+   "artists": "THE STAR CLUB 共演：ゲンドウミサイル / STRONG STYLE",
+   "price": "Adv オールスタンディング ¥5,400 / Door オールスタンディング ¥5,900",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-11-2/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "sold_out",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-11",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "18:00",
+   "title": "『第四回北関東ダブルツアー ◆2026・秋◆ 』",
+   "artists": "柳家睦&THE RATBONES / gyouninven / EXPERIENCE feat.スマイル藤田,TAKE-ROLL,7AWERA DJ:SUNSUKE(SNOKEY RECORDS) / Apo / MUTSUFITS",
+   "price": "Adv ¥4,200 / Door ¥4,700",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-11/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "",
+   "genres": [
+    "DJ/クラブ"
+   ]
   },
   {
    "venue_id": "tsukuba-parkdiner",
@@ -3631,6 +3948,42 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-12",
+   "weekday": "月",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "HEAVEN'S ROCK Utsunomiya presents",
+   "artists": "燦爛ミレニアム / Age gap / Daichi(Un take.)",
+   "price": "Adv ¥1,000 / Door ¥1,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-12/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-12",
+   "weekday": "月",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "MYTH & ROID Tour 2026-2027 “I know your fire”",
+   "artists": "MYTH & ROID",
+   "price": "Adv ¥7,700",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-12/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "kashiwa-palooza",
    "venue": "柏 PALOOZA",
    "pref": "千葉県",
@@ -3665,6 +4018,23 @@
    "genres": [
     "ロック/バンド"
    ]
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-12",
+   "weekday": "月",
+   "open": "17:00",
+   "start": "18:00",
+   "title": "⼣闇に誘いし漆⿊の天使達『カチコミ対バンツアー』",
+   "artists": "⼣闇に誘いし漆⿊の天使達 対バン：All Good Soldiers",
+   "price": "Adv ¥4,500 / Door ¥5,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-12/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "shimokitazawa-basementbar",
@@ -4393,6 +4763,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-15",
+   "weekday": "木",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "ビバラッシュ 10th ANNIVERSARY TOUR「フルチャージ」※2days/Day1",
+   "artists": "ビバラッシュ",
+   "price": "Adv ¥4,500 / Door ¥5,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-15/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "kichijoji-warp",
    "venue": "吉祥寺 WARP",
    "pref": "東京都",
@@ -4423,6 +4810,23 @@
    "price": "前売 ￥2,000",
    "url": "https://mitolighthouse.com/sche26oct.html",
    "source": "https://mitolighthouse.com/sche26oct.html",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-15",
+   "weekday": "木",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "GOKAI TOUR 2026 ～初めてのゴ会・全国巡業 47都道府県55本豪快ツアー!!!!～",
+   "artists": "ゴ会 出演：小野武正",
+   "price": "Adv ¥5,555",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-15/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -4631,6 +5035,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-16",
+   "weekday": "金",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "ビバラッシュ 10th ANNIVERSARY TOUR「フルチャージ」※2days/Day2",
+   "artists": "ビバラッシュ",
+   "price": "Adv ¥4,500 / Door ¥5,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-16/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "kashiwa-palooza",
    "venue": "柏 PALOOZA",
    "pref": "千葉県",
@@ -4646,6 +5067,44 @@
    "source": "http://www.kashiwa-palooza.com/pc/Schedule/202610.html",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-16",
+   "weekday": "金",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "HEAVEN'S ROCK Utsunomiya presents",
+   "artists": "the Swiss porno / THE RAPTOLS / オオヌキシンゴ＆THE COCA COKES / GELEGELE / Daichi(Un take.)",
+   "price": "Adv ¥2,500 / Door ¥3,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-16/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-16",
+   "weekday": "金",
+   "open": "17:30",
+   "start": "18:30",
+   "title": "HEAVEN'S ROCK 黒田還暦祭 NAKAMURA ATSUSHI LIVE TOUR2026 [reboot] 追加公演",
+   "artists": "中村敦",
+   "price": "Adv ¥4,000",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-16/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "mito-lighthouse",
@@ -4665,6 +5124,23 @@
    "genres": [
     "ロック/バンド"
    ]
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-16",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "ONE OR EIGHT SHŪKAI 2026-2027 in JAPAN -2GATHER-",
+   "artists": "ONE OR EIGHT",
+   "price": "Adv 年間会員限定招待チケット¥0 / 年間会員限定チケット¥550 / 月額会員限定チケット¥1,110 / 無料会員限定チケット¥1,980 / 非会員一般チケット¥5,280",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-16/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "shimokitazawa-basementbar",
@@ -5011,6 +5487,23 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-17",
+   "weekday": "土",
+   "open": "11:30",
+   "start": "12:00",
+   "title": "Someday's Gone presents INDIE MANNERS COLLECTIVE'26",
+   "artists": "【出演者】Someday’s Gone / FRONTIER BACKYARD / big the grape / NUDGE’EM ALL / KONCOS / MAGIC OF LiFE / KAME / スーパーアイラブユー / BASEBALL PITCHER / tact / SonoSheet / Cavedrawing in the Subway / liquid people /他 【出店】EZ DO MARKET UTSUNOMIYA / 小梅堂 / HOME BASE DRINK STATION",
+   "price": "Adv ¥4,900 / 学割 ¥2,500 / Door ¥5,400",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-17/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-club251",
    "venue": "下北沢 CLUB251",
    "pref": "東京都",
@@ -5096,6 +5589,23 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-17",
+   "weekday": "土",
+   "open": "14:30",
+   "start": "15:00",
+   "title": "宮本佳林 5周年記念LIVE TOUR 2026 〜ぼくのかんがえたさいきょうの「宮本佳林」〜",
+   "artists": "宮本佳林",
+   "price": "",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-17-01/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -5170,6 +5680,23 @@
    ]
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-17",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "創業9周年記念 “Thank You, Hello” Tour 埼玉公演",
+   "artists": "ウルトラ寿司ふぁいやー",
+   "price": "Door スタンディング¥4,500・U-22スタンディング¥2,500",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-17/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "mito-lighthouse",
    "venue": "水戸 LIGHT HOUSE",
    "pref": "茨城県",
@@ -5240,6 +5767,23 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-17",
+   "weekday": "土",
+   "open": "17:45",
+   "start": "18:15",
+   "title": "宮本佳林 5周年記念LIVE TOUR 2026 〜 ぼくのかんがえたさいきょうの「セトリ」〜",
+   "artists": "宮本佳林",
+   "price": "",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-17-02/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -5289,6 +5833,23 @@
    "price": "前売 ￥3000 / 当日 ￥3500",
    "url": "http://www.yokohamabaysis.com/schedule.php?mt=2026.10#5700",
    "source": "http://www.yokohamabaysis.com/schedule.php?mt=2026.10",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-17",
+   "weekday": "土",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "OwL Tour 2026〜2027 “Pellet”",
+   "artists": "OwL / Northern19",
+   "price": "Adv ¥3,000 / Door ¥3,700",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-17/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -5504,6 +6065,23 @@
    ]
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-18",
+   "weekday": "日",
+   "open": "15:30",
+   "start": "16:00",
+   "title": "aoen LIVE TOUR 2026 ～青のはじまり 47+1～",
+   "artists": "aoen",
+   "price": "Adv スタンディング¥7,700 ・U-18¥4,400",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-18/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "chiba-look",
    "venue": "千葉 LOOK",
    "pref": "千葉県",
@@ -5534,6 +6112,40 @@
    "price": "¥7,500(税込・ドリンクチャージ別)",
    "url": "https://www.liquidroom.net/schedule/riot_20261018",
    "source": "https://www.liquidroom.net/schedule/2026/10",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-18",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "創業9周年記念 “Thank You, Hello” Tour 栃木公演",
+   "artists": "ウルトラ寿司ふぁいやー",
+   "price": "Adv 椅子席¥6,000 / U-22椅子席¥4,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-18/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-18",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "ZEROHZ LIVE TOUR 2026\"ECLIPSE DOMINION\"",
+   "artists": "零[Hz]",
+   "price": "Adv ¥5,500 / U-20(公演当日、20歳以下対象) ¥2,000 / Door ¥6,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-18/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -5746,6 +6358,26 @@
    "source": "http://www.yokohamabaysis.com/schedule.php?mt=2026.10",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-18",
+   "weekday": "日",
+   "open": "17:30",
+   "start": "18:40",
+   "title": "HEAVEN'S ROCK Kumagaya VJ-1 PRESENTS ~Acoustic Night~",
+   "artists": "田中さとる / 神保拓史 / ボクダンガン ※出演予定でした髙橋まさきは体調不良の為、出演キャンセルとなりました。",
+   "price": "Adv ¥2,000 / Door ¥2,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-18/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド",
+    "アコースティック/弾き語り"
+   ]
   },
   {
    "venue_id": "shimokitazawa-three",
@@ -6578,6 +7210,23 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-22",
+   "weekday": "木",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "黒蜜47都道府県ONEMAN TOUR「純愛」〜栃木〜",
+   "artists": "黒蜜",
+   "price": "Adv ¥3,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-22/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-club251",
    "venue": "下北沢 CLUB251",
    "pref": "東京都",
@@ -6885,6 +7534,23 @@
     "ロック/バンド",
     "アコースティック/弾き語り"
    ]
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-23",
+   "weekday": "金",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "ーシンガーソングライター「石岡美紀」宇都宮ライブー「言葉にできない」",
+   "artists": "石岡美紀(サポートギター：加藤卓雄) / 綾音 / April Force",
+   "price": "Adv ¥3,500 / Door ¥4,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-23/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "shimokitazawa-basementbar",
@@ -7409,6 +8075,23 @@
    ]
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-24",
+   "weekday": "土",
+   "open": "15:45",
+   "start": "16:30",
+   "title": "XLAMP ONE-MAN LIVE 2026 刻命-KOKUMEI- ― 此ノ日、此ノ瞬間ヲ心ニ刻メ ― with KAMIYAMA SHINICHIROU birthday",
+   "artists": "XLAMP",
+   "price": "Adv VIPチケット¥8,000・Sチケット¥6,000・一般Aチケット¥4,000・高校生以下チケット¥2,500・友達招待¥1,500 / 各ドリンク代別",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-24/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-club251",
    "venue": "下北沢 CLUB251",
    "pref": "東京都",
@@ -7422,6 +8105,23 @@
    "price": "前売 ¥2,900- / 当日 ¥3,400- (+1D)",
    "url": "https://club251.com/schedule/?mo=10&yr=2026",
    "source": "https://club251.com/schedule/?mo=10&yr=2026",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-24",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "VOX LETTER TOUR 2026 ～あなたの街まで直送便！配達バッグパンパン便～",
+   "artists": "THE FRANK VOX",
+   "price": "Adv ピクチャーチケット ¥6,500 / FC先行のみ / 一般 ¥5,000 / 学割 ¥4,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-24/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -7460,6 +8160,23 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-24",
+   "weekday": "土",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "ZEROHZ LIVE TOUR 2026 \"ECLIPSE DOMINION\"",
+   "artists": "零[Hz]",
+   "price": "Adv ¥5,500 /（U-20）¥2,000 / Door ¥6,000",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-24/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-daisybar",
    "venue": "下北沢 DaisyBar",
    "pref": "東京都",
@@ -7473,6 +8190,23 @@
    "price": "前売 ¥3500 / 当日 ¥4000",
    "url": "https://daisybar.jp/schedule/2026/10/",
    "source": "https://daisybar.jp/schedule/2026/10/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-24",
+   "weekday": "土",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "Laughing Hick ONEMAN TOUR 2026 “DIAMOND LILY”",
+   "artists": "Laughing Hick",
+   "price": "Adv ¥4,800",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-24/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -7651,6 +8385,23 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-25",
+   "weekday": "日",
+   "open": "11:30",
+   "start": "12:00",
+   "title": "ワンダーウィード 天 全国ツアー「夏の風2026」＠埼玉",
+   "artists": "ワンダーウィード天",
+   "price": "Adv Aチケット(前方エリア) ¥3,000 / Bチケット(後方エリア) ¥0 / Door Bチケットのみ(後方エリア) ¥1,000",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-25/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -7721,6 +8472,23 @@
    ]
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-25",
+   "weekday": "日",
+   "open": "16:00",
+   "start": "16:30",
+   "title": "令和のソフビ",
+   "artists": "heidi. / HELLBROTH / The Benjamin / LAY ABOUT WORLD",
+   "price": "Adv ¥5,000 / Door ¥5,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-25/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "kashiwa-palooza",
    "venue": "柏 PALOOZA",
    "pref": "千葉県",
@@ -7751,6 +8519,40 @@
    "price": "￥6,000/￥6,500+1drink￥…",
    "url": "https://parkdiner.jp/schedule/%e6%b3%89%e8%b0%b7%e3%81%97%e3%81%92%e3%82%8b%e5%85%a8%e5%8a%9b%e3%82%bd%e3%83%ad%e3%83%a9%e3%82%a4%e3%83%9690%e5%88%86%ef%bc%81%e3%81%a4%e3%81%8f%e3%81%b0-2/",
    "source": "https://parkdiner.jp/schedule/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-25",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "2xFE単独ライブ 関東ミニツアーVol.1＠埼⽟",
+   "artists": "2xFE",
+   "price": "Adv スタンディング ¥3,500 / Door スタンディング ¥4,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-25/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-25",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "ONEMAN TOUR 2026-2027 \"Fall in LOVE\"",
+   "artists": "reGretGirl",
+   "price": "Adv ¥4,800",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-25/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -7872,6 +8674,25 @@
    "source": "http://s-laguna.jp/schedule/2026/10/",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-25",
+   "weekday": "日",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "HEAVEN'S ROCK Kumagaya VJ-1 PRESENTS ~コピバンNight~",
+   "artists": "ザ・C.B.Hズ / KIYOHARU ※出演予定でしたガチムチクランチは諸事情の為、出演キャンセルとなりました。",
+   "price": "Adv ¥1,500 / Door ¥2,000",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-25-2/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "shimokitazawa-daisybar",
@@ -8679,6 +9500,26 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-28",
+   "weekday": "水",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "全国ツアー2026 \"FIRST CRY!!\" バンド編＆弾き語り編",
+   "artists": "竹原ピストル 〈弾き語り編〉",
+   "price": "Adv 全自由席 ¥5,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-28/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "sold_out",
+   "genres": [
+    "ロック/バンド",
+    "アコースティック/弾き語り"
+   ]
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -9210,6 +10051,40 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-30",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "ONE OR EIGHT SHŪKAI 2026-2027 in JAPAN -2GATHER-",
+   "artists": "ONE OR EIGHT",
+   "price": "Adv 一般チケット スタンディング ¥5,280 途",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-30/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-30",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "New Digital Single \"Like a charm\" Release Tour",
+   "artists": "BACK LIFT / urei / NOCOGIRI",
+   "price": "Adv 一般 ¥3,500 / 学割 ¥2,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-30/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -9348,6 +10223,25 @@
    "source": "https://www-shibuya.jp/schedule/202610.php",
    "status": "sold_out",
    "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-30",
+   "weekday": "金",
+   "open": "19:00",
+   "start": "19:30",
+   "title": "ACOUSTIC PRESENTS Halloween live",
+   "artists": "サカモトファミリア / 音Narie / Rizzberry / Fuzzy moon / Reunion",
+   "price": "",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-10-30/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202610",
+   "status": "",
+   "genres": [
+    "アコースティック/弾き語り"
+   ]
   },
   {
    "venue_id": "shimokita-era",
@@ -9641,6 +10535,59 @@
    "price": "有料 / 4,500円 / 高校生（18歳未満は無料）",
    "url": "https://www.tcf.or.jp/exhibition/027539/",
    "source": "https://www.tcf.or.jp/exhibition/capio/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-10-31",
+   "weekday": "土",
+   "open": "16:00",
+   "start": "16:30",
+   "title": "「THE ROAD ~HEAVEN'S ROCK 黒田さん還暦祭」",
+   "artists": "THE NEUTRAL",
+   "price": "Adv ¥4,000 / Door ¥4,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-10-31/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202610",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-10-31",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "BabyKingdom HELLOWEEN ONEMANLIVE 『☆べびはろ☆2026』",
+   "artists": "BabyKingdom",
+   "price": "Adv スタンディング ¥5,500 / Door スタンディング ¥6,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-10-31/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202610",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-10-31",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "lilyray pre 2nd mini album【PLANETES】release tour final",
+   "artists": "lilyray / TRUE FIGHT(茨城) / POWERBOY(神戸) / LASTEND(京都) / DaDa(甲府) / サテライト(群馬)",
+   "price": "Adv ¥3,400 / Door ¥3,400",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-10-31/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202610",
    "status": "",
    "genres": []
   },
@@ -10138,6 +11085,40 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-01",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "yosugala tour 2026",
+   "artists": "yosugala",
+   "price": "Adv VIP全自由¥15,000・全自由¥3,500 / 各ドリンク代別",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-01-2/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-01",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "toconoma Floor Live Series 「TOCONOWA」",
+   "artists": "toconoma",
+   "price": "Adv ¥6,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-01/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "tsukuba-capio",
    "venue": "つくばカピオ",
    "pref": "茨城県",
@@ -10221,6 +11202,23 @@
    "price": "ADV ¥4500",
    "url": "http://www.fad-music.com/fad/?p=65670",
    "source": "http://www.fad-music.com/fad/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-01",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:30",
+   "title": "#INKCRUNCH",
+   "artists": "INKANADELI / CRUNCHLINE O.A.)Daichi.(Un take.)",
+   "price": "Adv ¥2,400 / Door ¥3,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-01/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -10741,6 +11739,23 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "12:00",
+   "start": "12:20",
+   "title": "『さよなら GYOZA MONSTER 公演』",
+   "artists": "GYOZA MONSTER GUEST：gyozamited girlfriend / 猫の眼に餃子",
+   "price": "Adv GYOZA囲みチェキ ¥6,500 (GYOZA＋RICE付き) / GYOZA チケット：¥4,500(GYOZA+RICE付き）",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-03/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-club251",
    "venue": "下北沢 CLUB251",
    "pref": "東京都",
@@ -10915,6 +11930,42 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "CiON BAND TOUR 2026 A/W \"BRASS ON\"",
+   "artists": "CiON",
+   "price": "Adv BRASS ONチケット¥10,000 / 一般チケット¥5,000 / 学割チケット¥3,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-03/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "sold_out",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "全国下北化計画ツアー2026 これで本当に最後の延長戦 うつのみや編",
+   "artists": "さとりモンスター / ROY Limited GIRLFRIEND / とちおとめ25 / 猫の眼に宇宙 / ぱぁなしあ",
+   "price": "Adv ¥2,500 / Door ¥3,300",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-03-2/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-quattro",
    "venue": "渋谷 CLUB QUATTRO",
    "pref": "東京都",
@@ -10928,6 +11979,23 @@
    "price": "前売 ￥5,800",
    "url": "https://www.club-quattro.com/shibuya/schedule/detail/?cd=018632",
    "source": "https://www.club-quattro.com/shibuya/schedule/?ym=202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-03",
+   "weekday": "火",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "NANAOAKARI TOUR 2026「SIDE B」",
+   "artists": "ナナヲアカリ",
+   "price": "Adv オールスタンディング ¥6,200 )",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-03/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -11587,6 +12655,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-05",
+   "weekday": "木",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "35.7 ONEMAN LIVE TOUR 2026-2027",
+   "artists": "35.7",
+   "price": "Adv スタンディング ¥4,800",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-05/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -11821,6 +12906,23 @@
    "price": "ADV ¥3300",
    "url": "http://www.fad-music.com/fad/?p=65680",
    "source": "http://www.fad-music.com/fad/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-06",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "syrup16g Tour 2026 “Canon Feel”",
+   "artists": "syrup16g",
+   "price": "Adv スタンディング ¥6,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-06/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -12252,6 +13354,40 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-07",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "デビュー20周年！！ 20箇所記念ツアー！！ 全員集合☆彡",
+   "artists": "SPECIAL OTHERS",
+   "price": "Adv ¥6,000 / Door ¥6,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-07/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-07",
+   "weekday": "土",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "esq Satellite Tour 2026",
+   "artists": "esq",
+   "price": "Adv ¥6,000 / Door ¥6,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-07/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -12337,6 +13473,40 @@
    "price": "ADV ¥5500",
    "url": "http://www.fad-music.com/fad/?p=65682",
    "source": "http://www.fad-music.com/fad/",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-07",
+   "weekday": "土",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "PassCode UNLIMITED X",
+   "artists": "PassCode",
+   "price": "Adv オールスタンディング ¥5,800・学割チケット ¥3,800 / 各ドリンク代別",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-07/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-07",
+   "weekday": "土",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "プピリットパロ Road to LIQUIDROOM 「精神と時の部屋ツアー 2026-2027」",
+   "artists": "プピリットパロ / SKA FREAKS / LINK",
+   "price": "Adv ¥3,500 / Door ¥4,300",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-07/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -12791,6 +13961,40 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "Soala Live Tour 2026 ～Link～",
+   "artists": "Soala",
+   "price": "Adv 限定グッズ付き ¥11,000 / 一般 ¥5,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-08/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "16:40",
+   "start": "17:00",
+   "title": "花魁道中参周年記念単独巡業「命の意味」",
+   "artists": "花魁道中",
+   "price": "Adv Sチケット(前方) ¥4,000 / Aチケット(一般) ¥1,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-08/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "kichijoji-warp",
    "venue": "吉祥寺 WARP",
    "pref": "東京都",
@@ -12823,6 +14027,42 @@
    "source": "http://www.fad-music.com/fad/",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "DIAURA 15th 裏Anniversary TOUR 『RESURRECTION DAY』",
+   "artists": "DIAURA",
+   "price": "Adv ¥6,000 / Door ¥6,500",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-08/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-08",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "HEAVEN'S ROCK Kumagaya VJ-1 PRESENTS 「Re:Age Vol.10」",
+   "artists": "アオイロエウレカ / feeling of leaking / Fivelan / フロルフロード / ボクチン。",
+   "price": "Adv ¥2,000 / Door ¥2,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-08/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "shibuya-quattro",
@@ -14057,6 +15297,23 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-12",
+   "weekday": "木",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "THE ORAL CIGARETTES presents \"WANDER ABOUT 放浪 TOUR 2026 関東 編\"",
+   "artists": "THE ORAL CIGARETTES / TYOSiN",
+   "price": "Adv ¥5,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-12/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "sold_out",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -14208,6 +15465,23 @@
    "price": "￥3000",
    "url": "https://www.chibalook.com/schedule/new.html",
    "source": "https://www.chibalook.com/schedule/new.html",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-13",
+   "weekday": "金",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "MAMA. 1st SINGLE RELEASE ONE MAN TOUR「湖に沈んだ街」",
+   "artists": "MAMA.",
+   "price": "Adv ¥5,000 / Door ¥5,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-13/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -14626,6 +15900,63 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-14",
+   "weekday": "土",
+   "open": "14:00",
+   "start": "14:35",
+   "title": "フトイーズ×esola企画「ばんどる！」～BAND×IDOL～",
+   "artists": "esola / フトイーズ / うさぎみく / 3beat / 雷都少女 / 隣の芝はちと寂しい / ☀︎REINA☀︎ O.A.) esola＋フトイーズ",
+   "price": "Adv ¥3,000",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-14/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": [
+    "ロック/バンド",
+    "アイドル"
+   ]
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-14",
+   "weekday": "土",
+   "open": "15:30",
+   "start": "16:00",
+   "title": "NEO JAPONISM全国ツアー 遷移-UTSUROI-",
+   "artists": "NEO JAPONISM",
+   "price": "Adv VIPチケット¥10,000・一般チケット¥3,000 / 各ドリンク代別",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-14/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-14",
+   "weekday": "土",
+   "open": "16:00",
+   "start": "16:00",
+   "title": "PUNXX MANIA VOL,7 THANXX a MiLLiON for15YEARS！！ & LET'S GET TOGETHER 2026",
+   "artists": "BAND:THE RYDERS / BOMB FACTORY / 極東ファロスキッカー / The STRUMMERS / FUNGUS / THE NUGGETS / The Rumjacks (special GUEST from AUS) DJ:TOUMA S.O.T.L / JOHNNY / GEORGE (雑草團) / ta-co (雑草團) / JOE (ROCQUAD) FOOD:◆スタッズ◆ひとみ / もつ煮&チリコンカン ペルーカ",
+   "price": "Adv ¥5,400 / Door ¥5,900",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-14/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
+   "status": "",
+   "genres": [
+    "ロック/バンド",
+    "DJ/クラブ"
+   ]
+  },
+  {
    "venue_id": "yokohama-baysis",
    "venue": "横浜 BAYSIS",
    "pref": "神奈川県",
@@ -14742,6 +16073,23 @@
    "url": "https://mitolighthouse.com/sche26nor.html",
    "source": "https://mitolighthouse.com/sche26nor.html",
    "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-14",
+   "weekday": "土",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "SHE’S 15th Anniversary Tour “Who am I?”",
+   "artists": "SHE’S",
+   "price": "Adv ¥5,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-14-2/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "sold_out",
    "genres": []
   },
   {
@@ -15007,6 +16355,40 @@
    ]
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-15",
+   "weekday": "日",
+   "open": "14:15",
+   "start": "14:45",
+   "title": "OCHA NORMA LIVE TOUR 2026 AUTUMN 〜Original CHAracter〜",
+   "artists": "OCHA NORMA",
+   "price": "Adv ¥8,000 （FC先行）¥7,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-15/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-15",
+   "weekday": "日",
+   "open": "14:30",
+   "start": "15:00",
+   "title": "曾我泰久 LIVE TOUR ～ Autumn Song Collection 2026",
+   "artists": "曾我 泰久 ピアノ / 野津 永恒 今回のソングコレクションライヴツアーでも皆様にご好評をいただいている ピアニストの野津永恒さんをお迎えして 秋らしいメロウ&ドラマティックなサウンドで 曾我泰久の歌声をたっぷりとお届けいたします。",
+   "price": "Adv 全席自由 ¥6,500 / Door 全席自由 ¥7,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-15/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shibuya-quattro",
    "venue": "渋谷 CLUB QUATTRO",
    "pref": "東京都",
@@ -15075,6 +16457,23 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-15",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "楓フウカ生誕祭2026 〜 Tochigi The Final 〜",
+   "artists": "クマリデパート",
+   "price": "Adv ¥3,000 / Door ¥3,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-15/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -15123,6 +16522,23 @@
    "url": "https://www.bbstreet.com/schedule/chump-5/",
    "source": "https://www.bbstreet.com/2026/11/?cat=5",
    "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-15",
+   "weekday": "日",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "SHERBETS「HYPER HIGH SCHOOL TOUR 2026」",
+   "artists": "SHERBETS",
+   "price": "Adv ¥7,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-15/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "sold_out",
    "genres": []
   },
   {
@@ -15764,6 +17180,23 @@
    "genres": [
     "ロック/バンド"
    ]
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-17",
+   "weekday": "火",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "locofrank presents FOUR DIARIES TOUR",
+   "artists": "locofrank",
+   "price": "Adv ¥4,300",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-17/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "",
+   "genres": []
   },
   {
    "venue_id": "shimokitazawa-club251",
@@ -16522,6 +17955,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-20",
+   "weekday": "金",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "Watson Soul Quake 3 Tour",
+   "artists": "Watson",
+   "price": "Adv スタンディング ¥7,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-20/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-daisybar",
    "venue": "下北沢 DaisyBar",
    "pref": "東京都",
@@ -16883,6 +18333,25 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-21",
+   "weekday": "土",
+   "open": "16:00",
+   "start": "16:30",
+   "title": "ペルーカ×Hi-BALL PRESENTS JUNKY BRAIN PARTY vol.6",
+   "artists": "Hi-BALL / ペルーカGROUP(改) / Betty Duckling’s / ザ・ミネラルウォーターズ / butta-gil / KAMIKAZE TWIST DJ:JOHNNY FOOD:♦スタッズ♦ひとみ",
+   "price": "Adv ¥2,000 / Door ¥2,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-21/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
+   "status": "",
+   "genres": [
+    "DJ/クラブ"
+   ]
+  },
+  {
    "venue_id": "shimokitazawa-laguna",
    "venue": "下北沢 Laguna",
    "pref": "東京都",
@@ -16915,6 +18384,40 @@
    "price": "当日】¥5,500 (税込) / ¥6,000 (税込)",
    "url": "http://www.kashiwa-palooza.com/pc/Schedule/202611.html",
    "source": "http://www.kashiwa-palooza.com/pc/Schedule/202611.html",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-21",
+   "weekday": "土",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "ダウト 19～20周年記念 47都道府県TOUR「ダウト鬼念火」",
+   "artists": "ダウト",
+   "price": "Adv FC先行Sチケット(各地限定ピクチャーチケット) / 一般Aチケット ¥5,500 / 地元民割Bチケット ¥3,900 / Door 一般Aチケット ¥6,000 / 地元民割Bチケット ¥4,500",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-21/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-21",
+   "weekday": "土",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "PENICILLIN TOUR 2026「BERSERKER -UNLEASH THE MADNESS-」",
+   "artists": "PENICILLIN",
+   "price": "Adv ¥8,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-21/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -17208,6 +18711,59 @@
    "source": "http://s-era.jp/schedule_cat/2026-11",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-22",
+   "weekday": "日",
+   "open": "15:30",
+   "start": "16:00",
+   "title": "The N.I.L Presents「Disaster-level party Vol.6 DIE ＆ TAKERU Birthday Special」",
+   "artists": "The N.I.L / THE SOUND BEE HD / The oneness",
+   "price": "Adv ¥3,000 / Door ¥3,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-22/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-22",
+   "weekday": "日",
+   "open": "16:00",
+   "start": "17:00",
+   "title": "Royz ONEMAN TOUR 「BEYOND THE DREAM」",
+   "artists": "Royz",
+   "price": "Adv 通常エリア(A/Bチケット)・地蔵エリア(Cチケット) ¥5,500 / 各ドリンク代別",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-22/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-22",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "~HEAVEN’S ROCK Kumagaya VJ-1 PRESENTS×ザ☆クンパクンパ10周年企画~ ヘブンズクンパ",
+   "artists": "ザ☆クンパクンパ / ふきそくじば / ホシ☆ケン / はち / Яyokei",
+   "price": "Adv ¥2,000 / Door ¥2,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-22/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "tsukuba-parkdiner",
@@ -17692,6 +19248,42 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-23",
+   "weekday": "月",
+   "open": "16:00",
+   "start": "16:30",
+   "title": "真心ブラザーズ ライブ・ツアー『TWIN MOUNTAIN TRAILS』",
+   "artists": "真心ブラザーズ",
+   "price": "Adv オールスタンディング ¥7,500 / Door オールスタンディング ¥8,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-23/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-23",
+   "weekday": "月",
+   "open": "16:00",
+   "start": "16:30",
+   "title": "HEAVEN’S ROCK Utsunomiya presents",
+   "artists": "ペンギンハイウェイ / The Nip’s / April Force / Daichi(Un take.)",
+   "price": "Adv ¥1,500 / Door ¥1,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-23/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
+  },
+  {
    "venue_id": "kashiwa-palooza",
    "venue": "柏 PALOOZA",
    "pref": "千葉県",
@@ -17898,6 +19490,23 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-23",
+   "weekday": "月",
+   "open": "",
+   "start": "",
+   "title": "あんずPRESENTS 『ICHIGO ICHIE vol.3』",
+   "artists": "DUMMYKID / アポロ and more…?",
+   "price": "Adv ¥2,000 / Door ¥2,500",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-23/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "chiba-look",
    "venue": "千葉 LOOK",
    "pref": "千葉県",
@@ -17945,6 +19554,23 @@
    "price": "前売 ￥3500 / 当日 ￥4000",
    "url": "http://www.yokohamabaysis.com/schedule.php?mt=2026.11#5687",
    "source": "http://www.yokohamabaysis.com/schedule.php?mt=2026.11",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-24",
+   "weekday": "火",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "Ken Yokoyama \"What Kind Of Magic Tour\"",
+   "artists": "Ken Yokoyama ゲスト：HAWAIIAN6",
+   "price": "Adv スタンディング ¥4,800",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-24/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -18634,6 +20260,23 @@
    "genres": []
   },
   {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-27",
+   "weekday": "金",
+   "open": "18:00",
+   "start": "19:00",
+   "title": "鳥肌実 埼玉毒炎会「アルゴリズム演説」",
+   "artists": "鳥肌実",
+   "price": "Adv 全席自由 ¥4,500 / Door 全席自由 ¥5,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-27/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -18908,6 +20551,23 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-28",
+   "weekday": "土",
+   "open": "12:00",
+   "start": "12:30",
+   "title": "D.W.ニコルズ TOUR 2026「あたらしい歌、なつかしい歌」",
+   "artists": "D.W.ニコルズ",
+   "price": "Adv ¥4,800 / Door ¥5,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-28/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "shimokitazawa-basementbar",
    "venue": "下北沢 BASEMENTBAR",
    "pref": "東京都",
@@ -18995,6 +20655,26 @@
    "genres": []
   },
   {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-28",
+   "weekday": "土",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "HEAVEN'S ROCK Kumagaya VJ-1×MARRON BRIDGE RUNNERS PRESENTS ~MARRON'S ROCK~",
+   "artists": "MARRON BRIDGE RUNNERS / MEAT BUNS / POCKET / Chipper Junk Rat / THE RAPID DJ)TOUMA S.O.T.L",
+   "price": "Adv ¥2,400 / Door ¥2,900",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-28/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
+   "status": "",
+   "genres": [
+    "ロック/バンド",
+    "DJ/クラブ"
+   ]
+  },
+  {
    "venue_id": "shimokitazawa-daisybar",
    "venue": "下北沢 DaisyBar",
    "pref": "東京都",
@@ -19077,6 +20757,40 @@
    "url": "http://www.fad-music.com/fad/?p=65741",
    "source": "http://www.fad-music.com/fad/",
    "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "saitama-heavensrock",
+   "venue": "HEAVEN'S ROCK さいたま新都心 VJ-3",
+   "pref": "埼玉県",
+   "area": "さいたま新都心",
+   "date": "2026-11-28",
+   "weekday": "土",
+   "open": "17:40",
+   "start": "18:00",
+   "title": "STARMARIE 2026 単独公演 FANTASY POPS THE FINAL",
+   "artists": "STARMARIE",
+   "price": "Adv オールスタンディング ¥4,000",
+   "url": "https://www.heavensrock.com/shintoshin/schedule/2026-11-28/",
+   "source": "https://www.heavensrock.com/shintoshin/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-28",
+   "weekday": "土",
+   "open": "17:30",
+   "start": "18:00",
+   "title": "Chilli Beans. Tour 2026-2027 “HONESTY”",
+   "artists": "Chilli Beans.",
+   "price": "Adv ¥5,500 / Door ¥6,000",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-28/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
+   "status": "sold_out",
    "genres": []
   },
   {
@@ -19163,6 +20877,25 @@
    "source": "https://www-shibuya.jp/schedule/202611.php",
    "status": "",
    "genres": []
+  },
+  {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-28",
+   "weekday": "土",
+   "open": "18:30",
+   "start": "19:00",
+   "title": "HEAVEN’S ROCK Utsunomiya presents “Gimme Five vol.10”",
+   "artists": "LACCO TOWER / ビレッジマンズストア",
+   "price": "Adv ¥4,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-28-2/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": [
+    "ロック/バンド"
+   ]
   },
   {
    "venue_id": "shimokitazawa-basementbar",
@@ -19320,6 +21053,23 @@
    "genres": []
   },
   {
+   "venue_id": "utsunomiya2-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-4",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-29",
+   "weekday": "日",
+   "open": "16:30",
+   "start": "17:00",
+   "title": "やんよ祭りII ～Labyrinth of Nightmare～",
+   "artists": "Crows.(lynch. session) / SLAVE After Sin(LUNA SEA session) / Jan “にゅ” Da Arc(Janne Da Arc session)",
+   "price": "Adv ¥3,000 / Door ¥3,500",
+   "url": "https://www.heavensrock.com/utsunomiya2/schedule/2026-11-29/",
+   "source": "https://www.heavensrock.com/utsunomiya2/schedule/202611",
+   "status": "",
+   "genres": []
+  },
+  {
    "venue_id": "tsukuba-parkdiner",
    "venue": "つくば PARKDINER",
    "pref": "茨城県",
@@ -19367,6 +21117,23 @@
    "price": "前売 ￥5,000",
    "url": "https://mitolighthouse.com/sche26nor.html",
    "source": "https://mitolighthouse.com/sche26nor.html",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "utsunomiya-heavensrock",
+   "venue": "HEAVEN'S ROCK 宇都宮 VJ-2",
+   "pref": "栃木県",
+   "area": "宇都宮",
+   "date": "2026-11-29",
+   "weekday": "日",
+   "open": "17:00",
+   "start": "17:30",
+   "title": "2xFE単独ライブ Vol.2",
+   "artists": "2xFE",
+   "price": "Adv ¥0 / Door ¥0",
+   "url": "https://www.heavensrock.com/utsunomiya/schedule/2026-11-29/",
+   "source": "https://www.heavensrock.com/utsunomiya/schedule/202611",
    "status": "",
    "genres": []
   },
@@ -19454,6 +21221,23 @@
    "price": "前売 ￥5,500 / 当日 ￥6,500",
    "url": "https://www.club-quattro.com/shibuya/schedule/detail/?cd=018669",
    "source": "https://www.club-quattro.com/shibuya/schedule/?ym=202611",
+   "status": "",
+   "genres": []
+  },
+  {
+   "venue_id": "kumagaya-heavensrock",
+   "venue": "HEAVEN'S ROCK 熊谷 VJ-1",
+   "pref": "埼玉県",
+   "area": "熊谷",
+   "date": "2026-11-29",
+   "weekday": "日",
+   "open": "18:00",
+   "start": "18:30",
+   "title": "「2026冬のワチュロウパーティ！」",
+   "artists": "ラフィンノーズ",
+   "price": "Adv ¥4,500 / Door ¥5,000",
+   "url": "https://www.heavensrock.com/kumagaya/schedule/2026-11-29/",
+   "source": "https://www.heavensrock.com/kumagaya/schedule/202611",
    "status": "",
    "genres": []
   },
